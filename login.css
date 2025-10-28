@@ -1,0 +1,91 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 40;
+}
+
+body {
+  background-color: rgb(251, 246, 242);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  background-color: rgb(251, 246, 242);
+  padding: 0 10vh;
+  width: 100%;
+  height: 10vh;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-options {
+  display: flex;
+  margin-left: auto;
+  gap: 24px;
+}
+
+.nav-options a {
+  color: black;
+}
+
+.hero-section {
+  padding: 0 2vh;
+  width: 100%;
+  height: calc(100vh - 10vh);
+}
+
+.hero-banner {
+  border: 2px solid #d47b33;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  padding: 5vh;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  padding: 5vh;
+  gap: 48px;
+}
+
+.hero-text h1 {
+  font-size: 5rem;
+}
+
+.hero-text p {
+  font-size: 1.5rem;
+  line-height: 2.25;
+}
+
+.action {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 18px;
+}
+
+.action button {
+  border: none;
+  width: 300px;
+  height: 50px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#shop-now {
+  background-color: #d47b33;
+}
+
+#read-more {
+  background-color: #f1af7b;
+}
