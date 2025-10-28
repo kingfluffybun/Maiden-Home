@@ -1,3 +1,42 @@
+<?php
+session_start();
+include("./db.php");
+
+$alert_html_output = userAndPassCorrect();
+
+function userAndPassCorrect(){
+
+    include("./db.php");
+    $alertMsg = '';
+
+    if (isset($_POST["login"])) {
+        $user = filter_input(INPUT_POST, "user", FILTER_SANITIZE_SPECIAL_CHARS);
+        $pass = filter_input(INPUT_POST, "pass", FILTER_SANITIZE_SPECIAL_CHARS);
+
+        $sql = "SELECT username, user_email FROM user WHERE username='$user' or user_email='$user' LIMIT 1";
+        $res = mysqli_query($conn, $sql);
+
+    if ($res && $res->num_rows > 0) {
+            $row = mysqli_fetch_assoc($res);
+
+            if ($pass === $row['user_password']) {
+                $_SESSION['user_email'] = $user;
+                $_SESSION['username'] = $row['username'];
+                header("Location: ./homepage.php");
+                exit;
+            }
+            else {
+                $alertMsg .= "Incorrect password.";
+            }
+        } else {
+            $alertMsg .= "User not found.";
+        }
+    }
+    return $alertMsg;   
+}
+
+?>
+
 <html>
   <head>
     <title>Login</title>
