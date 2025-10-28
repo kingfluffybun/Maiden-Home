@@ -1,125 +1,91 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 40;
 }
 
 body {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    background: #f7f7f7;
-    padding-left: 100px;
+  background-color: rgb(251, 246, 242);
 }
 
-.container {
-    width: 100%;
-    display: flex;
-    align-items: center;
+nav {
+  display: flex;
+  align-items: center;
+  background-color: rgb(251, 246, 242);
+  padding: 0 10vh;
+  width: 100%;
+  height: 10vh;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.login-box {
-    background: #fff;
-    padding: 40px 35px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    max-width: 360px;
-    width: 100%;
+.nav-options {
+  display: flex;
+  margin-left: auto;
+  gap: 24px;
 }
 
-.login-box h2 {
-    font-size: 26px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 30px;
+.nav-options a {
+  color: black;
 }
 
-.input-group {
-    position: relative;
-    margin-bottom: 18px;
+.hero-section {
+  padding: 0 2vh;
+  width: 100%;
+  height: calc(100vh - 10vh);
 }
 
-.input-group input {
-    width: 100%;
-    padding: 14px 12px;
-    border: 2px solid #ccc;
-    border-radius: 15px;
-    font-size: 15px;
-    outline: none;
-    transition: border-color 0.3s ease;
+.hero-banner {
+  border: 2px solid #d47b33;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  padding: 5vh;
 }
 
-.input-group input:focus {
-    border-color: #D47B33;
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  padding: 5vh;
+  gap: 48px;
 }
 
-.input-group label {
-    position: absolute;
-    left: 14px;
-    top: 14px;
-    color: #888;
-    font-size: 15px;
-    pointer-events: none;
-    background: #fff;
-    padding: 0 5px;
-    transition: 0.2s ease;
+.hero-text h1 {
+  font-size: 5rem;
 }
 
-.input-group input:focus + label,
-.input-group input:not(:placeholder-shown) + label {
-    top: -8px;
-    left: 10px;
-    font-size: 12px;
-    color: #D47B33;
+.hero-text p {
+  font-size: 1.5rem;
+  line-height: 2.25;
 }
 
-.forgot-password {
-    position: absolute;
-    right: 0;
-    bottom: -20px;
+.action {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 18px;
 }
 
-.forgot-password a {
-    font-size: 13px;
-    color: #666;
-    text-decoration: none;
+.action button {
+  border: none;
+  width: 300px;
+  height: 50px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-.forgot-password a:hover {
-    text-decoration: underline;
+#shop-now {
+  background-color: #d47b33;
 }
 
-.login-btn {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 15px;
-    background: #D47B33;
-    color: #000;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 15px;
-}
-
-.login-btn:hover {
-    background: #b86624;
-}
-
-.create-account {
-    text-align: center;
-    margin-top: 25px;
-    font-size: 14px;
-    color: #444;
-}
-
-.create-account a {
-    color: #D47B33;
-    font-weight: 600;
-    text-decoration: none;
-}
-
-.create-account a:hover {
-    text-decoration: underline;
+#read-more {
+  background-color: #f1af7b;
 }
