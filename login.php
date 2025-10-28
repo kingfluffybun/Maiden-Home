@@ -75,7 +75,7 @@ function userAndPassCorrect(){
           <button type="submit" class="login-btn">Log In</button>
         </form>
         <p class="create-account">
-          New user? <a href="createAccount.html">Create New Account</a>
+          New user? <a href="register.php">Create New Account</a>
         </p>
       </div>
     </div>
