@@ -43,7 +43,6 @@ function userAndPassCorrect(){
         <link rel="stylesheet" href="login-signup.css">
     </head>
     <body>
-        <nav></nav>
         <section class="login-section">
             <div class="container">
                 <div class="login-box">
