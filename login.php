@@ -38,37 +38,42 @@ function userAndPassCorrect(){
 ?>
 
 <html>
-  <head>
-      <title>Login</title>
-      <link rel="stylesheet" href="login-signup.css">
-  </head>
-  <body>
-      <nav></nav>
-      <div class="container">
-          <div class="login-box">
-              <h2>Log In</h2>
-              <form method="POST">
-              <div class="input-group">
-                  <input type="text" id="username" name="user" required placeholder=" ">
-                  <label for="username">Email / Username</label>
-              </div>
-              <div class="input-group">
-                  <input type="password" id="password" name="pass" required placeholder=" ">
-                  <label for="password">Password</label>
-                  <div class="forgot-password">
-                  <a href="forgotPassword.html">Forgot Password?</a>
-                      </div>
-                  </div>
-
-                  <input type="submit" class="login-btn" value="Log In" name="login">
-              </form>
-                  <p class="create-account">New user? <a href="register.php">Create New Account</a></p>
-          </div>
-              <div class=" w-fit gap-2 flex-col flex min-h-30">
-                      <?php
-                          echo $alert_html_output;
-                      ?>
-              </div>
-      </div>
-  </body>
+    <head>
+        <title>Login</title>
+        <link rel="stylesheet" href="login-signup.css">
+    </head>
+    <body>
+        <nav></nav>
+        <section class="login-section">
+            <div class="container">
+                <div class="login-box">
+                    <h2>Log In</h2>
+                    <form method="POST">
+                        <div class="input-group">
+                            <input type="text" id="username" name="user" required placeholder=" ">
+                            <label for="username">Email / Username</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" id="password" name="pass" required placeholder=" ">
+                            <label for="password">Password</label>
+                            <div class="forgot-password">
+                                <a href="forgotPassword.html">Forgot Password?</a>
+                            </div>
+                        </div>
+                        <input type="submit" class="login-btn" value="Log In" name="login">
+                    </form>
+                        <p class="create-account">New user? <a href="register.php">Create New Account</a></p>
+                    </div>
+                    <div class=" w-fit gap-2 flex-col flex min-h-30">
+                        <?php
+                            echo $alert_html_output;
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="background">
+                
+            </div>
+        </section>
+    </body>
 </html>

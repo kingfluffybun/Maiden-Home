@@ -9,7 +9,6 @@ nav {
   display: flex;
   align-items: center;
   background-color: rgb(251, 246, 242);
-  padding: 0 10vh;
   width: 100%;
   height: 10vh;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -19,18 +18,18 @@ body {
     background-color: rgb(251, 246, 242);
 }
 
-.login {
+.login-section {
     height: calc(100vh - 10vh);
+    width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding-left: 100px;
 }
 
 .container {
-    width: 100%;
+    height: 100%;
+    width: 35%;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .login-box {
@@ -135,4 +134,9 @@ body {
 
 .create-account a:hover {
     text-decoration: underline;
+}
+
+.background {
+    width: 65%;
+    background-color: #D47B33;
 }

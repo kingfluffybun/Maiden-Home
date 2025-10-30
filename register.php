@@ -65,34 +65,41 @@ function userAndEmailAlert() {
 </head>
 <body>
     <nav></nav>
-    <div class="container">
-        <div class="login-box">
-            <h2>Create Account</h2>
-            <form action="./register.php" method="post">
-            <div class="input-group">
-                <input type="text" id="username" name="username" required placeholder=" ">
-                <label for="username">Username</label>
+    <section class="login-section">
+        <div class="container">
+            <div class="login-box">
+                <h2>Create Account</h2>
+                <form action="./register.php" method="post">
+                <div class="input-group">
+                    <input type="text" id="username" name="username" required placeholder=" ">
+                    <label for="username">Username</label>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="email" name="email" required placeholder=" ">
+                    <label for="email">Email</label>
+                </div>
+                <div class="input-group">
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        required placeholder=" "
+                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$"
+                        title="Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.">
+                    <label for="password">Password</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="confirm-password" name="confirm-password" required placeholder=" ">
+                    <label for="confirm-password">Confirm Password</label>
+                </div>
+                    <input type="submit" value="Sign Up" name="register" class="login-btn">
+                </form>
+                <p class="create-account">Already have an account? <a href="login.php">Log In</a></p>
             </div>
-
-            <div class="input-group">
-                <input type="email" id="email" name="email" required placeholder=" ">
-                <label for="email">Email</label>
-            </div>
-
-            <div class="input-group">
-                <input type="password" id="password" name="password" required placeholder=" ">
-                <label for="password">Password</label>
-            </div>
-
-            <div class="input-group">
-                <input type="password" id="confirm-password" name="confirm-password" required placeholder=" ">
-                <label for="confirm-password">Confirm Password</label>
-            </div>
-                <input type="submit" value="Sign Up" name="register" class="login-btn">
-            </form>
-
-            <p class="create-account">Already have an account? <a href="login.php">Log In</a></p>
         </div>
-    </div>
+        <div class="background">
+
+        </div>
+    </section>
 </body>
 </html>
