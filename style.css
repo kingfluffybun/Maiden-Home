@@ -57,7 +57,7 @@ nav {
 }
 
 .hero-banner {
-    background-image: url(/assets/hero-banner.png);
+    background-image: url(assets/hero-banner.png);
     background-repeat:no-repeat;
     background-size: cover;
     background-position: -30px -100px;
