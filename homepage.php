@@ -66,8 +66,14 @@
                     <div class="category"></div>
                 </div>
                 <div class="room">
-                    <div class="room-box" id="bedroom"></div>
-                    <div class="room-box" id="living-room"></div>
+                    <div class="room-box">
+                        <img src="assets/rooms/bedroom.png" alt="" class="room-img">
+                        <div class="room-title"><h1>Bedroom</h1></div>
+                    </div>
+                    <div class="room-box">
+                        <img src="assets/rooms/living room.png" alt="" class="room-img">
+                        <div class="room-title"><h1>Living Room</h1></div>
+                    </div>
                 </div>
             </section>
         </div>
