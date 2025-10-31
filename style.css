@@ -1,91 +1,200 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    scroll-behavior: smooth;
 }
 
+
 .material-symbols-outlined {
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 40;
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 40;
 }
 
 body {
-  background-color: rgb(251, 246, 242);
+    background-color: white;
 }
 
 nav {
-  display: flex;
-  align-items: center;
-  background-color: rgb(251, 246, 242);
-  padding: 0 10vh;
-  width: 100%;
-  height: 10vh;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 0 16vh;
+    width: 100%;
+    height: 10vh;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2), 0 15px 40px rgba(0, 0, 0, 0.05);
 }
 
 .nav-options {
-  display: flex;
-  margin-left: auto;
-  gap: 24px;
+    display: flex;
+    margin-left: auto;
+    gap: 24px;
 }
 
 .nav-options a {
-  color: black;
+    position: relative;
+    top: 0;
+    color: black;
+    transition: 0.2s all ease;
+    cursor: pointer;
+}
+
+.nav-options a:hover {
+    top: -5px;
+}
+
+.parent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .hero-section {
-  padding: 0 2vh;
-  width: 100%;
-  height: calc(100vh - 10vh);
+    width: 100%;
+    height: 90vh;
 }
 
 .hero-banner {
-  border: 2px solid #d47b33;
-  width: 100%;
-  height: 100%;
-  border-radius: 30px;
-  padding: 5vh;
+    background-image: url(/assets/hero-banner.png);
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-position: -30px -100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
 }
 
 .hero-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  height: 100%;
-  padding: 5vh;
-  gap: 48px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10vh;
+    width: 50%;
+    height: 50%;
+    padding: 0 16vh;
+    gap: 24px;
 }
 
 .hero-text h1 {
-  font-size: 5rem;
+    font-size: 5rem;
 }
 
 .hero-text p {
-  font-size: 1.5rem;
-  line-height: 2.25;
+    font-size: 1.5rem;
+    line-height: 2.25;
 }
 
 .action {
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
-  gap: 18px;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 18px;
 }
 
 .action button {
-  border: none;
-  width: 300px;
-  height: 50px;
-  border-radius: 8px;
-  cursor: pointer;
+    border: none;
+    width: 250px;
+    height: 50px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #080604;
 }
 
 #shop-now {
-  background-color: #d47b33;
+    background-color: #d47b33;
 }
 
 #read-more {
-  background-color: #f1af7b;
+    background-color: #f1af7b;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    height: auto;
+    background-color: #fbf6f2;
+    border-radius: 30px;
+    width: 90%;
+    margin-top: -20vh;
+    padding: 5vh;
+}
+
+.description {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 10px;
+}
+
+.description-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px rgba(0, 0, 0, 0.1) solid;
+    border-radius: 30px;
+}
+
+.description-box svg {
+    margin: 14px;
+}
+
+.description-text {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.description-text p {
+    font-size: 14px;
+    max-width: 12rem;
+}
+
+.shop-by {
+    display: grid;
+    grid-template-columns: 40vh auto auto auto ;
+    gap: 10px;
+    height: 40vh;
+}
+
+.shop-by h2 {
+    padding: 20px;
+    font-weight: normal;
+    font-size: 56px;
+}
+
+.category{
+    height: auto; width: auto;
+    background-color: #dbdbdb;
+    border-radius: 30px;
+}
+
+.room {
+    display: grid;
+    grid-template-columns: auto auto;
+    height: 40vh;
+    gap: 20px;
+}
+
+.room-box {
+    border-radius: 30px;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.room-box:hover {
+    filter: brightness(50%);
+}
+
+#bedroom {
+    background-image: url(assets/rooms/bedroom.png);
+    background-size: cover;
+}
+
+#living-room {
+    background-image: url(assets/rooms/living\ room.png);
+    background-size: cover;
 }
