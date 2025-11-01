@@ -1,4 +1,13 @@
-<!DOCTYPE html>
+<?php 
+session_start();
+    //stay logged in, if nag close sila ng browser or site
+    if (!isset($_SESSION['username']) && isset($_COOKIE['username'])) {
+        $_SESSION['username'] = $_COOKIE['username'];
+        $_SESSION['user_email'] = $_COOKIE['user_email'];
+    }
+
+?>
+
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -8,7 +17,11 @@
     </head>
     <body>
         <nav>
-            <h1>LOGO</h1>
+            <h1>LOGO</h1><!--Temporary lng para malaman kung logged in ba -Pat -->
+            <p style="font-size: 14px; color: #333; margin-top: 4px;">
+                Temporary - <?= htmlspecialchars($_SESSION['username']); ?>
+            </p>
+            <!--To here-->
             <div class="nav-options">
                 <a href="login.php"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-icon lucide-circle-user"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg></a>
                 <a><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-icon lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg></a>
