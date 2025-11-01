@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2025 at 07:34 AM
+-- Generation Time: Nov 01, 2025 at 07:21 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -55,7 +55,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`user_id`, `username`, `user_pass`, `user_email`) VALUES
 (1, 'clarence', '$2y$10$/dWiLGL4tf01A2423JxWwuxKhlSbPw.g9Io/NxS26U8/BYVJ8wsxu', 'jhonrickparica@gmail.com'),
 (2, 'rommel', '$2y$10$YVg3HAW9x3v0ql.Mw38yN.9eMsVfSd0fDVaZz/vMNWjZ/oQj3P7N2', 'rommel@gmail.com'),
-(3, 'Pat', '$2y$10$gyRAg3xDVs1.64QBeAEg9OoGZhQS7oepaF1Yaz7qdqNgsiB/Un7gu', 'dumppyacclngtouy@gmail.com');
+(3, 'Pat', '$2y$10$00T1t37wtqkYTBJOQ7bPQuznPrJ97gCTXmJcd9TRmARPMUyZVDvzm', 'dumppyacclngtouy@gmail.com');
 
 --
 -- Indexes for dumped tables
