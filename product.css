@@ -1,0 +1,267 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #fbf6f2;
+  color: #080604;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #d47b33;
+  padding: 0 16vh;
+  height: 10vh;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+nav h1 {
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  color: white;
+}
+
+.nav-options {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-options a {
+  color: white;
+  transition: 0.3s ease;
+}
+
+.nav-options a:hover {
+  transform: translateY(-4px);
+  opacity: 0.85;
+}
+
+.category-banner {
+  width: 100%;
+  height: 45vh;
+  overflow: hidden;
+}
+
+.category-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sort-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3vh 8vh;
+  background-color: white;
+  border-radius: 25px;
+  margin: 3vh 8vh;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.sort-bar p {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.sort-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.sort-buttons button {
+  border: 1px solid #d47b33;
+  background-color: transparent;
+  padding: 10px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sort-buttons button:hover {
+  background-color: #d47b33;
+  color: white;
+}
+
+.sort-buttons .active {
+  background-color: #d47b33;
+  color: white;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 35px;
+  padding: 4vh 8vh;
+}
+
+.product-card {
+  background-color: white;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  transition: 0.3s ease;
+  text-align: center;
+  padding-bottom: 15px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeInUp 0.6s forwards;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.img-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.img-container img {
+  width: 100%;
+  display: block;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.hover-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.img-container:hover .hover-img {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.img-container:hover .default-img {
+  opacity: 0;
+}
+
+.add-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background-color: #d47b33;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.add-btn img {
+  width: 22px;
+  height: 22px;
+}
+
+.add-btn:hover {
+  transform: scale(1.2) rotate(12deg);
+  background-color: #e58c3a;
+}
+
+.add-btn::after {
+  content: "Add to Cart";
+  position: absolute;
+  right: 55px;
+  background-color: #d47b33;
+  color: white;
+  font-size: 0.85rem;
+  padding: 5px 10px;
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: 0.3s ease;
+  white-space: nowrap;
+}
+
+.add-btn:hover::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.product-card h3 {
+  font-size: 1.1rem;
+  margin-top: 12px;
+}
+
+.product-card p {
+  font-size: 1rem;
+  color: #d47b33;
+  margin-top: 4px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 4vh 0;
+}
+
+.pagination button {
+  border: none;
+  background-color: #d47b33;
+  color: white;
+  font-size: 1.2rem;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pagination button:hover {
+  background-color: #e58c3a;
+}
+
+.page-numbers {
+  display: flex;
+  gap: 8px;
+}
+
+.page-numbers span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 1px solid #d47b33;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.page-numbers span:hover {
+  background-color: #d47b33;
+  color: white;
+}
+
+.page-numbers .active {
+  background-color: #d47b33;
+  color: white;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
