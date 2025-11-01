@@ -5,11 +5,6 @@ session_start();
         $_SESSION['username'] = $_COOKIE['username'];
         $_SESSION['user_email'] = $_COOKIE['user_email'];
     }
-    if (!isset($_SESSION['user_email'])){
-        header("Location: ./login.php");
-        exit();
-    }
-
 ?>
 
 <html lang="en">
