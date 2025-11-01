@@ -1,3 +1,43 @@
+::-webkit-scrollbar {
+    width: 13px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(241 175 123);
+    border-radius: 10px;
+    margin: 0;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background:  rgb(233, 106, 2);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(214, 97, 2);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+::-webkit-scrollbar-button:decrement {
+    cursor: pointer;
+    background-size: 20px;
+    height: 15px;
+    border: none;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23d47b33' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-chevron-up-icon lucide-chevron-up'><path d='m18 15-6-6-6 6'/></svg>") no-repeat center;
+}
+
+::-webkit-scrollbar-button:increment {
+    cursor: pointer;
+    background-size: 20px;
+    height: 15px;
+    border: none;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23d47b33" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down-icon lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>') no-repeat center;
+}
+
 * {
     margin: 0;
     padding: 0;
