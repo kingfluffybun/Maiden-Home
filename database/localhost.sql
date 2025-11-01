@@ -2,8 +2,8 @@
 -- version 5.2.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Oct 28, 2025 at 07:21 PM
+-- Host: 127.0.0.1
+-- Generation Time: Oct 31, 2025 at 07:34 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -42,7 +42,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `username`, `user_pass`, `user_email`) VALUES
 (1, 'clarence', '$2y$10$/dWiLGL4tf01A2423JxWwuxKhlSbPw.g9Io/NxS26U8/BYVJ8wsxu', 'jhonrickparica@gmail.com'),
-(2, 'rommel', '$2y$10$YVg3HAW9x3v0ql.Mw38yN.9eMsVfSd0fDVaZz/vMNWjZ/oQj3P7N2', 'rommel@gmail.com');
+(2, 'rommel', '$2y$10$YVg3HAW9x3v0ql.Mw38yN.9eMsVfSd0fDVaZz/vMNWjZ/oQj3P7N2', 'rommel@gmail.com'),
+(3, 'Pat', '$2y$10$gyRAg3xDVs1.64QBeAEg9OoGZhQS7oepaF1Yaz7qdqNgsiB/Un7gu', 'dumppyacclngtouy@gmail.com');
 
 --
 -- Indexes for dumped tables
