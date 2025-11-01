@@ -117,7 +117,7 @@ nav {
     display: flex;
     flex-direction: column;
     gap: 32px;
-    height: auto;
+    height: 150vh;
     background-color: #fbf6f2;
     border-radius: 30px;
     width: 90%;

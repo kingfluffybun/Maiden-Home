@@ -7,7 +7,7 @@ $alert_html_output = userAndPassCorrect();
 function userAndPassCorrect(){
 
     include("./db.php");
-    $alertMsg = '';
+    $alert_msg = ['user_error' => '', 'pass_error' => ''];
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["login"])) {
         $user = filter_input(INPUT_POST, "user", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -26,13 +26,20 @@ function userAndPassCorrect(){
                 exit;
             }
             else {
-                $alertMsg .= "Incorrect password.";
+                $alert_msg['pass_error'] .= 
+                '<div class="alert-msg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info-icon lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                    <p>Incorrect Password</p>
+                </div>';
             }
         } else {
-            $alertMsg .= "User not found.";
+            $alert_msg['user_error'] .= 
+            '<div class="alert-msg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info-icon lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                <p>User not found</p>
+            </div>';
         }
-    }
-    return $alertMsg;   
+    } return $alert_msg;
 }
 
 ?>
@@ -48,26 +55,30 @@ function userAndPassCorrect(){
                 <div class="login-box">
                     <h2>Log In</h2>
                     <form method="POST">
-                        <div class="input-group">
+                        <div class="input-group <?php if (!empty($alert_html_output['user_error'])) {echo ' has-error';} ?>">
                             <input type="text" id="username" name="user" required placeholder=" ">
                             <label for="username">Email / Username</label>
+                            <?php
+                                if (!empty($alert_html_output['user_error'])) {
+                                    echo $alert_html_output['user_error'];
+                                }
+                            ?>
                         </div>
-                        <div class="input-group">
+                        <div class="input-group <?php if (!empty($alert_html_output['pass_error'])) {echo ' has-error';} ?>">
                             <input type="password" id="password" name="pass" required placeholder=" ">
                             <label for="password">Password</label>
+                            <?php
+                                if (!empty($alert_html_output['pass_error'])) {
+                                    echo $alert_html_output['pass_error'];
+                                }
+                            ?>
                             <div class="forgot-password">
                                 <a href="forgotPassword.html">Forgot Password?</a>
                             </div>
                         </div>
                         <input type="submit" class="login-btn" value="Log In" name="login">
                     </form>
-                        <p class="create-account">New user? <a href="register.php">Create New Account</a></p>
-                    </div>
-                    <div class=" w-fit gap-2 flex-col flex min-h-30">
-                        <?php
-                            echo $alert_html_output;
-                        ?>
-                    </div>
+                    <p class="create-account">New user? <a href="register.php">Create New Account</a></p>
                 </div>
             </div>
             <div class="background">

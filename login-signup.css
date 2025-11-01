@@ -16,9 +16,9 @@ body {
 }
 
 .container {
-    height: 100%;
     width: 35%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
@@ -51,7 +51,7 @@ body {
     border-radius: 15px;
     font-size: 15px;
     outline: none;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .input-group input:focus {
@@ -76,6 +76,24 @@ body {
     left: 10px;
     font-size: 12px;
     color: #D47B33;
+}
+
+.input-group.has-error input{
+    border-color: #DC3030;
+}
+
+.input-group.has-error input:focus + label,
+.input-group.has-error input:not(:placeholder-shown) + label {
+    color: #DC3030;
+}
+
+.password {
+    display: flex;
+    gap: 10px;
+}
+
+.password .input-group {
+    margin-bottom: 0px;
 }
 
 .forgot-password {
@@ -130,4 +148,15 @@ body {
 .background {
     width: 65%;
     background-color: #D47B33;
+}
+
+.alert-msg {
+    display: flex;
+    height: auto;
+    align-items: center;
+    width: 100%;
+    color: #DC3030;
+    font-size: 0.8rem;
+    margin-top: 6px;
+    gap: 4px;
 }
