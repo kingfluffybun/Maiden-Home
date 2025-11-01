@@ -5,7 +5,6 @@ session_start();
         $_SESSION['username'] = $_COOKIE['username'];
         $_SESSION['user_email'] = $_COOKIE['user_email'];
     }
-
 ?>
 
 <html lang="en">
@@ -13,19 +12,35 @@ session_start();
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Maiden Home</title>
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="style.css"/>
+        <script src="script.js"></script>
     </head>
     <body>
         <nav>
-            <h1>LOGO</h1><!--Temporary lng para malaman kung logged in ba -Pat -->
-            <p style="font-size: 14px; color: #333; margin-top: 4px;">
-                Temporary - <?= htmlspecialchars($_SESSION['username']); ?>
-            </p>
-            <!--To here-->
-            <div class="nav-options">
-                <a href="login.php"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-icon lucide-circle-user"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg></a>
-                <a><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-icon lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg></a>
-                <a><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart-icon lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg></a>
+            <h1>LOGO</h1>
+            <div class="nav-options-wrapper">
+                <div class="user-dropdown">
+                    <button type="button" class="nav-options" onclick="toggleUser()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-icon lucide-circle-user"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
+                    </button>
+                    <div class="dropdown-content">
+                        <div style="display: flex; gap: 10px; padding: 10px 0;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-icon lucide-circle-user"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
+                            <div>
+                                <p id="username"><?= htmlspecialchars($_SESSION['username']); ?></p>
+                                <p id="email"><?= htmlspecialchars($_SESSION['user_email']); ?></p>
+                            </div>
+                        </div>
+                        <hr style="margin: 10px 0;">
+                        <ul style="display: flex; flex-direction: column; gap: 10px;">
+                            <li><a>Profile</a></li>
+                            <li><a>Orders</a></li>
+                            <li><a href="/functions/logout.php">Sign Out</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <a class="nav-options"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-icon lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg></a>
+                <a class="nav-options"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart-icon lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg></a>
             </div>
         </nav>
         <div class="parent">
@@ -75,10 +90,27 @@ session_start();
                     </div>
                 </div>
                 <div class="shop-by">
-                    <h2>Shop By Categories</h2>
-                    <div class="category"></div>
-                    <div class="category"></div>
-                    <div class="category"></div>
+                    <div class="shop-by-header">
+                        <h2>Shop by Category</h2>
+                        <div class="shop-by-nav">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-left-icon lucide-move-left"><path d="M6 8L2 12L6 16"/><path d="M2 12H22"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg>
+                        </div>
+                    </div>
+                    <div class="category-wrapper">
+                        <div class="category">
+                            <img src="assets/Categories/Storage & Organization.png" alt="">
+                        </div>
+                        <div class="category">
+                            <img src="assets/Categories/Beds & Mattresses.png" alt="">
+                        </div>
+                        <div class="category">
+                            <img src="assets/Categories/Kitchen Appliances.png" alt="">
+                        </div>
+                        <div class="category">
+                            <img src="assets/Categories/Tables & Chairs.png" alt="">
+                        </div>
+                    </div>
                 </div>
                 <div class="room">
                     <div class="room-box">

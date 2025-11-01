@@ -95,13 +95,19 @@ body {
 .password .input-group {
     margin-bottom: 0px;
 }
+
 /*Style ng Remember Me, Paayos nlng mga front-end -Pat*/
 .remember-forgot {
     display: flex;
+    margin: 10px;
+    height: 10px;
+    align-items: center;
 }
 
 .remember-me {
-    position: absolute;
+    display: flex;
+    gap: 4px;
+    align-items: center;
 }
 
 .remember-me label{
@@ -109,12 +115,12 @@ body {
     color: #666;
     text-decoration: none;
 }
+
 /*To here lng ginalaw ko -Pat*/
 
 .forgot-password {
-    margin: 10px;
-    position: absolute;
-    right: 0;
+    display: flex;
+    margin-left: auto;
 }
 
 .forgot-password a {

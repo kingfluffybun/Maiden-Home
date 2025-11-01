@@ -93,18 +93,18 @@ function userAndPassCorrect(){
                                     echo $alert_html_output['pass_error'];
                                 }
                             ?>
-                            <!--remember me, though i have to say goodbye, remember meee -Pat -->
-                            <div class="remember-forgot">
-                                <div class="remember-me">
-                                    <input type="checkbox" id="remember" name="remember">
-                                    <label for="remember">Remember Me</label>
-                                </div>
-                                <div class="forgot-password">
-                                    <a href="forgotPassword.html">Forgot Password?</a>
-                                </div>
-                            </div>
-                            <!--To here-->
                         </div>
+                        <!--remember me, though i have to say goodbye, remember meee -Pat -->
+                        <div class="remember-forgot">
+                            <div class="remember-me">
+                                <input type="checkbox" id="remember" name="remember">
+                                <label for="remember">Remember Me</label>
+                            </div>
+                            <div class="forgot-password">
+                                <a href="forgotPassword.html">Forgot Password?</a>
+                            </div>
+                        </div>
+                        <!--To here-->
                         <input type="submit" class="login-btn" value="Log In" name="login">
                     </form>
                     <p class="create-account">New user? <a href="register.php">Create New Account</a></p>
