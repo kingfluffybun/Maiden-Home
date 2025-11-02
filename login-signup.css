@@ -23,6 +23,11 @@ body {
     justify-content: center;
 }
 
+.back-button a{
+    text-decoration: none;
+    color: black;
+}
+
 .login-box {
     background: #fff;
     padding: 40px 35px;
@@ -111,10 +116,31 @@ body {
 }
 /*To here lng ginalaw ko -Pat*/
 
-.forgot-password {
+/*Style ng Remember Me, Paayos nlng mga front-end -Pat*/
+.remember-forgot {
+    display: flex;
     margin: 10px;
-    position: absolute;
-    right: 0;
+    height: 10px;
+    align-items: center;
+}
+
+.remember-me {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.remember-me label{
+    font-size: 13px;
+    color: #666;
+    text-decoration: none;
+}
+
+/*To here lng ginalaw ko -Pat*/
+
+.forgot-password {
+    display: flex;
+    margin-left: auto;
 }
 
 .forgot-password a {

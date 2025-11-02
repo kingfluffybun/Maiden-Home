@@ -1,0 +1,243 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #fbf6f2;
+  color: #080604;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #d47b33;
+  padding: 0 16vh;
+  height: 10vh;
+  box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+nav h1 {
+  color: #fff;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+}
+
+.nav-options {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-options a {
+  color: #fff;
+  transition: .3s ease;
+}
+
+.nav-options a:hover {
+  transform: translateY(-4px);
+  opacity: .85;
+}
+
+.category-banner {
+  width: 100%;
+  height: 45vh;
+  overflow: hidden;
+}
+
+.category-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sort-bar {
+  padding: 3vh 8vh;
+  margin: 30px 8vh 10px;
+  border-bottom: 2px solid #dcdcdc;
+}
+
+.sort-bar p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #272727;
+  margin-bottom: 12px;
+}
+
+.sort-buttons {
+  display: flex;
+  gap: 14px;
+}
+
+.sort-buttons button {
+  border: 1px solid #d47b33;
+  background: #fff;
+  color: #d47b33;
+  padding: 10px 22px;
+  font-size: .95rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: .3s ease;
+}
+
+.sort-buttons button:hover,
+.sort-buttons .active {
+  background: #d47b33;
+  color: #fff;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+  padding: 4vh 8vh;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.image-card {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,.1);
+  transition: .3s ease;
+}
+
+.image-card:hover {
+  transform: translateY(-6px);
+}
+
+.img-container {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.img-container img {
+  width: 100%;
+  display: block;
+  border-radius: 20px;
+  transition: opacity .4s ease;
+}
+
+.default-img { opacity: 1; }
+.hover-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.img-container:hover .hover-img { opacity: 1; }
+.img-container:hover .default-img { opacity: 0; }
+
+.add-btn {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  background: #d47b33;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: .3s ease;
+}
+
+.add-btn img {
+  width: 22px;
+  height: 22px;
+}
+
+.add-btn:hover {
+  transform: scale(1.2) rotate(12deg);
+  background: #e58c3a;
+}
+
+.add-btn::after {
+  content: "Add to Cart";
+  position: absolute;
+  right: 55px;
+  background: #d47b33;
+  color: #fff;
+  font-size: .85rem;
+  padding: 5px 10px;
+  border-radius: 8px;
+  opacity: 0;
+  white-space: nowrap;
+  transform: translateX(10px);
+  transition: .3s ease;
+}
+
+.add-btn:hover::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 4vh 0;
+}
+
+.pagination button {
+  border: none;
+  background: #d47b33;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: .3s ease;
+}
+
+.pagination button:hover {
+  background: #e58c3a;
+}
+
+.page-numbers {
+  display: flex;
+  gap: 8px;
+}
+
+.page-numbers span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #d47b33;
+  cursor: pointer;
+  transition: .3s ease;
+}
+
+.page-numbers span:hover,
+.page-numbers .active {
+  background: #d47b33;
+  color: #fff;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
