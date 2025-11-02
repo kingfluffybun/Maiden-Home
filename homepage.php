@@ -28,16 +28,26 @@ session_start();
                         <div style="display: flex; gap: 10px; padding: 10px 0;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-icon lucide-circle-user"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
                             <div>
-                                <p id="username"><?= htmlspecialchars($_SESSION['username']); ?></p>
-                                <p id="email"><?= htmlspecialchars($_SESSION['user_email']); ?></p>
+                                <?php if (isset($_SESSION['username']) && isset($_SESSION['user_email'])): ?>
+                                    <p id="username"><?= htmlspecialchars($_SESSION['username']); ?></p>
+                                    <p id="email"><?= htmlspecialchars($_SESSION['user_email']); ?></p>
+                                <?php else: ?>
+                                    <p id="username">Guest</p>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <hr style="margin: 10px 0;">
-                        <ul style="display: flex; flex-direction: column; gap: 10px;">
-                            <li><a>Profile</a></li>
-                            <li><a>Orders</a></li>
-                            <li><a href="/functions/logout.php">Sign Out</a></li>
-                        </ul>
+                        <?php if (isset($_SESSION['username']) && isset($_SESSION['user_email'])): ?>
+                            <ul style="display: flex; flex-direction: column; gap: 10px;">
+                                <li><a>Profile</a></li>
+                                <li><a>Orders</a></li>
+                                <li><a href="./functions/logout.php">Sign Out</a></li>
+                            </ul>
+                        <?php else: ?>
+                            <ul style="display: flex; flex-direction: column; gap: 10px;">
+                                <li><a href="./login.php">Login</a></li>
+                            </ul>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <a class="nav-options"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-icon lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg></a>

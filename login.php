@@ -6,11 +6,11 @@ $alert_html_output = userAndPassCorrect();
 
 function userAndPassCorrect(){
 
-    include("./db.php");
+    global $conn;
     $alert_msg = ['user_error' => '', 'pass_error' => ''];
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["login"])) {
-        $user = filter_input(INPUT_POST, "user", FILTER_SANITIZE_SPECIAL_CHARS);
+        $user = trim(filter_input(INPUT_POST, "user", FILTER_SANITIZE_SPECIAL_CHARS));
         $pass = filter_input(INPUT_POST, "pass", FILTER_SANITIZE_SPECIAL_CHARS);
 
         $sql = "SELECT username, user_email, user_pass FROM user WHERE username='$user' or user_email='$user' LIMIT 1";
@@ -22,12 +22,11 @@ function userAndPassCorrect(){
             if (password_verify($pass, $row['user_pass'])) {
                 $_SESSION['user_email'] = $user;
                 $_SESSION['username'] = $row['username'];
-                //Checks if na check ung 'remember me' and mag e-expire after 30 days
+
                 if (isset($_POST['remember'])) {
                     setcookie("username", $row['username'], time() + (86400 * 30), "/"); 
                     setcookie("user_email", $row['user_email'], time() + (86400 * 30), "/");
                 }
-                //To here
 
                 header("Location: ./homepage.php");
                 exit;
@@ -60,10 +59,14 @@ function userAndPassCorrect(){
     </head>
     <body>
         <section class="login-section">
+            <div class="back-button">
+                    <a href="./homepage.php">
+                        Logo
+                    </a>
+                </div>
             <div class="container">
                 <div class="login-box">
                     <h2>Log In</h2>
-                    <!--Ito ung Succesful Message pag nag register -Pat -->
                     <?php if (isset($_GET['registered']) && $_GET['registered'] == 1): ?>
                         <div class="alert-msg success">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle">
@@ -73,7 +76,6 @@ function userAndPassCorrect(){
                         <p>Your account has been created successfully! Please log in.</p>
                     </div>
                     <?php endif; ?>
-                    <!--To here-->
 
                     <form method="POST">
                         <div class="input-group <?php if (!empty($alert_html_output['user_error'])) {echo ' has-error';} ?>">
@@ -94,7 +96,6 @@ function userAndPassCorrect(){
                                 }
                             ?>
                         </div>
-                        <!--remember me, though i have to say goodbye, remember meee -Pat -->
                         <div class="remember-forgot">
                             <div class="remember-me">
                                 <input type="checkbox" id="remember" name="remember">
@@ -104,7 +105,6 @@ function userAndPassCorrect(){
                                 <a href="forgotPassword.html">Forgot Password?</a>
                             </div>
                         </div>
-                        <!--To here-->
                         <input type="submit" class="login-btn" value="Log In" name="login">
                     </form>
                     <p class="create-account">New user? <a href="register.php">Create New Account</a></p>

@@ -23,6 +23,11 @@ body {
     justify-content: center;
 }
 
+.back-button a{
+    text-decoration: none;
+    color: black;
+}
+
 .login-box {
     background: #fff;
     padding: 40px 35px;
