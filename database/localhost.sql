@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2025 at 06:51 AM
+-- Generation Time: Nov 02, 2025 at 09:35 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `category` (
-  `category_id` int(11) NOT NULL,
+  `category_id` int(11) UNSIGNED NOT NULL,
   `category_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -41,6 +41,21 @@ INSERT INTO `category` (`category_id`, `category_name`) VALUES
 (2, 'Storage & Organization'),
 (3, 'Kitchen Appliances'),
 (4, 'Table & Chairs');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `product_id` int(10) UNSIGNED NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `price` decimal(10,2) UNSIGNED NOT NULL DEFAULT 0.00,
+  `product_description` varchar(255) DEFAULT NULL,
+  `stock` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `category_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -62,8 +77,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`user_id`, `username`, `user_pass`, `user_email`) VALUES
 (1, 'clarence', '$2y$10$/dWiLGL4tf01A2423JxWwuxKhlSbPw.g9Io/NxS26U8/BYVJ8wsxu', 'jhonrickparica@gmail.com'),
 (2, 'rommel', '$2y$10$YVg3HAW9x3v0ql.Mw38yN.9eMsVfSd0fDVaZz/vMNWjZ/oQj3P7N2', 'rommel@gmail.com'),
-(3, 'Jrparica', '$2y$10$gWCTYGmwTanGbU7puoq1Wu7sPBwHCcV/KYdUFzFyNZR0BjdGFEeiS', 'eawdwa@gmail.com'),
-(4, 'henry', '$2y$10$GfJHhGjEg6f8liG37pMxBeX7YhnR5AY.DuXafR/o76CVpBaHS8Wi6', 'henrwa@gmail.com');
+(3, 'Pat', '$2y$10$00T1t37wtqkYTBJOQ7bPQuznPrJ97gCTXmJcd9TRmARPMUyZVDvzm', 'dumpacclngtouy@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -74,6 +88,12 @@ INSERT INTO `user` (`user_id`, `username`, `user_pass`, `user_email`) VALUES
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`category_id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`product_id`);
 
 --
 -- Indexes for table `user`
@@ -89,13 +109,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `category_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `product_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(100) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(100) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
