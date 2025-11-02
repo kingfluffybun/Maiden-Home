@@ -20,7 +20,7 @@ function userAndPassCorrect(){
             $row = mysqli_fetch_assoc($res);
     
             if (password_verify($pass, $row['user_pass'])) {
-                $_SESSION['user_email'] = $user;
+                $_SESSION['user_email'] = $row['user_email'];
                 $_SESSION['username'] = $row['username'];
 
                 if (isset($_POST['remember'])) {
