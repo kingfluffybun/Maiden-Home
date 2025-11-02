@@ -1,3 +1,26 @@
+<?php
+session_start();
+include("./db.php");
+
+    if (!isset($_SESSION['username']) && isset($_COOKIE['username'])) {
+        $_SESSION['username'] = $_COOKIE['username'];
+        $_SESSION['user_email'] = $_COOKIE['user_email'];
+    }
+
+    $sql = "SELECT p.*, c.category_name 
+        FROM products p
+        JOIN category c ON p.category_id = c.category_id";
+
+    if (isset($_GET['sort']) && $_GET['sort'] == 'high') {
+        $sql = "SELECT * FROM products ORDER BY price DESC";
+    } else {
+        $sql = "SELECT * FROM products";
+    }
+
+    $result = mysqli_query($conn, $sql);
+
+?>
+
 <html>
 <head>
     <title>Products | Maiden Home</title>
@@ -24,31 +47,25 @@
                 <button class="active">Featured</button>
                 <button>Latest</button>
                 <button>Best Selling</button>
-                <button>Price: High to Low</button>
+                <a href="product.php?sort=high"><button>Price: High to Low</button></a>
             </div>
         </div>
     </section>
 
     <section class="product-grid">
+        <?php while ($row = mysqli_fetch_assoc($result)): ?>
         <div class="product-card">
             <div class="img-container">
-                <img src="assets/PRODUCTS/CHAIR.jpg" class="default-img">
-                <img src="assets/PRODUCTS/CHAIR2.jpg" class="hover-img">
+                <img src="assets/PRODUCTS/<?= $row['product_image']; ?>" class="default-img">
+                <img src="assets/PRODUCTS/<?= $row['product_image_hover']; ?>" class="hover-img">
                 <button class="add-btn"><img src="assets/PRODUCTS/ADDICON.png"></button>
             </div>
-            <h3>Chair 1</h3>
-            <p>₱2,999</p>
+            <h3><?= htmlspecialchars($row['product_name']); ?></h3>
+            <p>₱<?= $row['price']; ?></p>
         </div>
+        <?php endwhile; ?>
 
-        <div class="product-card">
-            <div class="img-container">
-                <img src="assets/PRODUCTS/CHAIR.jpg" class="default-img">
-                <img src="assets/PRODUCTS/CHAIR2.jpg" class="hover-img">
-                <button class="add-btn"><img src="assets/PRODUCTS/ADDICON.png"></button>
-            </div>
-            <h3>Chair 2</h3>
-            <p>₱3,299</p>
-        </div>
+        
 
         <div class="product-card">
             <div class="img-container">
