@@ -13,7 +13,7 @@ function userAndPassCorrect(){
         $user = trim(filter_input(INPUT_POST, "user", FILTER_SANITIZE_SPECIAL_CHARS));
         $pass = filter_input(INPUT_POST, "pass", FILTER_SANITIZE_SPECIAL_CHARS);
 
-        $sql = "SELECT username, user_email, user_pass FROM user WHERE username='$user' or user_email='$user' LIMIT 1";
+        $sql = "SELECT username, user_email, user_pass, `role` FROM user WHERE username='$user' or user_email='$user' LIMIT 1";
         $res = mysqli_query($conn, $sql);
 
     if ($res && $res->num_rows > 0) {
@@ -22,6 +22,7 @@ function userAndPassCorrect(){
             if (password_verify($pass, $row['user_pass'])) {
                 $_SESSION['user_email'] = $row['user_email'];
                 $_SESSION['username'] = $row['username'];
+                $_SESSION['role'] = $row['role'];
 
                 if (isset($_POST['remember'])) {
                     setcookie("username", $row['username'], time() + (86400 * 30), "/"); 
