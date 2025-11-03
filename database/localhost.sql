@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2025 at 09:35 AM
+-- Generation Time: Nov 03, 2025 at 12:49 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -53,9 +53,19 @@ CREATE TABLE `products` (
   `product_name` varchar(255) NOT NULL,
   `price` decimal(10,2) UNSIGNED NOT NULL DEFAULT 0.00,
   `product_description` varchar(255) DEFAULT NULL,
+  `product_image` varchar(255) NOT NULL,
+  `product_image_hover` varchar(255) NOT NULL,
   `stock` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `category_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`product_id`, `product_name`, `price`, `product_description`, `product_image`, `product_image_hover`, `stock`, `category_id`) VALUES
+(1, 'Office Chair', 200.00, 'It is an Office Chair', 'BANNER.jpg', 'CHAIR.jpg', 50, 4),
+(2, 'Gaming Chair', 3500.00, 'It is a Gaming Chair', 'CHAIR2.jpg', 'CHAIR.jpg', 50, 4);
 
 -- --------------------------------------------------------
 
@@ -93,7 +103,8 @@ ALTER TABLE `category`
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`product_id`);
+  ADD PRIMARY KEY (`product_id`),
+  ADD KEY `category-product` (`category_id`);
 
 --
 -- Indexes for table `user`
@@ -115,13 +126,23 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `product_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `user_id` int(100) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `category-product` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

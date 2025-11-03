@@ -56,10 +56,8 @@ function userAndEmailAlert() {
                 $sql = "INSERT INTO user (username, user_pass, user_email)
                     VALUES ('$user', '$hashed_pass', '$email')";
                 if ($conn->query($sql)) {
-                    //Redirect to login after registering -Pat
                         header("location: login.php?registered=1");
                         exit;
-                    //To here
                 } else {
                     die("Error inserting record: " . $conn->error);
                 }

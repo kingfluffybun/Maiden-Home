@@ -36,8 +36,8 @@ if (isset($_POST['finish'])) {
     $stmt->bind_param("sdsssii", $product_name, $price, $product_description, $product_image, $product_image_hover, $stock, $category_id);
 
     if ($stmt->execute()) {
-        echo "Product added successfully!";
-            header("Location: product.php");
+        header("Location: product.php");
+            echo "Product added successfully!";
             exit;
     } else {
         echo "Error: " . $stmt->error;

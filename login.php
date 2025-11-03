@@ -28,7 +28,7 @@ function userAndPassCorrect(){
                     setcookie("user_email", $row['user_email'], time() + (86400 * 30), "/");
                 }
 
-                header("Location: ./homepage.php");
+                header("Location: ./");
                 exit;
             }
             else {
@@ -60,7 +60,7 @@ function userAndPassCorrect(){
     <body>
         <section class="login-section">
             <div class="back-button">
-                    <a href="./homepage.php">
+                    <a href="./">
                         Logo
                     </a>
                 </div>
@@ -104,7 +104,6 @@ function userAndPassCorrect(){
                             <div class="forgot-password">
                                 <a href="forgotPassword.html">Forgot Password?</a>
                             </div>
-                            <!--To here-->
                         </div>
                         <input type="submit" class="login-btn" value="Log In" name="login">
                     </form>
