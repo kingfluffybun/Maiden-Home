@@ -80,7 +80,7 @@ nav {
     filter: brightness(0.9), saturate(0.9);
 }
 .hero-banner {
-    background-image: url(assets/hero-banner.png);
+    background-image: url(../assets/hero-banner.png);
     background-repeat:no-repeat;
     background-size: cover; 
     background-position: -30px -100px;
@@ -291,5 +291,13 @@ nav {
     opacity: 1; scale: 1;
     pointer-events: all;
     top: 65px; right: 35px;
+}
+
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-group(*) {
+    animation-duration: 0.5s;
 }
 
