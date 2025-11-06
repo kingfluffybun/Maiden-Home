@@ -1,0 +1,73 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.material-symbols-outlined {font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 40;}
+
+nav {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 0 20vh;
+    width: 100%;
+    height: 10vh;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2), 0 15px 40px rgba(0, 0, 0, 0.05);
+}
+.nav-options-wrapper {
+    display: flex;
+    margin-left: auto;
+    gap: 24px;
+}
+.nav-options {
+    background-color: transparent;
+    border: none;
+    position: relative;
+    min-height: 32px;
+    top: 0;
+    color: black;
+    transition: 0.2s all ease;
+    cursor: pointer;
+}
+.nav-options:hover {top: -5px;}
+.dropdown-content {
+    opacity: 0; pointer-events: none; scale: 0; 
+    position: fixed; right: 165px; top: -40px;
+    background-color: white; border: 1px solid #dedede;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2), 0 15px 40px rgba(0, 0, 0, 0.05);
+    border-radius: 15px;
+    padding: 14px;
+    margin-top: 10px;
+    width: 300px;
+    height: auto;
+    transition: 0.2s all ease;
+    font-size: 0.9rem;
+}
+.dropdown-content li{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 4px 8px;
+    transition: 0.2s all ease;
+    cursor: pointer;
+}
+.dropdown-content li a {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: black;
+    align-items: center;
+}
+.dropdown-content li:hover {background-color: #dedede;}
+#username {font-weight: 600;}
+#email {color: rgb(89, 99, 110);}
+
+.is-shown {
+    opacity: 1; scale: 1;
+    pointer-events: all;
+    top: 65px; right: 35px;
+}
