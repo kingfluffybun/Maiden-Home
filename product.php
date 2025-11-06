@@ -59,8 +59,7 @@ include("./db.php");
         <?php while ($row = mysqli_fetch_assoc($result)): ?>
         <div class="product-card">
             <div class="img-container">
-                <img src="assets/PRODUCTS/<?= $row['product_image']; ?>" class="default-img">
-                <img src="assets/PRODUCTS/<?= $row['product_image_hover']; ?>" class="hover-img">
+                <img src="assets/PRODUCTS/<?= $row['product_img']; ?>" class="default-img">
                 <button class="add-btn"><img src="assets/PRODUCTS/ADDICON.png"></button>
             </div>
             <h3><?= htmlspecialchars($row['product_name']); ?></h3>
