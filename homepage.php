@@ -8,171 +8,168 @@ if (!isset($_SESSION['username']) && isset($_COOKIE['username'])) {
 ?>
 
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maiden Home</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/scroll.css">
-    <link rel="stylesheet" href="css/nav-bar.css">
-    <script src="js/script.js"></script>
-</head>
-<?php include("./includes/nav-bar.php") ?>
-
-<body>
-    <div class="parent">
-        <section class="hero-section">
-            <div class="hero-banner">
-                <div class="hero-text">
-                    <h1>Made in Home. <span style="color: #d47b33;">Made for You.</span></h1>
-                    <p>
-                        Discover furniture born from craftsmanship and comfort, designed to
-                        make every moment feel at home.
-                    </p>
-                    <div class="action">
-                        <button type="button" id="shop-now">Shop Now</button>
-                        <button type="button" id="read-more">Read More</button>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Maiden Home</title>
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/scroll.css">
+        <link rel="stylesheet" href="css/nav-bar.css">
+        <script src="js/script.js"></script>
+    </head>
+    <body>
+        <?php include("./includes/nav-bar.php") ?>
+        <div class="parent">
+            <section class="hero-section">
+                <div class="hero-banner">
+                    <div class="hero-text">
+                        <h1>Made in Home. <span style="color: #d47b33;">Made for You.</span></h1>
+                        <p>
+                            Discover furniture born from craftsmanship and comfort, designed to
+                            make every moment feel at home.
+                        </p>
+                        <div class="action">
+                            <button type="button" id="shop-now">Shop Now</button>
+                            <button type="button" id="read-more">Read More</button>
+                        </div>
+                    </div>
+            </section>
+            <section class="container">
+                <div class="description">
+                    <div class="description-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#d47b33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck-icon lucide-truck">
+                            <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
+                            <path d="M15 18H9" />
+                            <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14" />
+                            <circle cx="17" cy="18" r="2" />
+                            <circle cx="7" cy="18" r="2" />
+                        </svg>
+                        <div class="description-text">
+                            <h2>Free Shipping</h2>
+                            <p>Enjoy free and fast delivery on all orders</p>
+                        </div>
+                    </div>
+                    <div class="description-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#d47b33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw-icon lucide-rotate-ccw">
+                            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                            <path d="M3 3v5h5" />
+                        </svg>
+                        <div class="description-text">
+                            <h2>Easy Return</h2>
+                            <p>Hassle-free returns within a few days</p>
+                        </div>
+                    </div>
+                    <div class="description-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#d47b33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hand-coins-icon lucide-hand-coins">
+                            <path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17" />
+                            <path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9" />
+                            <path d="m2 16 6 6" />
+                            <circle cx="16" cy="9" r="2.9" />
+                            <circle cx="6" cy="5" r="3" />
+                        </svg>
+                        <div class="description-text">
+                            <h2>100% Money Back</h2>
+                            <p>Full refund guaranteed if you're not satisfied</p>
+                        </div>
+                    </div>
+                    <div class="description-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#d47b33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle-question-mark-icon lucide-message-circle-question-mark">
+                            <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719" />
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                            <path d="M12 17h.01" />
+                        </svg>
+                        <div class="description-text">
+                            <h2>Customer Support</h2>
+                            <p>We're here to help 24/7 with any questions</p>
+                        </div>
                     </div>
                 </div>
-        </section>
-        <section class="container">
-            <div class="description">
-                <div class="description-box">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#d47b33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck-icon lucide-truck">
-                        <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
-                        <path d="M15 18H9" />
-                        <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14" />
-                        <circle cx="17" cy="18" r="2" />
-                        <circle cx="7" cy="18" r="2" />
-                    </svg>
-                    <div class="description-text">
-                        <h2>Free Shipping</h2>
-                        <p>Enjoy free and fast delivery on all orders</p>
+                <div class="shop-by">
+                    <div class="shop-by-header">
+                        <h2>Shop by Category</h2>
+                        <div class="shop-by-nav">
+                            <button type="button" class="prev-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-left-icon lucide-move-left">
+                                    <path d="M6 8L2 12L6 16" />
+                                    <path d="M2 12H22" />
+                                </svg>
+                            </button>
+                            <button type="button" class="next-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right">
+                                    <path d="M18 8L22 12L18 16" />
+                                    <path d="M2 12H22" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div style="width: 100%; overflow:hidden;">
+                        <ul class="category-wrapper" style="list-style-type: none;">
+                            <li class="category">
+                                <div>
+                                    <img src="assets/Categories/Storage & Organization.png" alt="">
+                                    <h3>Storage & Organization</h3>
+                                </div>
+                            </li>
+                            <li class="category">
+                                <div>
+                                    <img src="assets/Categories/Beds & Mattresses.png" alt="">
+                                    <h3>Beds & Mattresses</h3>
+                                </div>
+                            </li>
+                            <li class="category">
+                                <div>
+                                    <img src="assets/Categories/Tables & Chairs.png" alt="">
+                                    <h3>Tables & Chairs</h3>
+                                </div>
+                            </li>
+                            <li class="category">
+                                <div>
+                                    <img src="assets/Categories/Sofas & Armchair.png" alt="">
+                                    <h3>Sofas & Armchair</h3>
+                                </div>
+                            </li>
+                            <li class="category">
+                                <div>
+                                    <img src="assets/Categories/Home Decorations.png" alt="">
+                                    <h3>Home Decorations</h3>
+                                </div>
+                            </li>
+                            <li class="category">
+                                <div>
+                                    <img src="assets/Categories/Light Fixtures.png" alt="">
+                                    <h3>Light Fixtures</h3>
+                                </div>
+                            </li>
+                            <li class="category">
+                                <div>
+                                    <img src="assets/Categories/Office Furniture.png" alt="">
+                                    <h3>Office Furniture</h3>
+                                </div>
+                            </li>
+                            <li class="category">
+                                <div>
+                                    <img src="assets/Categories/Outdoors Furniture.png" alt="">
+                                    <h3>Outdoor Furniture</h3>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="description-box">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#d47b33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw-icon lucide-rotate-ccw">
-                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-                        <path d="M3 3v5h5" />
-                    </svg>
-                    <div class="description-text">
-                        <h2>Easy Return</h2>
-                        <p>Hassle-free returns within a few days</p>
+                <div class="room">
+                    <div class="room-box">
+                        <img src="assets/rooms/bedroom.png" alt="" class="room-img">
+                        <div class="room-title">
+                            <h1>Bedroom</h1>
+                        </div>
+                    </div>
+                    <div class="room-box">
+                        <img src="assets/rooms/living room.png" alt="" class="room-img">
+                        <div class="room-title">
+                            <h1>Living Room</h1>
+                        </div>
                     </div>
                 </div>
-                <div class="description-box">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#d47b33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hand-coins-icon lucide-hand-coins">
-                        <path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17" />
-                        <path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9" />
-                        <path d="m2 16 6 6" />
-                        <circle cx="16" cy="9" r="2.9" />
-                        <circle cx="6" cy="5" r="3" />
-                    </svg>
-                    <div class="description-text">
-                        <h2>100% Money Back</h2>
-                        <p>Full refund guaranteed if you're not satisfied</p>
-                    </div>
-                </div>
-                <div class="description-box">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#d47b33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle-question-mark-icon lucide-message-circle-question-mark">
-                        <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719" />
-                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-                        <path d="M12 17h.01" />
-                    </svg>
-                    <div class="description-text">
-                        <h2>Customer Support</h2>
-                        <p>We're here to help 24/7 with any questions</p>
-                    </div>
-                </div>
-            </div>
-            <div class="shop-by">
-                <div class="shop-by-header">
-                    <h2>Shop by Category</h2>
-                    <div class="shop-by-nav">
-                        <button type="button" class="prev-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-left-icon lucide-move-left">
-                                <path d="M6 8L2 12L6 16" />
-                                <path d="M2 12H22" />
-                            </svg>
-                        </button>
-                        <button type="button" class="next-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right">
-                                <path d="M18 8L22 12L18 16" />
-                                <path d="M2 12H22" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                <div style="width: 100%; overflow:hidden;">
-                    <ul class="category-wrapper" style="list-style-type: none;">
-                        <li class="category">
-                            <div>
-                                <img src="assets/Categories/Storage & Organization.png" alt="">
-                                <h3>Storage & Organization</h3>
-                            </div>
-                        </li>
-                        <li class="category">
-                            <div>
-                                <img src="assets/Categories/Beds & Mattresses.png" alt="">
-                                <h3>Beds & Mattresses</h3>
-                            </div>
-                        </li>
-                        <li class="category">
-                            <div>
-                                <img src="assets/Categories/Tables & Chairs.png" alt="">
-                                <h3>Tables & Chairs</h3>
-                            </div>
-                        </li>
-                        <li class="category">
-                            <div>
-                                <img src="assets/Categories/Sofas & Armchair.png" alt="">
-                                <h3>Sofas & Armchair</h3>
-                            </div>
-                        </li>
-                        <li class="category">
-                            <div>
-                                <img src="assets/Categories/Home Decorations.png" alt="">
-                                <h3>Home Decorations</h3>
-                            </div>
-                        </li>
-                        <li class="category">
-                            <div>
-                                <img src="assets/Categories/Light Fixtures.png" alt="">
-                                <h3>Light Fixtures</h3>
-                            </div>
-                        </li>
-                        <li class="category">
-                            <div>
-                                <img src="assets/Categories/Office Furniture.png" alt="">
-                                <h3>Office Furniture</h3>
-                            </div>
-                        </li>
-                        <li class="category">
-                            <div>
-                                <img src="assets/Categories/Outdoors Furniture.png" alt="">
-                                <h3>Outdoor Furniture</h3>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="room">
-                <div class="room-box">
-                    <img src="assets/rooms/bedroom.png" alt="" class="room-img">
-                    <div class="room-title">
-                        <h1>Bedroom</h1>
-                    </div>
-                </div>
-                <div class="room-box">
-                    <img src="assets/rooms/living room.png" alt="" class="room-img">
-                    <div class="room-title">
-                        <h1>Living Room</h1>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-</body>
-
+            </section>
+        </div>
+    </body>
 </html>
