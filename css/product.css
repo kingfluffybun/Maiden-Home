@@ -2,46 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
-body {
-  background: #fbf6f2;
-  color: #080604;
-}
-
-nav {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #d47b33;
-  padding: 0 16vh;
-  height: 10vh;
-  box-shadow: 0 5px 10px rgba(0,0,0,.2);
-}
-
-nav h1 {
-  color: #fff;
-  font-size: 1.8rem;
-  letter-spacing: 1px;
-}
-
-.nav-options {
-  display: flex;
-  gap: 24px;
-}
-
-.nav-options a {
-  color: #fff;
-  transition: .3s ease;
-}
-
-.nav-options a:hover {
-  transform: translateY(-4px);
-  opacity: .85;
+  font-family: "Inter", sans-serif;
 }
 
 .category-banner {
