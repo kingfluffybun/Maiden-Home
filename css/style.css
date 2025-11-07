@@ -5,14 +5,11 @@
     font-family: "Inter", sans-serif;
     scroll-behavior: smooth;
 }
-
 .material-symbols-outlined {font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 40;}
-
 body {
     background-color: white;
     overflow-x: hidden;
 }
-
 .parent {
     display: flex;
     flex-direction: column;
@@ -46,19 +43,16 @@ body {
 .hero-text h1 {
     font-size: 5rem;
 }
-
 .hero-text p {
-    font-size: 1.5rem;
+    font-size: 1.5rem; 
     line-height: 2.25;
 }
-
 .action {
     display: flex;
     justify-content: flex-start;
     width: 100%;
     gap: 18px;
 }
-
 .action button {
     border: none;
     width: 250px;
@@ -68,11 +62,9 @@ body {
     font-size: 16px;
     color: #080604;
 }
-
 #shop-now {
     background-color: #d47b33;
 }
-
 #read-more {
     background-color: #f1af7b;
 }
