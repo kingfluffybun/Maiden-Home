@@ -64,7 +64,7 @@ function userAndPassCorrect()
 <body>
     <section class="login-section">
         <div class="back-button">
-            <a href="./homepage.php">
+            <a href="./index.php">
                 Logo
             </a>
         </div>
