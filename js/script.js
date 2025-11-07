@@ -12,18 +12,34 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Previous Button Click
     prevButton.addEventListener("click", () => {
-      wrapper.scrollBy({ 
-        left: -wrapper.clientWidth + 30, // Scroll left by the container's visible width
-        behavior: "smooth" 
-      });
+      if (wrapper.scrollLeft <= 0) {
+        //If at start, scroll to End
+        wrapper.scrollTo({ 
+          left: wrapper.scrollWidth, 
+          behavior: "smooth"
+        });
+      } else {
+        wrapper.scrollBy({ 
+          left: -wrapper.clientWidth + 30, // Scroll left by the container's visible width
+          behavior: "smooth"
+        });
+      }
     });
 
     // Next Button Click
     nextButton.addEventListener("click", () => {
-      wrapper.scrollBy({ 
-        left: wrapper.clientWidth + 30, // Scroll right by the container's visible width
-        behavior: "smooth" 
+      if (wrapper.scrollLeft >= wrapper.scrollWidth - wrapper.clientWidth - 5) {
+        //If at end, scroll to start
+        wrapper.scrollTo({ 
+          left: 0, 
+          behavior: "smooth"
+        });
+      } else {
+        wrapper.scrollBy({ 
+          left: wrapper.clientWidth + 30, // Scroll right by the container's visible width
+          behavior: "smooth" 
       });
+      }
     });
   }
 });
