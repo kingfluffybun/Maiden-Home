@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2025 at 03:25 PM
+-- Generation Time: Nov 07, 2025 at 09:04 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,43 @@ SET time_zone = "+00:00";
 --
 -- Database: `maidenhome_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `address`
+--
+
+CREATE TABLE `address` (
+  `address_id` int(11) NOT NULL,
+  `user_id` int(100) UNSIGNED NOT NULL,
+  `user_firstname` varchar(50) NOT NULL,
+  `user_midname` varchar(50) DEFAULT NULL,
+  `user_lastname` varchar(50) NOT NULL,
+  `phone_number` varchar(30) NOT NULL,
+  `street_name` varchar(50) NOT NULL,
+  `barangay` varchar(50) NOT NULL,
+  `building_no` varchar(50) DEFAULT NULL,
+  `house_no` varchar(50) DEFAULT NULL,
+  `city` varchar(50) NOT NULL,
+  `region` varchar(50) NOT NULL,
+  `postal_code` varchar(50) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `addtocart`
+--
+
+CREATE TABLE `addtocart` (
+  `cart_id` int(11) NOT NULL,
+  `user_id` int(100) UNSIGNED NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -49,6 +86,24 @@ INSERT INTO `category` (`category_id`, `category_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `order`
+--
+
+CREATE TABLE `order` (
+  `order_id` int(11) NOT NULL,
+  `user_id` int(100) UNSIGNED NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `address_id` int(11) NOT NULL,
+  `total_order` int(11) NOT NULL,
+  `payment` enum('Ewallet','Cod','Bank') NOT NULL,
+  `payment_status` enum('pending','paid') NOT NULL DEFAULT 'pending',
+  `order_status` enum('order placed','shipped','delivered') NOT NULL,
+  `oder_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `products`
 --
 
@@ -58,7 +113,11 @@ CREATE TABLE `products` (
   `price` decimal(10,2) NOT NULL,
   `stocks` int(11) NOT NULL,
   `product_img` varchar(255) NOT NULL,
-  `product_overview` varchar(255) NOT NULL,
+  `product_img2` varchar(255) NOT NULL,
+  `product_img3` varchar(255) NOT NULL,
+  `product_img4` varchar(255) NOT NULL,
+  `product_img5` varchar(255) NOT NULL,
+  `product_img_hover` varchar(255) NOT NULL,
   `category_id` int(10) NOT NULL,
   `sub_id` int(11) NOT NULL,
   `product_description` text NOT NULL,
@@ -143,17 +202,42 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `username`, `user_pass`, `user_email`, `role`) VALUES
 (1, 'clarence', '$2y$10$/dWiLGL4tf01A2423JxWwuxKhlSbPw.g9Io/NxS26U8/BYVJ8wsxu', 'jhonrickparica@gmail.com', 'admin'),
-(2, 'Pat', '$2y$10$00T1t37wtqkYTBJOQ7bPQuznPrJ97gCTXmJcd9TRmARPMUyZVDvzm', 'dumpacclngtouy@gmail.com', 'admin');
+(3, 'Pat', '$2y$10$00T1t37wtqkYTBJOQ7bPQuznPrJ97gCTXmJcd9TRmARPMUyZVDvzm', 'dumpacclngtouy@gmail.com', 'admin');
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `address`
+--
+ALTER TABLE `address`
+  ADD PRIMARY KEY (`address_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `addtocart`
+--
+ALTER TABLE `addtocart`
+  ADD PRIMARY KEY (`cart_id`),
+  ADD UNIQUE KEY `user_id_2` (`user_id`,`product_id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`category_id`);
+
+--
+-- Indexes for table `order`
+--
+ALTER TABLE `order`
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `address_id` (`address_id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `products`
@@ -179,6 +263,18 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `address`
+--
+ALTER TABLE `address`
+  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `addtocart`
+--
+ALTER TABLE `addtocart`
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -207,6 +303,27 @@ ALTER TABLE `user`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `address`
+--
+ALTER TABLE `address`
+  ADD CONSTRAINT `address_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+
+--
+-- Constraints for table `addtocart`
+--
+ALTER TABLE `addtocart`
+  ADD CONSTRAINT `addtocart_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`),
+  ADD CONSTRAINT `addtocart_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+
+--
+-- Constraints for table `order`
+--
+ALTER TABLE `order`
+  ADD CONSTRAINT `order_ibfk_1` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`),
+  ADD CONSTRAINT `order_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`),
+  ADD CONSTRAINT `order_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
 --
 -- Constraints for table `products`
