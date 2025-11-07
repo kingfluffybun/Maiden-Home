@@ -53,30 +53,6 @@ function userAndPassCorrect()
 ?>
 
 <html>
-<<<<<<< HEAD
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login</title>
-        <link rel="stylesheet" href="login-signup.css">
-    </head>
-    <body>
-        <section class="login-section">
-            <div class="back-button">
-                    <a href="./">
-                        Logo
-                    </a>
-                </div>
-            <div class="container">
-                <div class="login-box">
-                    <h2>Log In</h2>
-                    <?php if (isset($_GET['registered']) && $_GET['registered'] == 1): ?>
-                        <div class="alert-msg success">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <path d="M9 12l2 2l4-4"></path>
-                            </svg>
-=======
 
 <head>
     <meta charset="UTF-8">
@@ -101,7 +77,6 @@ function userAndPassCorrect()
                             <circle cx="12" cy="12" r="10"></circle>
                             <path d="M9 12l2 2l4-4"></path>
                         </svg>
->>>>>>> main
                         <p>Your account has been created successfully! Please log in.</p>
                     </div>
                 <?php endif; ?>

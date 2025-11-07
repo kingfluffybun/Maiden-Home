@@ -1,18 +1,10 @@
 <?php
 session_start();
-<<<<<<< HEAD:index.php
 
     if (!isset($_SESSION['username']) && isset($_COOKIE['username'])) {
         $_SESSION['username'] = $_COOKIE['username'];
         $_SESSION['user_email'] = $_COOKIE['user_email'];
     }
-=======
-//stay logged in, if nag close sila ng browser or site
-if (!isset($_SESSION['username']) && isset($_COOKIE['username'])) {
-    $_SESSION['username'] = $_COOKIE['username'];
-    $_SESSION['user_email'] = $_COOKIE['user_email'];
-}
->>>>>>> main:homepage.php
 ?>
 
 <html lang="en">
