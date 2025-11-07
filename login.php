@@ -93,16 +93,19 @@ function userAndPassCorrect()
                         }
                         ?>
                     </div>
-                    <div class="input-group <?php if (!empty($alert_html_output['pass_error'])) {
-                                                echo ' has-error';
-                                            } ?>">
+                    <div class="input-group password-group <?php if (!empty($alert_html_output['pass_error'])) {
+                        echo ' has-error';
+                    } ?>">
                         <input type="password" id="password" name="pass" required placeholder=" ">
-                        <label for="password">Password</label>
-                        <?php
-                        if (!empty($alert_html_output['pass_error'])) {
+                            <label for="password">Password</label>
+                                <button type="button" class="toggle-password" id="togglePassword">
+                                    <img src="assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="show/hide">
+                                </button>
+                                <?php
+                             if (!empty($alert_html_output['pass_error'])) {
                             echo $alert_html_output['pass_error'];
-                        }
-                        ?>
+                            }
+                            ?>
                     </div>
                     <div class="remember-forgot">
                         <div class="remember-me">
@@ -122,6 +125,19 @@ function userAndPassCorrect()
 
         </div>
     </section>
+    <script>
+        const passwordInput = document.getElementById('password');
+        const togglePassword = document.getElementById('togglePassword');
+        const toggleIcon = togglePassword.querySelector('img');
+
+        togglePassword.addEventListener('click', () => {
+             const isHidden = passwordInput.getAttribute('type') === 'password';
+                passwordInput.setAttribute('type', isHidden ? 'text' : 'password');
+                toggleIcon.src = isHidden
+                    ? 'assets/Show Password/visibility_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg'
+                    : 'assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg';
+        });
+    </script>
 </body>
 
 </html>
