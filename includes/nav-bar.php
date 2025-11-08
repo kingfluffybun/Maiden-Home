@@ -38,33 +38,39 @@
                 <?php if (isset($_SESSION['username']) && isset($_SESSION['user_email'])): ?>
                     <ul style="display: flex; flex-direction: column; gap: 12px;">
                         <li>
-                            <div style="display: flex; align-items:center; gap:8px;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user">
-                                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                                    <circle cx="12" cy="7" r="4" />
-                                </svg>
-                                <a>Profile</a>
-                            </div>
+                            <a>
+                                <div style="display: flex; align-items:center; gap:8px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user">
+                                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                                        <circle cx="12" cy="7" r="4" />
+                                    </svg>
+                                    <a>Profile</a>
+                                </div>
+                            </a>
                         </li>
                         <li>
-                            <div style="display: flex; align-items:center; gap:8px;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag-icon lucide-shopping-bag">
-                                    <path d="M16 10a4 4 0 0 1-8 0" />
-                                    <path d="M3.103 6.034h17.794" />
-                                    <path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z" />
-                                </svg>
-                                <a>Orders</a>
-                            </div>
+                            <a>
+                                <div style="display: flex; align-items:center; gap:8px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag-icon lucide-shopping-bag">
+                                        <path d="M16 10a4 4 0 0 1-8 0" />
+                                        <path d="M3.103 6.034h17.794" />
+                                        <path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z" />
+                                    </svg>
+                                    <p>Orders</p>
+                                </div>
+                            </a>
                         </li>
                         <li>
-                            <div style="display: flex; align-items:center; gap:8px;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out-icon lucide-log-out">
-                                    <path d="m16 17 5-5-5-5" />
-                                    <path d="M21 12H9" />
-                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-                                </svg>
-                                <a href="./functions/logout.php">Sign Out</a>
-                            </div>
+                            <a href="./functions/logout.php">
+                                <div style="display: flex; align-items:center; gap:8px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out-icon lucide-log-out">
+                                        <path d="m16 17 5-5-5-5" />
+                                        <path d="M21 12H9" />
+                                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                                    </svg>
+                                    <p>Sign Out</p>
+                                </div>
+                            </a>
                         </li>
                     </ul>
                 <?php else: ?>
