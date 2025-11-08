@@ -1,5 +1,5 @@
 <nav>
-    <a href="homepage.php" style="text-decoration: none;">
+    <a href="index.php" style="text-decoration: none;">
         <h1>LOGO</h1>
     </a>
     <div class="search">
