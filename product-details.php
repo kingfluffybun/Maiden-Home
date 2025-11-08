@@ -25,13 +25,13 @@ if (!isset($_SESSION['username']) && isset($_COOKIE['username'])) {
                 <!--Para siyang navigation starting kung san siya nag simula papunta sa site na to-->
                 <div class="breadcrumb"><p>Home > Beds & Mattresses > Beds > Minimalist Bed Frame</p></div>
                 <div class="product-image">
-                    
+                    <!--Product Main Image-->
                     <div class="main-product"></div>
                     <div class="product-angles">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
+                        <div><!--angle 1--></div>
+                        <div><!--angle 2--></div>
+                        <div><!--angle 3--></div>
+                        <div><!--angle 4--></div>
                     </div>
                 </div>
             </div>
@@ -77,7 +77,7 @@ if (!isset($_SESSION['username']) && isset($_COOKIE['username'])) {
                     <div class="add-to-cart">
                         <button type="button">Add to Cart</button>
                     </div>
-                    <button type="button" class="like"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d47b33" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-icon lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg></button>
+                    <button type="button" class="like"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d47b33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-icon lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg></button>
                 </div>
             </div>
         </div>

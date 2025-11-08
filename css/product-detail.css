@@ -153,3 +153,7 @@ hr {width: 100%; margin: -12px 0;}
     padding: 16px;
     width: 100%;
 }
+
+.like {
+    justify-self: start;
+}
