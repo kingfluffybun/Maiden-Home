@@ -14,7 +14,7 @@ function userAndPassCorrect()
         $user = trim(filter_input(INPUT_POST, "user", FILTER_SANITIZE_SPECIAL_CHARS));
         $pass = filter_input(INPUT_POST, "pass", FILTER_SANITIZE_SPECIAL_CHARS);
 
-        $sql = "SELECT username, user_email, user_pass FROM user WHERE username='$user' or user_email='$user' LIMIT 1";
+        $sql = "SELECT username, user_email, user_pass, `role` FROM user WHERE username='$user' or user_email='$user' LIMIT 1";
         $res = mysqli_query($conn, $sql);
 
         if ($res && $res->num_rows > 0) {
@@ -23,13 +23,14 @@ function userAndPassCorrect()
             if (password_verify($pass, $row['user_pass'])) {
                 $_SESSION['user_email'] = $row['user_email'];
                 $_SESSION['username'] = $row['username'];
+                $_SESSION['role'] = $row['role'];
 
                 if (isset($_POST['remember'])) {
                     setcookie("username", $row['username'], time() + (86400 * 30), "/");
                     setcookie("user_email", $row['user_email'], time() + (86400 * 30), "/");
                 }
 
-                header("Location: ./homepage.php");
+                header("Location: ./");
                 exit;
             } else {
                 $alert_msg['pass_error'] .=
@@ -63,7 +64,7 @@ function userAndPassCorrect()
 <body>
     <section class="login-section">
         <div class="back-button">
-            <a href="./homepage.php">
+            <a href="./index.php">
                 Logo
             </a>
         </div>
@@ -92,16 +93,19 @@ function userAndPassCorrect()
                         }
                         ?>
                     </div>
-                    <div class="input-group <?php if (!empty($alert_html_output['pass_error'])) {
-                                                echo ' has-error';
-                                            } ?>">
+                    <div class="input-group password-group <?php if (!empty($alert_html_output['pass_error'])) {
+                        echo ' has-error';
+                    } ?>">
                         <input type="password" id="password" name="pass" required placeholder=" ">
-                        <label for="password">Password</label>
-                        <?php
-                        if (!empty($alert_html_output['pass_error'])) {
+                            <label for="password">Password</label>
+                                <button type="button" class="toggle-password" id="togglePassword">
+                                    <img src="assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="show/hide">
+                                </button>
+                                <?php
+                             if (!empty($alert_html_output['pass_error'])) {
                             echo $alert_html_output['pass_error'];
-                        }
-                        ?>
+                            }
+                            ?>
                     </div>
                     <div class="remember-forgot">
                         <div class="remember-me">
@@ -121,6 +125,19 @@ function userAndPassCorrect()
 
         </div>
     </section>
+    <script>
+        const passwordInput = document.getElementById('password');
+        const togglePassword = document.getElementById('togglePassword');
+        const toggleIcon = togglePassword.querySelector('img');
+
+        togglePassword.addEventListener('click', () => {
+             const isHidden = passwordInput.getAttribute('type') === 'password';
+                passwordInput.setAttribute('type', isHidden ? 'text' : 'password');
+                toggleIcon.src = isHidden
+                    ? 'assets/Show Password/visibility_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg'
+                    : 'assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg';
+        });
+    </script>
 </body>
 
 </html>

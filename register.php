@@ -56,10 +56,8 @@ function userAndEmailAlert()
                 $sql = "INSERT INTO user (username, user_pass, user_email)
                     VALUES ('$user', '$hashed_pass', '$email')";
                 if ($conn->query($sql)) {
-                    //Redirect to login after registering -Pat
                     header("location: login.php?registered=1");
                     exit;
-                    //To here
                 } else {
                     die("Error inserting record: " . $conn->error);
                 }
@@ -120,6 +118,10 @@ function userAndEmailAlert()
                                 pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$"
                                 title="Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.">
                             <label for="password">Password</label>
+                            <button type="button" class="toggle-password" id="togglePassword">
+  <img src="assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="Show Password">
+</button>
+
                             <?php
                             if (!empty($alert_html_output['pass_error'])) {
                                 echo $alert_html_output['pass_error'];
@@ -131,6 +133,10 @@ function userAndEmailAlert()
                                                 } ?>">
                             <input type="password" id="confirm-password" name="confirm-password" required placeholder=" ">
                             <label for="confirm-password">Confirm Password</label>
+                            <button type="button" class="toggle-password" id="toggleConfirm">
+  <img src="assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="Show Password">
+</button>
+
                         </div>
                     </div>
                     <input type="submit" value="Sign Up" name="register" class="login-btn">
@@ -147,6 +153,26 @@ function userAndEmailAlert()
 
         </div>
     </section>
+    <script>
+const togglePassword = document.getElementById('togglePassword');
+const toggleConfirm = document.getElementById('toggleConfirm');
+const password = document.getElementById('password');
+const confirmPassword = document.getElementById('confirm-password');
+
+function toggleVisibility(input, button) {
+  const img = button.querySelector('img');
+  const isHidden = input.type === 'password';
+  input.type = isHidden ? 'text' : 'password';
+  button.classList.toggle('active', isHidden);
+  img.src = isHidden 
+    ? 'assets/Show Password/visibility_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg' 
+    : 'assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg';
+}
+
+togglePassword.addEventListener('click', () => toggleVisibility(password, togglePassword));
+toggleConfirm.addEventListener('click', () => toggleVisibility(confirmPassword, toggleConfirm));
+</script>
+
 </body>
 
 </html>

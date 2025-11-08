@@ -105,6 +105,21 @@ body {
 .password .input-group {
     margin-bottom: 0px;
 }
+/*Style ng Remember Me, Paayos nlng mga front-end -Pat*/
+.remember-forgot {
+    display: flex;
+}
+
+.remember-me {
+    position: absolute;
+}
+
+.remember-me label{
+    font-size: 13px;
+    color: #666;
+    text-decoration: none;
+}
+/*To here lng ginalaw ko -Pat*/
 
 /*Style ng Remember Me, Paayos nlng mga front-end -Pat*/
 .remember-forgot {
@@ -190,6 +205,36 @@ body {
     font-size: 0.8rem;
     margin-top: 6px;
     gap: 4px;
+}
+
+/* === SHOW / HIDE PASSWORD STYLES === */
+.password-group {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0.7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggle-password:hover {
+    opacity: 1;
+}
+
+.toggle-password img {
+    width: 22px;
+    height: 22px;
+    filter: brightness(20%) saturate(100%) invert(61%) sepia(25%) saturate(1200%) hue-rotate(346deg) brightness(92%) contrast(92%);
 }
 
 @view-transition {

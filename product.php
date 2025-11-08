@@ -1,8 +1,26 @@
+<?php 
+session_start();
+include("includes/db.php");
+
+    if (!isset($_SESSION['username']) && isset($_COOKIE['username'])) {
+        $_SESSION['username'] = $_COOKIE['username'];
+        $_SESSION['user_email'] = $_COOKIE['user_email'];
+    }
+    
+    $sql = "SELECT p.*, c.category_name 
+        FROM products p
+        JOIN category c ON p.category_id = c.category_id";
+
+    $result = mysqli_query($conn, $sql);
+
+?>
+
 <html>
 
 <head>
     <title>Products | Maiden Home</title>
     <link rel="stylesheet" href="css/product.css">
+    <link rel="stylesheet" href="css/scroll.css">
     <link rel="stylesheet" href="css/nav-bar.css">
     <script src="js/script.js"></script>
 </head>
@@ -19,198 +37,25 @@
                 <button class="active">Featured</button>
                 <button>Latest</button>
                 <button>Best Selling</button>
-                <button>Price: High to Low</button>
+                <a href="product.php?sort=high"><button>Price: High to Low</button></a>
+                <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
+                    <a href="./product-input.php"><button>Add Product</button></a>
+                <?php endif; ?>
             </div>
         </div>
     </section>
+
     <section class="product-grid">
+        <?php while ($row = mysqli_fetch_assoc($result)): ?>
         <div class="product-card">
             <div class="img-container">
-                <img src="assets/PRODUCTS/CHAIR.jpg" class="default-img">
-                <img src="assets/PRODUCTS/CHAIR2.jpg" class="hover-img">
+                <img src="assets/PRODUCTS/<?= $row['product_img']; ?>" class="default-img">
                 <button class="add-btn"><img src="assets/PRODUCTS/ADDICON.png"></button>
             </div>
-            <h3>Chair 1</h3>
-            <p>₱2,999</p>
+            <h3><?= htmlspecialchars($row['product_name']); ?></h3>
+            <p>₱<?= $row['price']; ?></p>
         </div>
-        <div class="product-card">
-            <div class="img-container">
-                <img src="assets/PRODUCTS/CHAIR.jpg" class="default-img">
-                <img src="assets/PRODUCTS/CHAIR2.jpg" class="hover-img">
-                <button class="add-btn"><img src="assets/PRODUCTS/ADDICON.png"></button>
-            </div>
-            <h3>Chair 2</h3>
-            <p>₱3,299</p>
-        </div>
-        <div class="product-card">
-            <div class="img-container">
-                <img src="assets/PRODUCTS/CHAIR.jpg" class="default-img">
-                <img src="assets/PRODUCTS/CHAIR2.jpg" class="hover-img">
-                <button class="add-btn"><img src="assets/PRODUCTS/ADDICON.png"></button>
-            </div>
-            <h3>Chair 3</h3>
-            <p>₱4,150</p>
-        </div>
-        <div class="product-card">
-            <div class="img-container">
-                <img src="assets/PRODUCTS/CHAIR.jpg" class="default-img">
-                <img src="assets/PRODUCTS/CHAIR2.jpg" class="hover-img">
-                <button class="add-btn"><img src="assets/PRODUCTS/ADDICON.png"></button>
-            </div>
-            <h3>Chair 4</h3>
-            <p>₱3,450</p>
-        </div>
-        <div class="product-card">
-            <div class="img-container">
-                <img src="assets/PRODUCTS/CHAIR.jpg" class="default-img">
-                <img src="assets/PRODUCTS/CHAIR2.jpg" class="hover-img">
-                <button class="add-btn"><img src="assets/PRODUCTS/ADDICON.png"></button>
-            </div>
-            <h3>Chair 5</h3>
-            <p>₱2,999</p>
-        </div>
-        <div class="product-card">
-            <div class="img-container">
-                <img src="assets/PRODUCTS/CHAIR.jpg" class="default-img">
-                <img src="assets/PRODUCTS/CHAIR2.jpg" class="hover-img">
-                <button class="add-btn"><img src="assets/PRODUCTS/ADDICON.png"></button>
-            </div>
-            <h3>Chair 6</h3>
-            <p>₱3,199</p>
-        </div>
-        <div class="product-card">
-            <div class="img-container">
-                <img src="assets/PRODUCTS/CHAIR.jpg" class="default-img">
-                <img src="assets/PRODUCTS/CHAIR2.jpg" class="hover-img">
-                <button class="add-btn"><img src="assets/PRODUCTS/ADDICON.png"></button>
-            </div>
-            <h3>Chair 7</h3>
-            <p>₱5,399</p>
-        </div>
-        <div class="product-card">
-            <div class="img-container">
-                <img src="assets/PRODUCTS/CHAIR.jpg" class="default-img">
-                <img src="assets/PRODUCTS/CHAIR2.jpg" class="hover-img">
-                <button class="add-btn"><img src="assets/PRODUCTS/ADDICON.png"></button>
-            </div>
-            <h3>Chair 8</h3>
-            <p>₱4,899</p>
-        </div>
-        <div class="product-card">
-            <div class="img-container">
-                <img src="assets/PRODUCTS/CHAIR.jpg" class="default-img">
-                <img src="assets/PRODUCTS/CHAIR2.jpg" class="hover-img">
-                <button class="add-btn"><img src="assets/PRODUCTS/ADDICON.png"></button>
-            </div>
-            <h3>Chair 9</h3>
-            <p>₱6,000</p>
-        </div>
-        <div class="product-card">
-            <div class="img-container">
-                <img src="assets/PRODUCTS/CHAIR.jpg" class="default-img">
-                <img src="assets/PRODUCTS/CHAIR2.jpg" class="hover-img">
-                <button class="add-btn"><img src="assets/PRODUCTS/ADDICON.png"></button>
-            </div>
-            <h3>Chair 10</h3>
-            <p>₱3,450</p>
-        </div>
-        <div class="product-card">
-            <div class="img-container">
-                <img src="assets/PRODUCTS/CHAIR.jpg" class="default-img">
-                <img src="assets/PRODUCTS/CHAIR2.jpg" class="hover-img">
-                <button class="add-btn"><img src="assets/PRODUCTS/ADDICON.png"></button>
-            </div>
-            <h3>Chair 11</h3>
-            <p>₱3,850</p>
-        </div>
-        <div class="product-card">
-            <div class="img-container">
-                <img src="assets/PRODUCTS/CHAIR.jpg" class="default-img">
-                <img src="assets/PRODUCTS/CHAIR2.jpg" class="hover-img">
-                <button class="add-btn"><img src="assets/PRODUCTS/ADDICON.png"></button>
-            </div>
-            <h3>Chair 12</h3>
-            <p>₱2,850</p>
-        </div>
-        <div class="product-card">
-            <div class="img-container">
-                <img src="assets/PRODUCTS/CHAIR.jpg" class="default-img">
-                <img src="assets/PRODUCTS/CHAIR2.jpg" class="hover-img">
-                <button class="add-btn"><img src="assets/PRODUCTS/ADDICON.png"></button>
-            </div>
-            <h3>Chair 13</h3>
-            <p>₱2,999</p>
-        </div>
-        <div class="product-card">
-            <div class="img-container">
-                <img src="assets/PRODUCTS/CHAIR.jpg" class="default-img">
-                <img src="assets/PRODUCTS/CHAIR2.jpg" class="hover-img">
-                <button class="add-btn"><img src="assets/PRODUCTS/ADDICON.png"></button>
-            </div>
-            <h3>Chair 14</h3>
-            <p>₱6,149</p>
-        </div>
-
-        <div class="product-card">
-            <div class="img-container">
-                <img src="assets/PRODUCTS/CHAIR.jpg" class="default-img">
-                <img src="assets/PRODUCTS/CHAIR2.jpg" class="hover-img">
-                <button class="add-btn"><img src="assets/PRODUCTS/ADDICON.png"></button>
-            </div>
-            <h3>Chair 15</h3>
-            <p>₱3,250</p>
-        </div>
-
-        <div class="product-card">
-            <div class="img-container">
-                <img src="assets/PRODUCTS/CHAIR.jpg" class="default-img">
-                <img src="assets/PRODUCTS/CHAIR2.jpg" class="hover-img">
-                <button class="add-btn"><img src="assets/PRODUCTS/ADDICON.png"></button>
-            </div>
-            <h3>Chair 16</h3>
-            <p>₱5,750</p>
-        </div>
-
-        <div class="product-card">
-            <div class="img-container">
-                <img src="assets/PRODUCTS/CHAIR.jpg" class="default-img">
-                <img src="assets/PRODUCTS/CHAIR2.jpg" class="hover-img">
-                <button class="add-btn"><img src="assets/PRODUCTS/ADDICON.png"></button>
-            </div>
-            <h3>Chair 17</h3>
-            <p>₱4,650</p>
-        </div>
-
-        <div class="product-card">
-            <div class="img-container">
-                <img src="assets/PRODUCTS/CHAIR.jpg" class="default-img">
-                <img src="assets/PRODUCTS/CHAIR2.jpg" class="hover-img">
-                <button class="add-btn"><img src="assets/PRODUCTS/ADDICON.png"></button>
-            </div>
-            <h3>Chair 18</h3>
-            <p>₱3,999</p>
-        </div>
-
-        <div class="product-card">
-            <div class="img-container">
-                <img src="assets/PRODUCTS/CHAIR.jpg" class="default-img">
-                <img src="assets/PRODUCTS/CHAIR2.jpg" class="hover-img">
-                <button class="add-btn"><img src="assets/PRODUCTS/ADDICON.png"></button>
-            </div>
-            <h3>Chair 19</h3>
-            <p>₱2,999</p>
-        </div>
-
-        <div class="product-card">
-            <div class="img-container">
-                <img src="assets/PRODUCTS/CHAIR.jpg" class="default-img">
-                <img src="assets/PRODUCTS/CHAIR2.jpg" class="hover-img">
-                <button class="add-btn"><img src="assets/PRODUCTS/ADDICON.png"></button>
-            </div>
-            <h3>Chair 20</h3>
-            <p>₱6,499</p>
-        </div>
-
+        <?php endwhile; ?>
     </section>
 
     <section class="pagination">
@@ -225,5 +70,4 @@
         <button class="next">&gt;</button>
     </section>
 </body>
-
 </html>
