@@ -16,7 +16,7 @@ if (!isset($_SESSION['username']) && isset($_COOKIE['username'])) {
         <link rel="stylesheet" href="../css/scroll.css">
         <link rel="stylesheet" href="../css/nav-bar.css">
         <link rel="stylesheet" href="product-detail.css">
-        <script src="js/script.js" defer></script>
+        <script src="../js/script.js" defer></script>
     </head>
     <?php include "../includes/nav-bar.php" ?>
     <body>
