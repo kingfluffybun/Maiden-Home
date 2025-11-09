@@ -13,9 +13,9 @@ if (isset($_POST['finish'])) {
 
     function uploadFile($fileInputName) {
         if (isset($_FILES[$fileInputName]) && $_FILES[$fileInputName]['error'] === 0) {
-            $img_name = $_FILES[$fileInputName]['name'];
+            $img_name = $img_name = preg_replace("/[^a-zA-Z0-9\.\-_]/", "_", $_FILES[$fileInputName]['name']);
             $tmp_name = $_FILES[$fileInputName]['tmp_name'];
-            $target_dir = "../assets/PRODUCTS/";
+            $target_dir = "./assets/PRODUCTS/";
             $target_file = $target_dir . basename($img_name);
 
             if (move_uploaded_file($tmp_name, $target_file)) {
