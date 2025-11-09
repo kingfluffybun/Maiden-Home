@@ -88,7 +88,7 @@ session_start();
                 <div>
                     <h2>Furniture That Feels Like Home</h2>
                     <p>Find the pieces that truly feel like home, designed to be the foundation for every moment. Explore our collection of handcrafted bed frames, iconic deep-seated sofas, and tailored accent chairs. It's the perfect blend of lasting aesthetic and deep comfort—timeless, personal, and made just for you.</p>
-                    <a href="product.php"><p>Shop Now</p></a>
+                    <a href="./product/"><p>Shop Now</p></a>
                 </div>
             </section>
             <section class="shop-by">

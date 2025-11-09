@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("includes/db.php");
+include "../includes/db.php";
 
 $user_id = $_SESSION['user_id'] ?? 1;
 if (isset($_POST['action'])) {
@@ -45,10 +45,10 @@ $total = $subtotal;
     <meta charset="UTF-8">
     <title>Your Cart | Maiden Home</title>
     <link rel="stylesheet" href="cart.css">
-    <link rel="stylesheet" href="css/nav-bar.css">
+    <link rel="stylesheet" href="../css/nav-bar.css">
 </head>
 <body>
-    <?php include("./includes/nav-bar.php") ?>
+     <?php include "../includes/nav-bar.php" ?>
 
     <div class="cart-container">
         <div class="cart-left">
