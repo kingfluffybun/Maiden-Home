@@ -25,7 +25,17 @@ nav {
     z-index: 1000;
 }
 
-nav h1 {color: black;}
+.logo {
+    display: flex; 
+    align-items: center; 
+    padding: 24px 0; 
+    height: 100%; 
+    gap: 12px;
+}
+
+.logo img {
+    height: 100%; width: auto;
+}
 
 .nav-options-wrapper {
     display: flex; align-items: center;

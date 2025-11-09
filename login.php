@@ -63,13 +63,14 @@ function userAndPassCorrect()
 
 <body>
     <section class="login-section">
-        <div class="back-button">
-            <a href="./index.php">
-                Logo
-            </a>
-        </div>
         <div class="container">
             <div class="login-box">
+                <a href="index.php" style="text-decoration: none;">
+                    <div class="logo">
+                        <img src="assets/Logo.png" alt="">
+                        <h1>MAIDEN HOME</h1>
+                    </div>
+                </a>
                 <h2>Log In</h2>
                 <?php if (isset($_GET['registered']) && $_GET['registered'] == 1): ?>
                     <div class="alert-msg success">

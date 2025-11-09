@@ -82,6 +82,12 @@ function userAndEmailAlert()
     <section class="login-section">
         <div class="container">
             <div class="login-box">
+                <a href="index.php" style="text-decoration: none;">
+                    <div class="logo">
+                        <img src="assets/Logo.png" alt="">
+                        <h1>MAIDEN HOME</h1>
+                    </div>
+                </a>
                 <h2>Create Account</h2>
                 <form action="./register.php" method="post">
                     <div class="input-group <?php if (!empty($alert_html_output['user_error'])) {

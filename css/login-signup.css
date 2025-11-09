@@ -28,11 +28,6 @@ body {
     justify-content: center;
 }
 
-.back-button a{
-    text-decoration: none;
-    color: black;
-}
-
 .login-box {
     background: #fff;
     padding: 40px 35px;
@@ -46,7 +41,20 @@ body {
     font-size: 26px;
     font-weight: 600;
     color: #333;
-    margin-bottom: 30px;
+    margin: 28px 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: #D47B33;
+    padding: 12px 0;
+}
+
+.logo img {
+    width: auto; height: 50px;
 }
 
 .input-group {
