@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2025 at 09:04 AM
+-- Generation Time: Nov 09, 2025 at 10:41 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -58,6 +58,14 @@ CREATE TABLE `addtocart` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `addtocart`
+--
+
+INSERT INTO `addtocart` (`cart_id`, `user_id`, `product_id`, `quantity`, `created_at`) VALUES
+(4, 1, 3, 2, '2025-11-09 07:43:39'),
+(5, 1, 4, 13, '2025-11-09 07:50:16');
+
 -- --------------------------------------------------------
 
 --
@@ -111,6 +119,9 @@ CREATE TABLE `products` (
   `product_id` int(11) NOT NULL,
   `product_name` varchar(40) NOT NULL,
   `price` decimal(10,2) NOT NULL,
+  `color` varchar(50) NOT NULL,
+  `material` varchar(50) NOT NULL,
+  `size` varchar(255) NOT NULL,
   `stocks` int(11) NOT NULL,
   `product_img` varchar(255) NOT NULL,
   `product_img2` varchar(255) NOT NULL,
@@ -123,6 +134,14 @@ CREATE TABLE `products` (
   `product_description` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`product_id`, `product_name`, `price`, `color`, `material`, `size`, `stocks`, `product_img`, `product_img2`, `product_img3`, `product_img4`, `product_img5`, `product_img_hover`, `category_id`, `sub_id`, `product_description`, `created_at`) VALUES
+(3, 'Mattress', 9500.00, 'Brown', 'ALmond wood and Aluminum Metal', '1000 cm x 600 cm', 20, '.maiden-homeassetsPRODUCTS2.png', '.maiden-homeassetsPRODUCTS2.png', '.maiden-homeassetsPRODUCTS2.png', '.maiden-homeassetsPRODUCTS2.png', '.maiden-homeassetsPRODUCTS2.png', '.maiden-homeassetsPRODUCTS2.png', 2, 8, 'Example Product', '2025-11-09 07:16:20'),
+(4, 'Lamp', 3000.00, 'Beige', 'Aluminum Metal', '70 cm x 30 cm', 20, '.maiden-homeassetsPRODUCTS2.png', '.maiden-homeassetsPRODUCTS2.png', '.maiden-homeassetsPRODUCTS2.png', '.maiden-homeassetsPRODUCTS2.png', '.maiden-homeassetsPRODUCTS2.png', '.maiden-homeassetsPRODUCTS2.png', 6, 28, 'Example Product', '2025-11-09 07:49:38');
 
 -- --------------------------------------------------------
 
@@ -274,7 +293,7 @@ ALTER TABLE `address`
 -- AUTO_INCREMENT for table `addtocart`
 --
 ALTER TABLE `addtocart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -286,7 +305,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sub_category`
