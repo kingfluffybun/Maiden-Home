@@ -39,7 +39,7 @@ include "../includes/db.php";
 
 <body>
     <section class="category-banner">
-        <img src="/Maiden-Home/assets/PRODUCTS/BANNER.jpg" alt="Banner">
+        <img src="../assets/PRODUCTS/BANNER.jpg" alt="Banner">
     </section>
     <section class="sort-bar">
         <div class="sort-area">

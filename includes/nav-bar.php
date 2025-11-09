@@ -1,5 +1,5 @@
 <nav>
-    <a href="/maiden-home/" style="text-decoration: none;"><div class="logo">
+    <a href="./" style="text-decoration: none;"><div class="logo">
         <img src="/Maiden-Home/assets/Logo.png" alt="">
         <h1 style="color: #d47b33;">MAIDEN HOME</h1>
     </div></a>

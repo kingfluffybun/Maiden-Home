@@ -85,7 +85,7 @@ session_start();
                 </div>
             </section>
             <section class="shop-now-section">
-                <img src="assets/Rooms/living room.png" style="object-fit: cover; width: 100%;" alt="">
+                <img src="./assets/Rooms/living room.png" style="object-fit: cover; width: 100%;" alt="">
                 <div>
                     <h2>Furniture That Feels Like Home</h2>
                     <p>Find the pieces that truly feel like home, designed to be the foundation for every moment. Explore our collection of handcrafted bed frames, iconic deep-seated sofas, and tailored accent chairs. It's the perfect blend of lasting aesthetic and deep comfort—timeless, personal, and made just for you.</p>
