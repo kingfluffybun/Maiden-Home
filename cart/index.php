@@ -64,7 +64,7 @@ $total = $subtotal;
                 <?php foreach ($cart_items as $item): ?>
                     <div class="cart-item">
                         <div class="product-box">
-                            <img src="<?php echo htmlspecialchars($item['product_img']); ?>" alt="<?php echo htmlspecialchars($item['product_name']); ?>" width="100">
+                            <img src="../assets/PRODUCTS/<?php echo htmlspecialchars($item['product_img']); ?>" alt="<?php echo htmlspecialchars($item['product_name']); ?>" width="100">
                         </div>
                         <div class="item-info">
                             <p class="product-name"><?php echo htmlspecialchars($item['product_name']); ?></p>

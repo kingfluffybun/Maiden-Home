@@ -15,7 +15,7 @@ if (isset($_POST['finish'])) {
         if (isset($_FILES[$fileInputName]) && $_FILES[$fileInputName]['error'] === 0) {
             $img_name = $_FILES[$fileInputName]['name'];
             $tmp_name = $_FILES[$fileInputName]['tmp_name'];
-            $target_dir = "assets/PRODUCTS/";
+            $target_dir = "../assets/PRODUCTS/";
             $target_file = $target_dir . basename($img_name);
 
             if (move_uploaded_file($tmp_name, $target_file)) {
