@@ -1,6 +1,6 @@
 <nav>
-    <a href="index.php" style="text-decoration: none;"><div class="logo">
-        <img src="./assets/Logo.png" alt="">
+    <a href="../" style="text-decoration: none;"><div class="logo">
+        <img src="/Maiden-Home/assets/Logo.png" alt="">
         <h1 style="color: #d47b33;">MAIDEN HOME</h1>
     </div></a>
     <div class="search">
@@ -62,7 +62,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="./functions/logout.php">
+                            <a href="/Maiden-Home/functions/logout.php">
                                 <div style="display: flex; align-items:center; gap:8px;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out-icon lucide-log-out">
                                         <path d="m16 17 5-5-5-5" />
@@ -76,7 +76,7 @@
                     </ul>
                 <?php else: ?>
                     <ul style="display: flex; flex-direction: column; gap: 10px;">
-                        <li><a href="./login.php">Login</a></li>
+                        <li><a href="./login" style="display: block; width: 100%;">Login</a></li>
                     </ul>
                 <?php endif; ?>
             </div>

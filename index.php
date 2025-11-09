@@ -12,13 +12,13 @@ session_start();
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Maiden Home</title>
-        <link rel="stylesheet" href="css/homepage.css" />
+        <link rel="stylesheet" href="homepage.css" />
         <link rel="stylesheet" href="css/scroll.css">
         <link rel="stylesheet" href="css/nav-bar.css">
         <script src="js/script.js"></script>
     </head>
     <body>
-        <?php include("./includes/nav-bar.php") ?>
+        <?php include "./includes/nav-bar.php" ?>
         <div class="container">
             <section class="hero-banner">
                 <img src="assets/hero-banner.png" alt="">
