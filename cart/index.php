@@ -13,7 +13,7 @@ session_start();
     <title>Your Cart | Maiden Home</title>
     <link rel="stylesheet" href="cart.css">
     <link rel="stylesheet" href="../css/nav-bar.css">
-    <script src="script.js"></script>
+    <script src="../js/script.js"></script>
 </head>
 <body>
     <?php include "../includes/nav-bar.php" ?>
