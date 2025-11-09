@@ -5,6 +5,7 @@ include "../includes/db.php";
     if (!isset($_SESSION['username']) && isset($_COOKIE['username'])) {
         $_SESSION['username'] = $_COOKIE['username'];
         $_SESSION['user_email'] = $_COOKIE['user_email'];
+        $_SESSION['role'] = $_COOKIE['role'];
     }
     
     $sql = "SELECT p.*, c.category_name 
@@ -38,7 +39,7 @@ include "../includes/db.php";
                 <button>Latest</button>
                 <button>Best Selling</button>
                 <a href="product.php?sort=high"><button>Price: High to Low</button></a>
-                <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
+                <?php if (isset($_SESSION['role']) && strtolower($_SESSION['role']) == 'admin'): ?>
                     <a href="../product-input.php"><button>Add Product</button></a>
                 <?php endif; ?>
             </div>
