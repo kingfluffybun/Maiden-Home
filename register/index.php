@@ -1,11 +1,11 @@
 <?php
-include("includes/db.php");
+include "../includes/db.php";
 
 $alert_html_output = userAndEmailAlert();
 
 function userAndEmailAlert()
 {
-    include("includes/db.php");
+    include "../includes/db.php";
     $alert_msg = ['user_error' => '', 'pass_error' => '', 'email_error' => '', 'success' => ''];
 
     if (isset($_POST["register"])) {
@@ -56,7 +56,7 @@ function userAndEmailAlert()
                 $sql = "INSERT INTO user (username, user_pass, user_email)
                     VALUES ('$user', '$hashed_pass', '$email')";
                 if ($conn->query($sql)) {
-                    header("location: login.php?registered=1");
+                    header("location: ../login?registered=1");
                     exit;
                 } else {
                     die("Error inserting record: " . $conn->error);
@@ -75,21 +75,21 @@ function userAndEmailAlert()
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account</title>
-    <link rel="stylesheet" href="css/login-signup.css">
+    <link rel="stylesheet" href="../css/login-signup.css">
 </head>
 
 <body>
     <section class="login-section">
         <div class="container">
             <div class="login-box">
-                <a href="index.php" style="text-decoration: none;">
+                <a href="../index.php" style="text-decoration: none;">
                     <div class="logo">
-                        <img src="assets/Logo.png" alt="">
+                        <img src="../assets/Logo.png" alt="">
                         <h1>MAIDEN HOME</h1>
                     </div>
                 </a>
                 <h2>Create Account</h2>
-                <form action="./register.php" method="post">
+                <form action="./" method="post">
                     <div class="input-group <?php if (!empty($alert_html_output['user_error'])) {
                                                 echo ' has-error';
                                             } ?>">
@@ -113,9 +113,10 @@ function userAndEmailAlert()
                         ?>
                     </div>
                     <div class="password">
-                        <div class="input-group <?php if (!empty($alert_html_output['pass_error'])) {
-                                                    echo ' has-error';
-                                                } ?>">
+                        <div class="input-group 
+                            <?php if (!empty($alert_html_output['pass_error'])) {
+                                echo ' has-error';
+                            } ?>">
                             <input
                                 type="password"
                                 id="password"
@@ -125,8 +126,8 @@ function userAndEmailAlert()
                                 title="Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.">
                             <label for="password">Password</label>
                             <button type="button" class="toggle-password" id="togglePassword">
-  <img src="assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="Show Password">
-</button>
+                                <img src="../assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="Show Password">
+                            </button>
 
                             <?php
                             if (!empty($alert_html_output['pass_error'])) {
@@ -134,14 +135,15 @@ function userAndEmailAlert()
                             }
                             ?>
                         </div>
-                        <div class="input-group <?php if (!empty($alert_html_output['pass_error'])) {
-                                                    echo ' has-error';
-                                                } ?>">
+                        <div class="input-group 
+                            <?php if (!empty($alert_html_output['pass_error'])) {
+                                echo ' has-error';
+                            } ?>">
                             <input type="password" id="confirm-password" name="confirm-password" required placeholder=" ">
                             <label for="confirm-password">Confirm Password</label>
                             <button type="button" class="toggle-password" id="toggleConfirm">
-  <img src="assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="Show Password">
-</button>
+                                <img src="../assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="Show Password">
+                            </button>
 
                         </div>
                     </div>
@@ -152,7 +154,7 @@ function userAndEmailAlert()
                     }
                     ?>
                 </form>
-                <p class="create-account">Already have an account? <a href="login.php">Log In</a></p>
+                <p class="create-account">Already have an account? <a href="../login">Log In</a></p>
             </div>
         </div>
         <div class="background">
@@ -166,13 +168,13 @@ const password = document.getElementById('password');
 const confirmPassword = document.getElementById('confirm-password');
 
 function toggleVisibility(input, button) {
-  const img = button.querySelector('img');
-  const isHidden = input.type === 'password';
-  input.type = isHidden ? 'text' : 'password';
-  button.classList.toggle('active', isHidden);
-  img.src = isHidden 
-    ? 'assets/Show Password/visibility_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg' 
-    : 'assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg';
+    const img = button.querySelector('img');
+    const isHidden = input.type === 'password';
+    input.type = isHidden ? 'text' : 'password';
+    button.classList.toggle('active', isHidden);
+    img.src = isHidden 
+        ? '../assets/Show Password/visibility_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg' 
+        : '../assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg';
 }
 
 togglePassword.addEventListener('click', () => toggleVisibility(password, togglePassword));

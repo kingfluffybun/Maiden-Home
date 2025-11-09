@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("includes/db.php");
+include "../includes/db.php";
 
 $alert_html_output = userAndPassCorrect();
 
@@ -30,7 +30,7 @@ function userAndPassCorrect()
                     setcookie("user_email", $row['user_email'], time() + (86400 * 30), "/");
                 }
 
-                header("Location: ./");
+                header("Location: ../");
                 exit;
             } else {
                 $alert_msg['pass_error'] .=
@@ -58,16 +58,16 @@ function userAndPassCorrect()
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="css/login-signup.css">
+    <link rel="stylesheet" href="../css/login-signup.css">
 </head>
 
 <body>
     <section class="login-section">
         <div class="container">
             <div class="login-box">
-                <a href="index.php" style="text-decoration: none;">
+                <a href="../index.php" style="text-decoration: none;">
                     <div class="logo">
-                        <img src="assets/Logo.png" alt="">
+                        <img src="../assets/Logo.png" alt="">
                         <h1>MAIDEN HOME</h1>
                     </div>
                 </a>
@@ -81,7 +81,7 @@ function userAndPassCorrect()
                         <p>Your account has been created successfully! Please log in.</p>
                     </div>
                 <?php endif; ?>
-
+                <br>
                 <form method="POST">
                     <div class="input-group <?php if (!empty($alert_html_output['user_error'])) {
                                                 echo ' has-error';
@@ -100,10 +100,10 @@ function userAndPassCorrect()
                         <input type="password" id="password" name="pass" required placeholder=" ">
                             <label for="password">Password</label>
                                 <button type="button" class="toggle-password" id="togglePassword">
-                                    <img src="assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="show/hide">
+                                    <img src="../assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="show/hide">
                                 </button>
                                 <?php
-                             if (!empty($alert_html_output['pass_error'])) {
+                            if (!empty($alert_html_output['pass_error'])) {
                             echo $alert_html_output['pass_error'];
                             }
                             ?>
@@ -119,7 +119,7 @@ function userAndPassCorrect()
                     </div>
                     <input type="submit" class="login-btn" value="Log In" name="login">
                 </form>
-                <p class="create-account">New user? <a href="register.php">Create New Account</a></p>
+                <p class="create-account">New user? <a href="../register">Create New Account</a></p>
             </div>
         </div>
         <div class="background">
@@ -132,11 +132,11 @@ function userAndPassCorrect()
         const toggleIcon = togglePassword.querySelector('img');
 
         togglePassword.addEventListener('click', () => {
-             const isHidden = passwordInput.getAttribute('type') === 'password';
+            const isHidden = passwordInput.getAttribute('type') === 'password';
                 passwordInput.setAttribute('type', isHidden ? 'text' : 'password');
                 toggleIcon.src = isHidden
-                    ? 'assets/Show Password/visibility_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg'
-                    : 'assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg';
+                    ? '../assets/Show Password/visibility_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg'
+                    : '../assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg';
         });
     </script>
 </body>

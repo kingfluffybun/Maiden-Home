@@ -1,13 +1,22 @@
-<!DOCTYPE html>
+<?php
+session_start();
+
+    if (!isset($_SESSION['username']) && isset($_COOKIE['username'])) {
+        $_SESSION['username'] = $_COOKIE['username'];
+        $_SESSION['user_email'] = $_COOKIE['user_email'];
+    }
+?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Your Cart | Maiden Home</title>
     <link rel="stylesheet" href="cart.css">
-    <link rel="stylesheet" href="css/nav-bar.css">
+    <link rel="stylesheet" href="../css/nav-bar.css">
+    <script src="../js/script.js"></script>
 </head>
 <body>
-    <?php include("./includes/nav-bar.php") ?>
+    <?php include "../includes/nav-bar.php" ?>
 
     <div class="cart-container">
         <div class="cart-left">

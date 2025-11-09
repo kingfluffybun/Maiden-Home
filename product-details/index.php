@@ -13,12 +13,12 @@ if (!isset($_SESSION['username']) && isset($_COOKIE['username'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Product Name</title>
-        <link rel="stylesheet" href="css/scroll.css">
-        <link rel="stylesheet" href="css/nav-bar.css">
-        <link rel="stylesheet" href="css/product-detail.css">
+        <link rel="stylesheet" href="../css/scroll.css">
+        <link rel="stylesheet" href="../css/nav-bar.css">
+        <link rel="stylesheet" href="product-detail.css">
         <script src="js/script.js" defer></script>
     </head>
-    <?php include("./includes/nav-bar.php")?>
+    <?php include "../includes/nav-bar.php" ?>
     <body>
         <div class="container">
             <div class="product-container">

@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include("includes/db.php");
+include "../includes/db.php";
 
     if (!isset($_SESSION['username']) && isset($_COOKIE['username'])) {
         $_SESSION['username'] = $_COOKIE['username'];
@@ -19,16 +19,16 @@ include("includes/db.php");
 
 <head>
     <title>Products | Maiden Home</title>
-    <link rel="stylesheet" href="css/product.css">
-    <link rel="stylesheet" href="css/scroll.css">
-    <link rel="stylesheet" href="css/nav-bar.css">
-    <script src="js/script.js"></script>
+    <link rel="stylesheet" href="product.css">
+    <link rel="stylesheet" href="../css/scroll.css">
+    <link rel="stylesheet" href="../css/nav-bar.css">
+    <script src="../js/script.js"></script>
 </head>
-<?php include("./includes/nav-bar.php") ?>
+<?php include "../includes/nav-bar.php" ?>
 
 <body>
     <section class="category-banner">
-        <img src="assets/PRODUCTS/BANNER.jpg" alt="Banner">
+        <img src="/Maiden-Home/assets/PRODUCTS/BANNER.jpg" alt="Banner">
     </section>
     <section class="sort-bar">
         <div class="sort-area">
@@ -39,7 +39,7 @@ include("includes/db.php");
                 <button>Best Selling</button>
                 <a href="product.php?sort=high"><button>Price: High to Low</button></a>
                 <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
-                    <a href="./product-input.php"><button>Add Product</button></a>
+                    <a href="../product-input.php"><button>Add Product</button></a>
                 <?php endif; ?>
             </div>
         </div>
