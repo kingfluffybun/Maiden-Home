@@ -68,7 +68,11 @@ $total = $subtotal;
                         </div>
                         <div class="item-info">
                             <p class="product-name"><?php echo htmlspecialchars($item['product_name']); ?></p>
-                            <p class="product-detail">Color: <?php echo htmlspecialchars($item['color']); ?> | Material: <?php echo htmlspecialchars($item['material']); ?> | Size: <?php echo htmlspecialchars($item['size']); ?></p>
+                            <div class="product-detail">
+                                <p><?php echo htmlspecialchars($item['color']); ?></p> 
+                                <p><?php echo htmlspecialchars($item['material']); ?></p>  
+                                <p><?php echo htmlspecialchars($item['size']); ?></p>
+                            </div>
                             <p class="product-price">₱<?php echo number_format($item['price'], 2); ?></p>
                             <form method="post" class="quantity">
                                 <input type="hidden" name="cart_id" value="<?php echo $item['cart_id']; ?>">
