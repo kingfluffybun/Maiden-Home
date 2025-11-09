@@ -76,7 +76,7 @@
                     </ul>
                 <?php else: ?>
                     <ul style="display: flex; flex-direction: column; gap: 10px;">
-                        <li><a href="./login" style="display: block; width: 100%;">Login</a></li>
+                        <li><a href="/Maiden-Home/login" style="display: block; width: 100%;">Login</a></li>
                     </ul>
                 <?php endif; ?>
             </div>
