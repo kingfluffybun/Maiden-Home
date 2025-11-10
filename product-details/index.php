@@ -4,6 +4,7 @@ session_start();
 if (!isset($_SESSION['username']) && isset($_COOKIE['username'])) {
     $_SESSION['username'] = $_COOKIE['username'];
     $_SESSION['user_email'] = $_COOKIE['user_email'];
+    $_SESSION['role'] = $_COOKIE['role'];
 }
 ?>
 
@@ -16,7 +17,7 @@ if (!isset($_SESSION['username']) && isset($_COOKIE['username'])) {
         <link rel="stylesheet" href="../css/scroll.css">
         <link rel="stylesheet" href="../css/nav-bar.css">
         <link rel="stylesheet" href="product-detail.css">
-        <script src="js/script.js" defer></script>
+        <script src="../js/script.js" defer></script>
     </head>
     <?php include "../includes/nav-bar.php" ?>
     <body>

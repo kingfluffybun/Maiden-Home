@@ -89,6 +89,7 @@ function userAndEmailAlert()
                     </div>
                 </a>
                 <h2>Create Account</h2>
+                <br>
                 <form action="./" method="post">
                     <div class="input-group <?php if (!empty($alert_html_output['user_error'])) {
                                                 echo ' has-error';

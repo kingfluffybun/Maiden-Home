@@ -66,19 +66,6 @@ body {
     background-color: #f1af7b;
 }
 
-/*.container {
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-    height: 150vh;
-    background-color: #fbf6f2;
-    border-radius: 30px;
-    width: 90%;
-    margin-top: -20vh;
-    padding: 5vh;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2), 0 15px 40px rgba(0, 0, 0, 0.05);
-}*/
-
 .description {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;

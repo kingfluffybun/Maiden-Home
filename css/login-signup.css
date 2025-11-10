@@ -41,7 +41,7 @@ body {
     font-size: 26px;
     font-weight: 600;
     color: #333;
-    margin: 28px 0;
+    margin: 12px 0;
 }
 
 .logo {
@@ -50,11 +50,11 @@ body {
     justify-content: center;
     gap: 12px;
     color: #D47B33;
-    padding: 12px 0;
+    padding: 24px 0;
 }
 
 .logo img {
-    width: auto; height: 50px;
+    width: auto; height: 40px;
 }
 
 .input-group {
