@@ -7,7 +7,7 @@ if (empty($_SESSION['user_id']) || empty($_SESSION['username'])) {
     exit;
 }
 
-$user_id = $_SESSION['user_id'] ?? 1;
+$user_id = $_SESSION['user_id'];
 
 if (isset($_POST['action'])) {
     $cart_id = intval($_POST['cart_id']);
