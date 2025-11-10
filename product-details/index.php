@@ -58,7 +58,7 @@ $product = $result->fetch_assoc();
                 </div>
             </div>
             <div class="product-detail">
-                <!--Product Name-->
+                <!--Name of the Product-->
                 <b><?php echo htmlspecialchars($product['product_name']); ?></b>
                 <div class="description-content">
                     <!--Product Description-->
