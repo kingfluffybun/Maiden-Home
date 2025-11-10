@@ -60,7 +60,7 @@ include "../includes/db.php";
         <?php while ($row = mysqli_fetch_assoc($result)): ?>
         <div class="product-card">
             <div class="img-container">
-                 <a href="../product-details/product.php?product_id=<?= $row['product_id']; ?>">
+                 <a href="../product-details/?product_id=<?= $row['product_id']; ?>">
                 <img src="../assets/PRODUCTS/<?= $row['product_img']; ?>" class="default-img">
                 <img src="../assets/PRODUCTS/<?= $row['product_img_hover']; ?>" class="hover-img">
                  </a>
