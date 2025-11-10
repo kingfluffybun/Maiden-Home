@@ -2,7 +2,13 @@
 session_start();
 include "../includes/db.php";
 
+if (empty($_SESSION['user_id']) || empty($_SESSION['username'])) {
+    header("Location: ../login");
+    exit;
+}
+
 $user_id = $_SESSION['user_id'] ?? 1;
+
 if (isset($_POST['action'])) {
     $cart_id = intval($_POST['cart_id']);
     if ($_POST['action'] === 'increase') {
@@ -63,11 +69,7 @@ $total = $subtotal;
                 <?php foreach ($cart_items as $item): ?>
                     <div class="cart-item">
                         <div class="product-box">
-<<<<<<< HEAD
                             <img src="../assets/PRODUCTS/<?php echo htmlspecialchars($item['product_img']); ?>" alt="<?php echo htmlspecialchars($item['product_name']); ?>" width="100">
-=======
-                            <img src="../assets/PRODUCTS/<?php echo htmlspecialchars($item['product_img']); ?>">
->>>>>>> 0e24dab2975596f08310c4916b3455dbf13d540a
                         </div>
                         <div class="item-info">
                             <div class="name-price">
