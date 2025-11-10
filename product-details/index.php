@@ -1,47 +1,68 @@
 <?php
 session_start();
+include "../includes/db.php";
 //stay logged in, if nag close sila ng browser or site
 if (!isset($_SESSION['username']) && isset($_COOKIE['username'])) {
     $_SESSION['username'] = $_COOKIE['username'];
     $_SESSION['user_email'] = $_COOKIE['user_email'];
     $_SESSION['role'] = $_COOKIE['role'];
 }
+
+if (!isset($_GET['product_id'])) {
+    echo "<p>No product selected.</p>";
+    exit;
+}
+
+$product_id = intval($_GET['product_id']);
+$stmt = $conn->prepare("SELECT * FROM products WHERE product_id = ?");
+$stmt->bind_param("i", $product_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows === 0) {
+    echo "<p>Product not found.</p>";
+    exit;
+}
+
+$product = $result->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Product Name</title>
-        <link rel="stylesheet" href="../css/scroll.css">
-        <link rel="stylesheet" href="../css/nav-bar.css">
-        <link rel="stylesheet" href="product-detail.css">
-        <script src="../js/script.js" defer></script>
-    </head>
-    <?php include "../includes/nav-bar.php" ?>
-    <body>
-        <div class="container">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo htmlspecialchars($product['product_name']); ?> | Maiden Home</title>
+    <link rel="stylesheet" href="../css/scroll.css">
+    <link rel="stylesheet" href="../css/nav-bar.css">
+    <link rel="stylesheet" href="product-detail.css">
+    <script src="../js/script.js" defer></script>
+</head>
+    <?php include "../includes/nav-bar.php"; ?>
+<body>
+    <div class="container">
             <div class="product-container">
                 <!--Para siyang navigation starting kung san siya nag simula papunta sa site na to-->
-                <div class="breadcrumb"><p>Home > Beds & Mattresses > Beds > Minimalist Bed Frame</p></div>
+                <div class="breadcrumb"><p>Home > Beds & Mattresses > Beds > <?php echo htmlspecialchars($product['product_name']); ?></div>
                 <div class="product-image">
                     <!--Product Main Image-->
-                    <div class="main-product"></div>
+                    <div class="main-product">
+                        <img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="600">
+                    </div>
                     <div class="product-angles">
-                        <div><!--angle 1--></div>
-                        <div><!--angle 2--></div>
-                        <div><!--angle 3--></div>
-                        <div><!--angle 4--></div>
+                        <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div>
+                        <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div>
+                        <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div>
+                        <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div>
                     </div>
                 </div>
             </div>
             <div class="product-detail">
                 <!--Product Name-->
-                <b>Minimalist Bed Frame</b>
+                <b><?php echo htmlspecialchars($product['product_name']); ?></b>
                 <div class="description-content">
                     <!--Product Description-->
-                    <p>Discover the beauty of simplicity with our minimalist bed frame, designed to be the quiet, grounding element in your bedroom. Its sleek, geometric form and low-profile design create an open, airy feel, making your room feel larger and more tranquil. Crafted from [Material], this frame features a solid slatted platform base that provides reliable support for your mattress without the need for a box spring. By focusing on essential form and function, this bed frame is the perfect foundation for an intentional, uncluttered, and peaceful living space.</p>
+                    <p><?php echo htmlspecialchars($product['product_description']); ?></p>
                 </div>
                 <div class="description-dropdown">
                     <button onclick="toggleDescription(this)">
@@ -53,7 +74,7 @@ if (!isset($_SESSION['username']) && isset($_COOKIE['username'])) {
                 </div>
                 <hr>
                 <!--Product Price-->
-                <h2>₱9,999</h2>
+                <h2>₱<?php echo htmlspecialchars($product['price']); ?> </h2>
                 <hr>
                 <div class="select-color">
                     <p>Select Color:</p>
