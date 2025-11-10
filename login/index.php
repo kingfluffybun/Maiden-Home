@@ -2,6 +2,11 @@
 session_start();
 include "../includes/db.php";
 
+if (isset($_SESSION['user_id']) && ($_SESSION['username'])) {
+    header("Location: ../index.php");
+    exit;
+}
+
 $alert_html_output = userAndPassCorrect();
 
 function userAndPassCorrect()
@@ -14,13 +19,14 @@ function userAndPassCorrect()
         $user = trim(filter_input(INPUT_POST, "user", FILTER_SANITIZE_SPECIAL_CHARS));
         $pass = filter_input(INPUT_POST, "pass", FILTER_SANITIZE_SPECIAL_CHARS);
 
-        $sql = "SELECT username, user_email, user_pass, `role` FROM user WHERE username='$user' or user_email='$user' LIMIT 1";
+        $sql = "SELECT user_id, username, user_email, user_pass, `role` FROM user WHERE username='$user' OR user_email='$user' LIMIT 1";
         $res = mysqli_query($conn, $sql);
 
         if ($res && $res->num_rows > 0) {
             $row = mysqli_fetch_assoc($res);
 
             if (password_verify($pass, $row['user_pass'])) {
+                $_SESSION['user_id'] = $row['user_id'];
                 $_SESSION['user_email'] = $row['user_email'];
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['role'] = $row['role'];
