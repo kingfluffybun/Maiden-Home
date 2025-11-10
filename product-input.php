@@ -10,6 +10,15 @@ if (isset($_POST['finish'])) {
     $category_id = $_POST['category_id'];
     $sub_id = $_POST['sub_id'];
     $product_description = $_POST['product_description'];
+    $size1 = $_POST['size1'];
+    $size2 = $_POST['size2'];
+    $size3 = $_POST['size3'];
+    $mat1 = $_POST['mat1'];
+    $mat2 = $_POST['mat2'];
+    $mat3 = $_POST['mat3'];
+    $color1 = $_POST['color1'];
+    $color2 = $_POST['color2'];
+    $color3 = $_POST['color3'];
 
     function uploadFile($fileInputName) {
         if (isset($_FILES[$fileInputName]) && $_FILES[$fileInputName]['error'] === 0) {
@@ -36,16 +45,26 @@ if (isset($_POST['finish'])) {
     $product_img4 = uploadFile('product_img4');
     $product_img5 = uploadFile('product_img5');
     $product_img_hover = uploadFile('product_img_hover');
+    $color1_img = uploadFile('color1_img');
+    $color2_img = uploadFile('color2_img');
+    $color3_img = uploadFile('color3_img');
 
     $stmt = $conn->prepare("INSERT INTO products (
-            product_name, price, stocks, 
-            product_img, product_img2, product_img3, product_img4, product_img5, 
-            product_img_hover, product_description, category_id, sub_id
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sdisssssssis", 
+        product_name, price, stocks,
+        product_img, product_img2, product_img3, product_img4, product_img5,
+        product_img_hover, product_description, category_id, sub_id,
+        size1, size2, size3, mat1, mat2, mat3,
+        color1, color2, color3, color1_img, colo2_img, colo3_img
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+    $stmt->bind_param("sdisssssssisssssssssssss",
         $product_name, $price, $stocks,
         $product_img, $product_img2, $product_img3, $product_img4, $product_img5,
-        $product_img_hover, $product_description, $category_id, $sub_id);
+        $product_img_hover, $product_description, $category_id, $sub_id,
+        $size1, $size2, $size3, $mat1, $mat2, $mat3,
+        $color1, $color2, $color3,
+        $color1_img, $color2_img, $color3_img
+    );
 
     if ($stmt->execute()) {
         header("Location: ./product");
@@ -119,6 +138,7 @@ if (isset($_POST['finish'])) {
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 95%;
         }
 
         h1 {
@@ -198,11 +218,11 @@ if (isset($_POST['finish'])) {
                     <label>Product Image <input type="file" name="product_img" required></label>
                     <label>Product Image Hover <input type="file" name="product_img_hover" required></label>
                     <label>Product Angle 1 <input type="file" name="product_img2" required></label>
-                </div>
-                <div class="column">
                     <label>Product Angle 2 <input type="file" name="product_img3" required></label>
                     <label>Product Angle 3 <input type="file" name="product_img4" required></label>
                     <label>Product Angle 4 <input type="file" name="product_img5" required></label>
+                </div>
+                <div class="column">
                     <label>Product Description <textarea name="product_description" placeholder="Product Description" required></textarea></label>
                     <label>
                         Category
@@ -264,6 +284,29 @@ if (isset($_POST['finish'])) {
                             <option value="40">Outdoor Décor & Accents</option>
                         </select>
                     </label>
+                    <label>Sizes</label>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <input type="text" name="size1" required>
+                        <input type="text" name="size2">
+                        <input type="text" name="size3">
+                    </div>
+
+                    <label>Materials</label>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <input type="text" name="mat1" required>
+                        <input type="text" name="mat2">
+                        <input type="text" name="mat3">
+                    </div>
+
+                    <label>Colors</label>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <input type="text" name="color1" required>
+                        <input type="file" name="color1_img" required>
+                        <input type="text" name="color2">
+                        <input type="file" name="color2_img">
+                        <input type="text" name="color3">
+                        <input type="file" name="color3_img">
+                    </div>
                 </div>
             </div>
             <input type="submit" name="finish" value="Publish">

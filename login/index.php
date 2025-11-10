@@ -71,7 +71,7 @@ function userAndPassCorrect()
     <section class="login-section">
         <div class="container">
             <div class="login-box">
-                <a href="../index.php" style="text-decoration: none;">
+                <a href="../" style="text-decoration: none;">
                     <div class="logo">
                         <img src="../assets/Logo.png" alt="">
                         <h1>MAIDEN HOME</h1>
