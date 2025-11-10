@@ -287,25 +287,25 @@ if (isset($_POST['finish'])) {
                     <label>Sizes</label>
                     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                         <input type="text" name="size1" required>
-                        <input type="text" name="size2" required>
-                        <input type="text" name="size3" required>
+                        <input type="text" name="size2">
+                        <input type="text" name="size3">
                     </div>
 
                     <label>Materials</label>
                     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                         <input type="text" name="mat1" required>
-                        <input type="text" name="mat2" required>
-                        <input type="text" name="mat3" required>
+                        <input type="text" name="mat2">
+                        <input type="text" name="mat3">
                     </div>
 
                     <label>Colors</label>
                     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                         <input type="text" name="color1" required>
                         <input type="file" name="color1_img" required>
-                        <input type="text" name="color2" required>
-                        <input type="file" name="color2_img" required>
-                        <input type="text" name="color3" required>
-                        <input type="file" name="color3_img" required>
+                        <input type="text" name="color2">
+                        <input type="file" name="color2_img">
+                        <input type="text" name="color3">
+                        <input type="file" name="color3_img">
                     </div>
                 </div>
             </div>
