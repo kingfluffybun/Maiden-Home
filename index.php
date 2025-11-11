@@ -163,6 +163,77 @@ session_start();
                     </ul>
                 </div>
             </section>
+            <section class="shop-by">
+                <div class="shop-by-header">
+                    <h2>Featured Products</h2>
+                    <div class="shop-by-nav">
+                        <button type="button" class="prev-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-left-icon lucide-move-left">
+                                <path d="M6 8L2 12L6 16" />
+                                <path d="M2 12H22" />
+                            </svg>
+                        </button>
+                        <button type="button" class="next-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right">
+                                <path d="M18 8L22 12L18 16" />
+                                <path d="M2 12H22" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div style="width: 100%; overflow:hidden;">
+                    <ul class="category-wrapper" style="list-style-type: none;">
+                        <li class="category">
+                            <div>
+                                <img src="assets/Categories/Storage & Organization.png" alt="">
+                                <h3>Storage & Organization</h3>
+                            </div>
+                        </li>
+                        <li class="category">
+                            <div>
+                                <img src="assets/Categories/Beds & Mattresses.png" alt="">
+                                <h3>Beds & Mattresses</h3>
+                            </div>
+                        </li>
+                        <li class="category">
+                            <div>
+                                <img src="assets/Categories/Tables & Chairs.png" alt="">
+                                <h3>Tables & Chairs</h3>
+                            </div>
+                        </li>
+                        <li class="category">
+                            <div>
+                                <img src="assets/Categories/Sofas & Armchair.png" alt="">
+                                <h3>Sofas & Armchair</h3>
+                            </div>
+                        </li>
+                        <li class="category">
+                            <div>
+                                <img src="assets/Categories/Home Decorations.png" alt="">
+                                <h3>Home Decorations</h3>
+                            </div>
+                        </li>
+                        <li class="category">
+                            <div>
+                                <img src="assets/Categories/Light Fixtures.png" alt="">
+                                <h3>Light Fixtures</h3>
+                            </div>
+                        </li>
+                        <li class="category">
+                            <div>
+                                <img src="assets/Categories/Office Furniture.png" alt="">
+                                <h3>Office Furniture</h3>
+                            </div>
+                        </li>
+                        <li class="category">
+                            <div>
+                                <img src="assets/Categories/Outdoors Furniture.png" alt="">
+                                <h3>Outdoor Furniture</h3>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
         </div>
     </body>
 </html>
