@@ -50,10 +50,10 @@ $product = $result->fetch_assoc();
                         <img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="600">
                     </div>
                     <div class="product-angles">
-                        <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div>
-                        <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div>
-                        <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div>
-                        <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div>
+                        <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img2']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div>
+                        <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img3']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div>
+                        <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img4']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div>
+                        <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img5']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div>
                     </div>
                 </div>
             </div>
@@ -74,14 +74,56 @@ $product = $result->fetch_assoc();
                 </div>
                 <hr>
                 <!--Product Price-->
-                <h2>₱<?php echo htmlspecialchars($product['price']); ?> </h2>
+                <h2>₱<?php echo number_format($product['price'], 2); ?></h2>
                 <hr>
-                <div class="select-color">
-                    <p>Select Color:</p>
-                    <div class="color">
-                        <input type="checkbox">
-                        <input type="checkbox">
-                        <input type="checkbox">
+                <!--Color-->
+                <div style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
+                    <div class="select-container">
+                        <p>Select Color:</p>
+                        <div class="select">
+                            <form>
+                                <input type="radio" name="color" id="color1" value="<?php echo htmlspecialchars($product['color1']); ?>">
+                                <label for="color1"><?php echo htmlspecialchars($product['color1']); ?></label>
+
+                                <input type="radio" name="color" id="color2" value="<?php echo htmlspecialchars($product['color2']); ?>">
+                                <label for="color2"><?php echo htmlspecialchars($product['color2']); ?></label>
+
+                                <input type="radio" name="color" id="color3" value="<?php echo htmlspecialchars($product['color3']); ?>">
+                                <label for="color3"><?php echo htmlspecialchars($product['color3']); ?></label>
+                            </form>
+                        </div>
+                    </div>
+                    <!--Material-->
+                    <div class="select-container">
+                        <p>Select Material:</p>
+                        <div class="select">
+                            <form>
+                                <input type="radio" name="material" id="mat1" value="<?php echo htmlspecialchars($product['mat1']); ?>">
+                                <label for="mat1"><?php echo htmlspecialchars($product['mat1']); ?></label>
+
+                                <input type="radio" name="material" id="mat2" value="<?php echo htmlspecialchars($product['mat2']); ?>">
+                                <label for="mat2"><?php echo htmlspecialchars($product['mat2']); ?></label>
+
+                                <input type="radio" name="material" id="mat3" value="<?php echo htmlspecialchars($product['mat3']); ?>">
+                                <label for="mat3"><?php echo htmlspecialchars($product['mat3']); ?></label>
+                            </form>
+                        </div>
+                    </div>
+                    <!--Sizes-->
+                    <div class="select-container">
+                        <p>Select Size:</p>
+                        <div class="select">
+                            <form>
+                                <input type="radio" name="size" id="size1" value="<?php echo htmlspecialchars($product['size1']); ?>">
+                                <label for="size1"><?php echo htmlspecialchars($product['size1']); ?></label>
+
+                                <input type="radio" name="size" id="size2" value="<?php echo htmlspecialchars($product['size2']); ?>">
+                                <label for="size2"><?php echo htmlspecialchars($product['size2']); ?></label>
+
+                                <input type="radio" name="size" id="size3" value="<?php echo htmlspecialchars($product['size3']); ?>">
+                                <label for="size3"><?php echo htmlspecialchars($product['size3']); ?></label>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <div class="shop-guarantee">
@@ -91,13 +133,17 @@ $product = $result->fetch_assoc();
                     <p>Shop with complete confidence, backed by our reliable 10-year warranty. Your order is protected with secure, encrypted payments and includes free shipping to your door.</p>
                 </div>
                 <div class="shop-actions">
-                    <div class="quantity-container">
-                        <button type="button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d47b33" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus-icon lucide-minus"><path d="M5 12h14"/></svg></button>
+                    <!--Quantity-->
+                    <form method="post" class="quantity-container">
+                        <button type="submit" name="action"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d47b33" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus-icon lucide-minus"><path d="M5 12h14"/></svg></button>
                         <p>1</p>
-                        <button type="button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d47b33" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg></button>
-                    </div>
+                        <button type="submit" name="action"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d47b33" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg></button>
+                    </form>
                     <div class="add-to-cart">
-                        <button type="button">Add to Cart</button>
+                        <button type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart-icon lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                            Add to Cart
+                        </button>
                     </div>
                     <button type="button" class="like"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d47b33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-icon lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg></button>
                 </div>
