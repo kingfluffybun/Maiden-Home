@@ -5,6 +5,7 @@
   font-family: "Inter", sans-serif;
 }
 
+
 .category-banner {
   width: 100%;
   height: 45vh;
@@ -17,25 +18,41 @@
   object-fit: cover;
 }
 
-.sort-bar {
-  padding: 4vh 0 0 12vh;
-  /*margin: 30px 8vh 10px;*/
+.search-section {
+    width: 100%; height: 150px;
 }
 
-.sort-bar p {
-  font-size: 1.1rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: #272727;
+.search-section div {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr;
+    padding: 8vh 8vw;
+    gap: 40px;
+}
+
+.sort-bar {
+    /*padding: 4vh 0 0 12vh;
+    /*margin: 30px 8vh 10px;*/
 }
 
 .sort-buttons {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+    display: flex; flex-direction: column;
+    padding-left: 16px;
+    gap: 16px;
 }
 
-.sort-buttons button {
+.sort-buttons ul {
+    display: flex; flex-direction: column; gap: 8px;
+}
+
+.sort-buttons li, .sort-buttons select, .sort-buttons button {
+    list-style-type: none;
   border: 1px solid #d47b33;
   background: #fff;
   color: #d47b33;
@@ -46,7 +63,7 @@
   transition: .3s ease;
 }
 
-.sort-buttons button:hover,
+.sort-buttons li:hover, .sort-buttons button:hover,
 .sort-buttons .active {
   background: #d47b33;
   color: #fff;
@@ -54,14 +71,12 @@
 
 .sort-buttons a {
   text-decoration: none;
-  color: #d47b33;
 }
 
 .product-grid {
   display: grid;
   grid-template-columns: auto auto auto auto;
   gap: 40px;
-  padding: 4vh 12vh;
 }
 
 .product {
@@ -87,7 +102,6 @@
 }
 
 .img-container {
-  width: 100%;
   position: relative;
   overflow: hidden;
   border-radius: 20px;
