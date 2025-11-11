@@ -165,8 +165,8 @@ $product = $result->fetch_assoc();
                 <h2>₱<?php echo number_format($product['price'], 2); ?></h2>
                 <hr>
                 <!--Color-->
-                <div style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
-                    <form method="post">
+                <div>
+                    <form method="post" style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
                     <div class="select-container">
                         <p>Select Color:</p>
                         <div class="select">
@@ -239,10 +239,11 @@ $product = $result->fetch_assoc();
                         </div>
                     </div>
                     <div class="shop-guarantee">
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#d47b33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check-icon lucide-shield-check"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#d47b33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check-icon lucide-shield-check"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+                        </div>
+                        <p>Shop with complete confidence, backed by our reliable 10-year warranty. Your order is protected with secure, encrypted payments and includes free shipping to your door.</p>
                     </div>
-                    <p>Shop with complete confidence, backed by our reliable 10-year warranty. Your order is protected with secure, encrypted payments and includes free shipping to your door.</p>
                 </div>
                 <div class="shop-actions">
                     <!--Quantity-->
