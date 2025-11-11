@@ -172,18 +172,18 @@ $product = $result->fetch_assoc();
                         <div class="select">
                             <?php if (!empty($product['color1']) || !empty($product['color2']) || !empty($product['color3'])): ?>
                             <?php if (!empty($product['color1'])): ?>
-                                <input type="radio" name="color" id="color" value="<?php echo htmlspecialchars($product['color1']); ?>">
+                                <input type="radio" name="color" id="color1" value="<?php echo htmlspecialchars($product['color1']); ?>">
                                 <label for="color1"><?php echo htmlspecialchars($product['color1']); ?></label>
                             <?php endif; ?>
 
                             <?php if (!empty($product['color2'])): ?>
-                            <input type="radio" name="color" id="color2" value="<?php echo htmlspecialchars($product['color2']); ?>">
-                            <label for="color2"><?php echo htmlspecialchars($product['color2']); ?></label>
+                                <input type="radio" name="color" id="color2" value="<?php echo htmlspecialchars($product['color2']); ?>">
+                                <label for="color2"><?php echo htmlspecialchars($product['color2']); ?></label>
                             <?php endif; ?>
 
                             <?php if (!empty($product['color3'])): ?>
-                            <input type="radio" name="color" id="color3" value="<?php echo htmlspecialchars($product['color3']); ?>">
-                            <label for="color3"><?php echo htmlspecialchars($product['color3']); ?></label>
+                                <input type="radio" name="color" id="color3" value="<?php echo htmlspecialchars($product['color3']); ?>">
+                                <label for="color3"><?php echo htmlspecialchars($product['color3']); ?></label>
                             <?php endif; ?>
                             <?php else: ?>
                             <p style="color: gray;">No size options available for this product.</p>
