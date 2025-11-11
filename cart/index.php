@@ -11,6 +11,7 @@ $user_id = $_SESSION['user_id'];
 
 if (isset($_POST['action'])) {
     $cart_id = intval($_POST['cart_id']);
+
     if ($_POST['action'] === 'increase') {
         $stmt = $conn->prepare("UPDATE addtocart SET quantity = quantity + 1 WHERE cart_id = ? AND user_id = ?");
         $stmt->bind_param("ii", $cart_id, $user_id);
@@ -24,9 +25,12 @@ if (isset($_POST['action'])) {
         $stmt->bind_param("ii", $cart_id, $user_id);
         $stmt->execute();
     }
+    
+    header("Location: " . $_SERVER['REQUEST_URI']);
+    exit;
 }
 
-$sql = "SELECT c.cart_id, c.quantity, p.product_name, p.price, p.product_img, p.color, p.material, p.size
+$sql = "SELECT c.cart_id, c.quantity, c.color, c.material, c.sizes, p.product_name, p.price, p.product_img
         FROM addtocart c
         JOIN products p ON c.product_id = p.product_id
         WHERE c.user_id = ?";
@@ -79,7 +83,7 @@ $total = $subtotal;
                             <div class="product-detail">
                                 <p><span style="font-weight: 500;">Color:</span> <?php echo htmlspecialchars($item['color']); ?></p> 
                                 <p><span style="font-weight: 500;">Material:</span> <?php echo htmlspecialchars($item['material']); ?></p>  
-                                <p><span style="font-weight: 500;">Size:</span> <?php echo htmlspecialchars($item['size']); ?></p>
+                                <p><span style="font-weight: 500;">Size:</span> <?php echo htmlspecialchars($item['sizes']); ?></p>
                             </div>
                             <div class="options">
                                 <form method="post" class="quantity">
