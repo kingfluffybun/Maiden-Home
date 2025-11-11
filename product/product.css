@@ -20,7 +20,6 @@
 .sort-bar {
   padding: 3vh 8vh;
   margin: 30px 8vh 10px;
-  border-bottom: 2px solid #dcdcdc;
 }
 
 .sort-bar p {
@@ -28,11 +27,11 @@
   font-weight: 600;
   text-transform: uppercase;
   color: #272727;
-  margin-bottom: 12px;
 }
 
 .sort-buttons {
   display: flex;
+  align-items: center;
   gap: 14px;
 }
 
@@ -60,7 +59,7 @@
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: auto auto auto auto;
   gap: 40px;
   padding: 4vh 8vh;
 }
@@ -69,6 +68,10 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.product-info {
+    padding-top: 24px;
 }
 
 .image-card {
