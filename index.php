@@ -30,8 +30,8 @@ session_start();
                         make every moment feel at home.
                     </p>
                     <div class="action">
-                        <button type="button" id="shop-now">Shop Now</button>
-                        <button type="button" id="read-more">Read More</button>
+                        <a href="./product" id="shop-now">Shop Now</a>
+                        <a id="read-more">Read More</a>
                     </div>
                 </div>
             </section>
