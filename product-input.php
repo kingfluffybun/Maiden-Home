@@ -1,4 +1,10 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?>
+
+<?php
 session_start();
 include "./includes/db.php";
 
@@ -24,18 +30,18 @@ if (isset($_POST['finish'])) {
         if (isset($_FILES[$fileInputName]) && $_FILES[$fileInputName]['error'] === 0) {
             $img_name = $img_name = preg_replace("/[^a-zA-Z0-9\.\-_]/", "_", $_FILES[$fileInputName]['name']);
             $tmp_name = $_FILES[$fileInputName]['tmp_name'];
-            $target_dir = "../assets/PRODUCTS/";
+            $target_dir = "assets/PRODUCTS/";
             $target_file = $target_dir . basename($img_name);
 
             if (move_uploaded_file($tmp_name, $target_file)) {
                 return $img_name;
             } else {
                 echo "Error uploading $fileInputName.";
-                exit;
+                return '';
             }
         } else {
             echo "No file selected for $fileInputName.";
-            exit;
+            return '';
         }
     }
 
@@ -54,7 +60,7 @@ if (isset($_POST['finish'])) {
         product_img, product_img2, product_img3, product_img4, product_img5,
         product_img_hover, product_description, category_id, sub_id,
         size1, size2, size3, mat1, mat2, mat3,
-        color1, color2, color3, color1_img, colo2_img, colo3_img
+        color1, color2, color3, color1_img, color2_img, color3_img
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
     $stmt->bind_param("sdisssssssisssssssssssss",
