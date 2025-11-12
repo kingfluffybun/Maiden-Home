@@ -20,7 +20,7 @@ session_start();
     </head>
     <body>
         <?php include "./includes/nav-bar.php" ?>
-        <div style="padding: 2vh 4vw;">
+        <div style="padding: 2vh 2vw;">
             <section class="hero-banner">
                 <img src="assets/hero-banner.png" alt="">
                 <div class="hero-text">
@@ -35,8 +35,6 @@ session_start();
                     </div>
                 </div>
             </section>
-        </div>
-        <div class="container">
             <section class="description">
                 <div class="description-box">
                     <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#d47b33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck-icon lucide-truck">
@@ -86,14 +84,16 @@ session_start();
                     </div>
                 </div>
             </section>
-            <section class="shop-now-section">
-                <img src="./assets/Rooms/living room.png" style="object-fit: cover; width: 100%;" alt="">
-                <div>
-                    <h2>Furniture That Feels Like Home</h2>
-                    <p>Find the pieces that truly feel like home, designed to be the foundation for every moment. Explore our collection of handcrafted bed frames, iconic deep-seated sofas, and tailored accent chairs. It's the perfect blend of lasting aesthetic and deep comfort—timeless, personal, and made just for you.</p>
-                    <a href="./product/"><p>Shop Now</p></a>
-                </div>
-            </section>
+        </div>
+        <section class="shop-now-section">
+            <img src="./assets/Rooms/living room.png" style="object-fit: cover; width: 100%;" alt="">
+            <div>
+                <h2>Furniture That Feels Like Home</h2>
+                <p>Find the pieces that truly feel like home, designed to be the foundation for every moment. Explore our collection of handcrafted bed frames, iconic deep-seated sofas, and tailored accent chairs. It's the perfect blend of lasting aesthetic and deep comfort—timeless, personal, and made just for you.</p>
+                <a href="./product/"><p>Shop Now</p></a>
+            </div>
+        </section>
+        <div class="container">
             <section class="shop-by">
                 <div class="shop-by-header">
                     <h2>Shop by Category</h2>
@@ -165,6 +165,8 @@ session_start();
                     </ul>
                 </div>
             </section>
+        </div>
+        <div class="container">
             <section class="shop-by">
                 <div class="shop-by-header">
                     <h2>Featured Products</h2>
