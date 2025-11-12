@@ -6,15 +6,13 @@ $productPage = '/maiden-home/product/index.php';
         <img src="/Maiden-Home/assets/Logo.png" alt="">
         <h1 style="color: #d47b33;">MAIDEN HOME</h1>
     </div></a>
-    <div class="search">
-    <form action="<?= $productPage ?>" method="GET">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#484848" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search">
-            <path d="m21 21-4.34-4.34" />
-            <circle cx="11" cy="11" r="8" />
-        </svg>
-        <input name="search" type="search" placeholder="What are you looking for?" value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
-    </form>
-</div>
+        <form action="<?= $productPage ?>" method="GET" class="search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#484848" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search">
+                <path d="m21 21-4.34-4.34" />
+                <circle cx="11" cy="11" r="8" />
+            </svg>
+            <input name="search" type="search" placeholder="What are you looking for?" value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
+        </form>
     <div class="nav-options-wrapper">
         <div class="user-dropdown">
             <button type="button" class="nav-options" onclick="toggleUser()">
