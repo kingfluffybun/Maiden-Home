@@ -134,7 +134,15 @@ $product = $result->fetch_assoc();
      <div class="container">
             <div class="product-container">
                 <!--Para siyang navigation starting kung san siya nag simula papunta sa site na to-->
-                <div class="breadcrumb"><p>Home > <?php echo htmlspecialchars($product['category_name']); ?> > <?php echo htmlspecialchars($product['sub_name']); ?> > <?php echo htmlspecialchars($product['product_name']); ?></div>
+                <div class="breadcrumb">
+                    <a href="../">Home</a>
+                    <p> > </p>
+                    <a href="../product/?category_id=<?php echo htmlspecialchars($product['category_id'])?>"><?php echo htmlspecialchars($product['category_name']); ?></a>
+                    <p> > </p>
+                    <a href="../product/?sub_id=<?php echo htmlspecialchars($product['sub_id'])?>"><?php echo htmlspecialchars($product['sub_name']); ?></a>
+                    <p> > </p>
+                    <p><?php echo htmlspecialchars($product['product_name']); ?></p>
+                </div>
                 <div class="product-image">
                     <!--Product Main Image-->
                     <div class="main-product">

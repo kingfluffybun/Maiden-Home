@@ -36,10 +36,16 @@
 }
 
 .breadcrumb {
+    display: flex;
+    gap: 4px;
+    padding-bottom: 12px;
     font-weight: 200;
     font-size: 12px;
+}
+
+.breadcrumb a {
     color: #000000;
-    padding-bottom: 12px;
+    text-decoration: none;
 }
 
 .main-product {
