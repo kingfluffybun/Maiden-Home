@@ -59,6 +59,7 @@ $result = mysqli_query($conn, $sql);
     <link rel="stylesheet" href="product.css">
     <link rel="stylesheet" href="../css/scroll.css">
     <link rel="stylesheet" href="../css/nav-bar.css">
+    <link rel="stylesheet" href="../css/footer.css">
     <script src="../js/script.js"></script>
 </head>
 
@@ -217,5 +218,6 @@ $result = mysqli_query($conn, $sql);
             </button>
         <?php endif; ?>
     </section>
+    <?php include "../includes/footer.php" ?>
 </body>
 </html>
