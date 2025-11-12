@@ -124,7 +124,9 @@ $product = $result->fetch_assoc();
     <link rel="stylesheet" href="../css/scroll.css">
     <link rel="stylesheet" href="../css/nav-bar.css">
     <link rel="stylesheet" href="product-detail.css">
-    <script src="../js/script.js" defer></script>
+    <script src="../js/script.js"></script>
+    <script src="script.js"></script>
+
 </head>
     <?php include "../includes/nav-bar.php"; ?>
 <body>
@@ -137,11 +139,28 @@ $product = $result->fetch_assoc();
                     <div class="main-product">
                         <img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="600">
                     </div>
-                    <div class="product-angles">
-                        <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img2']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div>
-                        <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img3']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div>
-                        <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img4']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div>
-                        <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img5']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div>
+                    <div class="product-imgs-container">
+                        <div class="prev-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left-icon lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg>
+                        </div>
+                        <div class="product-angles">
+                            <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img_hover']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div>
+                            <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div>
+                            <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img2']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div>
+                            <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img3']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div>
+                            <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img4']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div>
+                            <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['product_img5']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div>
+                            <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['color1_img']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div> 
+                            <?php if (!empty($product['color2'])): ?>
+                                <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['color2_img']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div>
+                            <?php endif ?>
+                            <?php if (!empty($product['color3'])): ?>
+                                <div><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['color3_img']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" width="100"></div>
+                            <?php endif ?>
+                        </div>
+                        <div class="next-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right-icon lucide-chevron-right"><path d="m9 18 6-6-6-6"/></svg>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -172,17 +191,17 @@ $product = $result->fetch_assoc();
                         <div class="select">
                             <?php if (!empty($product['color1']) || !empty($product['color2']) || !empty($product['color3'])): ?>
                             <?php if (!empty($product['color1'])): ?>
-                                <input type="radio" name="color" id="color1" value="<?php echo htmlspecialchars($product['color1']); ?>">
+                                <input type="radio" name="color" id="color1" value="<?php echo htmlspecialchars($product['color1']); ?>" data-img-src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['color1_img']); ?>">
                                 <label for="color1"><?php echo htmlspecialchars($product['color1']); ?></label>
                             <?php endif; ?>
 
                             <?php if (!empty($product['color2'])): ?>
-                                <input type="radio" name="color" id="color2" value="<?php echo htmlspecialchars($product['color2']); ?>">
+                                <input type="radio" name="color" id="color2" value="<?php echo htmlspecialchars($product['color2']); ?>" data-img-src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['color2_img']); ?>">
                                 <label for="color2"><?php echo htmlspecialchars($product['color2']); ?></label>
                             <?php endif; ?>
 
                             <?php if (!empty($product['color3'])): ?>
-                                <input type="radio" name="color" id="color3" value="<?php echo htmlspecialchars($product['color3']); ?>">
+                                <input type="radio" name="color" id="color3" value="<?php echo htmlspecialchars($product['color3']); ?>" data-img-src="../assets/PRODUCTS/<?php echo htmlspecialchars($product['color3_img']); ?>">
                                 <label for="color3"><?php echo htmlspecialchars($product['color3']); ?></label>
                             <?php endif; ?>
                             <?php else: ?>

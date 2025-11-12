@@ -51,8 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
 function toggleDescription() {
     const svgContainer = document.querySelector('#dropdown');
     const description = document.querySelector('.description-content');
-    description.classList.toggle('is-clicked');
-    if (description.classList.contains('is-clicked')) {
+    description.classList.toggle('desc-clicked');
+    if (description.classList.contains('desc-clicked')) {
         svgContainer.innerHTML = chevronRight;
     } else {
         svgContainer.innerHTML = chevronDown;
