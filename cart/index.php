@@ -134,7 +134,9 @@ $total = $subtotal;
                 <p>Total</p>
                 <h2>₱<?php echo number_format($total, 2); ?></h2>
             </div>
+            <form method="POST" action="../checkout.php">
             <button class="checkout-btn">Proceed to Checkout</button>
+            </form>
         </div>
     </div>
     <?php include "../includes/footer.php" ?>
