@@ -56,6 +56,7 @@ $total = $subtotal;
     <title>Your Cart | Maiden Home</title>
     <link rel="stylesheet" href="cart.css">
     <link rel="stylesheet" href="../css/nav-bar.css">
+    <link rel="stylesheet" href="../css/footer.css">
     <script src="../js/script.js"></script>
 </head>
 <body>
@@ -136,5 +137,6 @@ $total = $subtotal;
             <button class="checkout-btn">Proceed to Checkout</button>
         </div>
     </div>
+    <?php include "../includes/footer.php" ?>
 </body>
 </html>
