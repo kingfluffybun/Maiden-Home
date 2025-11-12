@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     });
                 } else {
                     wrapper.scrollBy({ 
-                        left: -wrapper.clientWidth + 30, 
+                        left: -wrapper.clientWidth, 
                         behavior: "smooth"
                     });
                 }
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     });
                 } else {
                     wrapper.scrollBy({ 
-                        left: wrapper.clientWidth + 30, 
+                        left: wrapper.clientWidth + 60, 
                         behavior: "smooth" 
                     });
                 }

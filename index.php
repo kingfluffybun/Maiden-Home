@@ -1,6 +1,5 @@
 <?php
 session_start();
-
     if (!isset($_SESSION['username']) && isset($_COOKIE['username'])) {
         $_SESSION['username'] = $_COOKIE['username'];
         $_SESSION['user_email'] = $_COOKIE['user_email'];
@@ -16,11 +15,12 @@ session_start();
         <link rel="stylesheet" href="homepage.css" />
         <link rel="stylesheet" href="css/scroll.css">
         <link rel="stylesheet" href="css/nav-bar.css">
+        <link rel="stylesheet" href="css/footer.css">
         <script src="js/script.js"></script>
     </head>
     <body>
         <?php include "./includes/nav-bar.php" ?>
-        <div class="container">
+        <div style="padding: 2vh 4vw;">
             <section class="hero-banner">
                 <img src="assets/hero-banner.png" alt="">
                 <div class="hero-text">
@@ -35,6 +35,8 @@ session_start();
                     </div>
                 </div>
             </section>
+        </div>
+        <div class="container">
             <section class="description">
                 <div class="description-box">
                     <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#d47b33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck-icon lucide-truck">
@@ -113,52 +115,52 @@ session_start();
                 <div style="width: 100%; overflow:hidden;">
                     <ul class="category-wrapper" style="list-style-type: none;">
                         <li class="category">
-                            <div>
+                            <a href="./product/?category_id=1">
                                 <img src="assets/Categories/Storage & Organization.png" alt="">
                                 <h3>Storage & Organization</h3>
-                            </div>
+                            </a>
                         </li>
                         <li class="category">
-                            <div>
+                            <a href="./product/?category_id=2">
                                 <img src="assets/Categories/Beds & Mattresses.png" alt="">
                                 <h3>Beds & Mattresses</h3>
-                            </div>
+                            </a>
                         </li>
                         <li class="category">
-                            <div>
+                            <a href="./product/?category_id=3">
                                 <img src="assets/Categories/Tables & Chairs.png" alt="">
                                 <h3>Tables & Chairs</h3>
-                            </div>
+                            </a>
                         </li>
                         <li class="category">
-                            <div>
+                            <a href="./product/?category_id=4">
                                 <img src="assets/Categories/Sofas & Armchair.png" alt="">
                                 <h3>Sofas & Armchair</h3>
-                            </div>
+                            </a>
                         </li>
                         <li class="category">
-                            <div>
+                            <a href="./product/?category_id=5">
                                 <img src="assets/Categories/Home Decorations.png" alt="">
                                 <h3>Home Decorations</h3>
-                            </div>
+                            </a>
                         </li>
                         <li class="category">
-                            <div>
+                            <a href="./product/?category_id=6">
                                 <img src="assets/Categories/Light Fixtures.png" alt="">
                                 <h3>Light Fixtures</h3>
-                            </div>
+                            </a>
                         </li>
                         <li class="category">
-                            <div>
+                            <a href="./product/?category_id=7">
                                 <img src="assets/Categories/Office Furniture.png" alt="">
                                 <h3>Office Furniture</h3>
-                            </div>
+                            </a>
                         </li>
                         <li class="category">
-                            <div>
+                            <a href="./product/?category_id=8">
                                 <img src="assets/Categories/Outdoors Furniture.png" alt="">
                                 <h3>Outdoor Furniture</h3>
-                            </div>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -167,6 +169,7 @@ session_start();
                 <div class="shop-by-header">
                     <h2>Featured Products</h2>
                     <div class="shop-by-nav">
+                        <a href="./product/">View All</a>
                         <button type="button" class="prev-button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-left-icon lucide-move-left">
                                 <path d="M6 8L2 12L6 16" />
@@ -183,52 +186,124 @@ session_start();
                 </div>
                 <div style="width: 100%; overflow:hidden;">
                     <ul class="category-wrapper" style="list-style-type: none;">
-                        <li class="category">
-                            <div>
-                                <img src="assets/Categories/Storage & Organization.png" alt="">
-                                <h3>Storage & Organization</h3>
+                        <li class="product">
+                            <a href="./product-details/?product_id=1">
+                                <img src="assets/Products/Farrow_Large_Bookcase.png" alt="" class="default-img">
+                                <img src="assets/Products/Farrow_Large_Bookcase_Hover.png" alt="" class="hover-img">
+                            </a>
+                            <div style="padding-top: 16px;">
+                                <p>Farrow Large Bookcase</p>
+                                <b>₱8,120.00</b>
                             </div>
                         </li>
-                        <li class="category">
-                            <div>
-                                <img src="assets/Categories/Beds & Mattresses.png" alt="">
-                                <h3>Beds & Mattresses</h3>
+                        <li class="product">
+                            <a href="./product-details/?product_id=19">
+                                <img src="assets/Products/Farrow-White-Low-Bookcase.jpg" alt="" class="default-img">
+                                <img src="assets/Products/Farrow-Low-Bookcase-White-Hover.jpg" alt="" class="hover-img">
+                            </a>
+                            <div style="padding-top: 16px;">
+                                <p>Farrow Low Bookcase</p>
+                                <b>₱16,290.00</b>
                             </div>
                         </li>
-                        <li class="category">
-                            <div>
-                                <img src="assets/Categories/Tables & Chairs.png" alt="">
-                                <h3>Tables & Chairs</h3>
+                        <li class="product">
+                            <a href="./product-details/?product_id=2">
+                                <img src="assets/Products/Colette_4_Over_6_Chest_Of_Drawers.png" alt="" class="default-img">
+                                <img src="assets/Products/Colette_4_Over_6_Chest_Of_Drawers_Hover.png" alt="" class="hover-img">
+                            </a>
+                            <div style="padding-top: 16px;">
+                                <p>Colette 4 Over 6 Chest Of Drawers</p>
+                                <b>₱41,114.00</b>
                             </div>
                         </li>
-                        <li class="category">
-                            <div>
-                                <img src="assets/Categories/Sofas & Armchair.png" alt="">
-                                <h3>Sofas & Armchair</h3>
+                        <li class="product">
+                            <a href="./product-details/?product_id=10">
+                                <img src="assets/Products/Huxley-Triple-Wardrobe-With-Shelves-Oak-Cashmere.jpg" alt="" class="default-img">
+                                <img src="assets/Products/Huxley-Triple-Wardrobe-With-Shelves-Oak-Cashmere-Hover.jpg" alt="" class="hover-img">
+                            </a>
+                            <div style="padding-top: 16px;">
+                                <p>Huxley Triple Wardrobe with Open Shelves</p>
+                                <b>₱29,350.00</b>
                             </div>
                         </li>
-                        <li class="category">
-                            <div>
-                                <img src="assets/Categories/Home Decorations.png" alt="">
-                                <h3>Home Decorations</h3>
+                        <li class="product">
+                            <a href="./product-details/?product_id=14">
+                                <img src="assets/Products/Henshaw-3-Drawer-Chest-White.jpg" alt="" class="default-img">
+                                <img src="assets/Products/Henshaw-3-Drawer-Chest-White-Hover.jpg" alt="" class="hover-img">
+                            </a>
+                            <div style="padding-top: 16px;">
+                                <p>Henshaw 3 Drawer Chest</p>
+                                <b>₱17,415.00</b>
                             </div>
                         </li>
-                        <li class="category">
-                            <div>
-                                <img src="assets/Categories/Light Fixtures.png" alt="">
-                                <h3>Light Fixtures</h3>
+                        <li class="product">
+                            <a href="./product-details/?product_id=9">
+                                <img src="assets/Products/Stratford_Memory_Coil_Quilted_Mattress.png" alt="" class="default-img">
+                                <img src="assets/Products/Stratford_Memory_Coil_Quilted_Mattress_Hover.png" alt="" class="hover-img">
+                            </a>
+                            <div style="padding-top: 16px;">
+                                <p>Stratford Memory Coil Quilted Mattress</p>
+                                <b>₱14,021.00</b>
                             </div>
                         </li>
-                        <li class="category">
-                            <div>
-                                <img src="assets/Categories/Office Furniture.png" alt="">
-                                <h3>Office Furniture</h3>
+                        <li class="product">
+                            <a href="./product-details/?product_id=18"> 
+                                <img src="assets/Products/Mendez_Faux_Leather_Bar_Stool.png" alt="" class="default-img">
+                                <img src="assets/Products/Mendez_Faux_Leather_Bar_Stool_Hover.png" alt="" class="hover-img">
+                            </a>
+                            <div style="padding-top: 16px;">
+                                <p>Mendez Faux Leather Bar Stool</p>
+                                <b>₱5,810.00</b>
                             </div>
                         </li>
-                        <li class="category">
-                            <div>
-                                <img src="assets/Categories/Outdoors Furniture.png" alt="">
-                                <h3>Outdoor Furniture</h3>
+                        <li class="product">
+                            <a href="./product-details/?product_id=16">
+                                <img src="assets/Products/Milo_Mango___Marble_Fluted_Side_Table_with_Door.png" alt="" class="default-img">
+                                <img src="assets/Products/Milo_Mango___Marble_Fluted_Side_Table_with_Door_Hover.png".jpg" alt="" class="hover-img">
+                            </a>
+                            <div style="padding-top: 16px;">
+                                <p>Milo Mango & Marble Fluted Side Table with Door</p>
+                                <b>₱12,784.00</b>
+                            </div>
+                        </li>
+                        <li class="product">
+                            <a href="./product-details/?product_id=27">
+                                <img src="assets/Products/Bletchley_Jumbo_Cord_Swivel_Chair.png" alt="" class="default-img">
+                                <img src="assets/Products/Bletchley_Jumbo_Cord_Swivel_Chair_Hover.png" alt="" class="hover-img">
+                            </a>
+                            <div style="padding-top: 16px;">
+                                <p>Bletchley Jumbo Cord Swivel Chair</p>
+                                <b>₱40,639.00</b>
+                            </div>
+                        </li>                   
+                        <li class="product">
+                            <a href="./product-details/?product_id=39">
+                                <img src="assets/Products/Justin-Charcoal-4Seater-Sofa.jpg" alt="" class="default-img">
+                                <img src="assets/Products/Justin-Charcoal-4Seater-Sofa-Hover.jpg" alt="" class="hover-img">
+                            </a>
+                            <div style="padding-top: 16px;">
+                                <p>Justin 4 Seater Sofa</p>
+                                <b>₱49,360.00</b>
+                            </div>
+                        </li>
+                        <li class="product">
+                            <a href="./product-details/?product_id=20">
+                                <img src="assets/Products/Alfie-4-Seater-Sofa-Charcoal.jpg" alt="" class="default-img">
+                                <img src="assets/Products/Alfie-4-Seater-Sofa-Charcoal-Hover.jpg" alt="" class="hover-img">
+                            </a>
+                            <div style="padding-top: 16px;">
+                                <p>Alfie 4 Seater Sofa</p>
+                                <b>₱50,350.00</b>
+                            </div>
+                        </li>
+                        <li class="product">
+                            <a href="./product-details/?product_id=40">
+                                <img src="assets/Products/Birchley-Soft-Chenille-4-Seater-Sofa-Ice.jpg" alt="" class="default-img">
+                                <img src="assets/Products/Birchley-Soft-Chenille-4-Seater-Sofa-Ice-Hover.jpg" alt="" class="hover-img">
+                            </a>
+                            <div style="padding-top: 16px;">
+                                <p>Birchley 4 Seater Sofa</p>
+                                <b>₱72,055.00</b>
                             </div>
                         </li>
                     </ul>
@@ -236,4 +311,5 @@ session_start();
             </section>
         </div>
     </body>
+    <?php include "./includes/footer.php" ?>
 </html>
