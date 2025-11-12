@@ -35,6 +35,17 @@ if (isset($_GET['category_id'])) {
     $filterName = $sub_row ? $sub_row['sub_name'] : "Subcategory";
 }
 
+//Search filter
+if (isset($_GET['search']) && $_GET['search'] !== '') {
+    $search = mysqli_real_escape_string($conn, $_GET['search']);
+    if ($where === "") {
+        $where = "WHERE (p.product_name LIKE '%$search%' OR p.product_description LIKE '%$search%')";
+    } else {
+        $where .= " AND (p.product_name LIKE '%$search%' OR p.product_description LIKE '%$search%')";
+    }
+    $filterName = "Search results for \"" . htmlspecialchars($search) . "\"";
+}
+
 $order_by = "p.product_id ASC"; // default
 if (isset($_GET['sort'])) {
     switch ($_GET['sort']) {
