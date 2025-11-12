@@ -289,3 +289,19 @@
         transform: translateY(0);
     }
 }
+
+.category-link {
+    color: #000000;
+    text-decoration: none;
+    font-weight: normal;
+    transition: font-weight 0.2s ease;
+}
+
+.category-link:hover {
+    font-weight: bold;
+}
+
+.active-category {
+    color: #e09a03;
+    font-weight: bold;
+}
