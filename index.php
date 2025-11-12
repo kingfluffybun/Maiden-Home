@@ -166,6 +166,14 @@ session_start();
                 </div>
             </section>
         </div>
+        <section class="shop-now-section">
+            <div>
+                <h2>Furniture That Feels Like Home</h2>
+                <p>Find the pieces that truly feel like home, designed to be the foundation for every moment. Explore our collection of handcrafted bed frames, iconic deep-seated sofas, and tailored accent chairs. It's the perfect blend of lasting aesthetic and deep comfort—timeless, personal, and made just for you.</p>
+                <a href="./product/"><p>Shop Now</p></a>
+            </div>
+            <img src="./assets/Rooms/bedroom.png" style="object-fit: cover; width: 100%;" alt="">
+        </section>
         <div class="container">
             <section class="shop-by">
                 <div class="shop-by-header">
