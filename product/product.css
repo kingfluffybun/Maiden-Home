@@ -5,7 +5,6 @@
     font-family: "Inter", sans-serif;
 }
 
-
 .category-banner {
     width: 100%;
     height: 45vh;
@@ -30,15 +29,50 @@
     width: 100%;
     height: 12vh;
     border: #d9d9d9 1px solid;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: .3s ease;
 }
 
 .search-products {
     margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .search-products input {
     height: 44px;
-    padding: 12px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    outline: none;
+    transition: .3s ease;
+    width: 250px;
+}
+
+.search-products input:focus {
+    border-color: #d47b33;
+    box-shadow: 0 0 6px rgba(212,123,51,0.4);
+}
+
+.search-products button {
+    height: 44px;
+    padding: 0 18px;
+    background: #d47b33;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.search-products button:hover {
+    background: #e58c3a;
+    transform: translateY(-2px);
 }
 
 .grid {
@@ -55,23 +89,34 @@
 .filter {
     padding: 20px 24px;
     border: #d9d9d9 solid 1px;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: .3s ease;
 }
 
 .filter-buttons {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
 }
 
 .filter-buttons ul {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
 }
 
 .filter-buttons li {
     list-style-type: none;
     font-size: 14px;
+    padding: 6px 0;
+    transition: .3s ease;
+}
+
+.filter-buttons li:hover {
+    color: #d47b33;
+    font-weight: 500;
 }
 
 .filter-buttons button {
@@ -80,19 +125,34 @@
     color: #d47b33;
     padding: 10px 22px;
     font-size: .95rem;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: .3s ease;
+    transition: .3s ease, transform .2s ease;
+    box-shadow: 0 2px 6px rgba(212,123,51,0.1);
 }
 
-.filter-buttons button:hover,
+.filter-buttons button:hover {
+    background: #d47b33;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(212,123,51,0.2);
+}
+
 .filter-buttons .active {
     background: #d47b33;
     color: #fff;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(212,123,51,0.2);
 }
 
 .filter-buttons a {
     text-decoration: none;
+    color: #555;
+    transition: .3s ease;
+}
+
+.filter-buttons a:hover {
+    color: #d47b33;
 }
 
 .sort-section {
@@ -101,8 +161,28 @@
 }
 
 .sort-by {
-    margin-left:   auto;
-    width: 150px;
+    margin-left: auto;
+    width: 180px;
+    height: 44px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    padding: 0 12px;
+    background: #fff url('data:image/svg+xml;utf8,<svg fill="%23d47b33" height="24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 12px center;
+    appearance: none;
+    transition: .3s ease, border-color .3s ease, box-shadow .3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.sort-by:hover {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+.sort-by:focus {
+    border-color: #d47b33;
+    box-shadow: 0 0 6px rgba(212,123,51,0.4);
+    outline: none;
 }
 
 .product-grid {
