@@ -7,7 +7,6 @@
 
 .category-banner {
     width: 100%;
-    height: 45vh;
     overflow: hidden;
 }
 
@@ -25,6 +24,7 @@
 .search-container {
     display: flex; 
     align-items: center;
+    gap: 24px;
     padding: 0 4vw;
     width: 100%;
     height: 12vh;
@@ -36,7 +36,7 @@
 }
 
 .search-products {
-    margin-left: auto;
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -50,7 +50,7 @@
     font-size: 1rem;
     outline: none;
     transition: .3s ease;
-    width: 250px;
+    width: 100%;
 }
 
 .search-products input:focus {
@@ -104,7 +104,7 @@
 .filter-buttons ul {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 8px;
 }
 
 .filter-buttons li {
@@ -147,7 +147,6 @@
 
 .filter-buttons a {
     text-decoration: none;
-    color: #555;
     transition: .3s ease;
 }
 
@@ -161,10 +160,11 @@
 }
 
 .sort-by {
+    color: grey;
     margin-left: auto;
     width: 180px;
     height: 44px;
-    border-radius: 12px;
+    border-radius: 8px;
     border: 1px solid #ccc;
     font-size: 1rem;
     padding: 0 12px;
@@ -187,7 +187,7 @@
 
 .product-grid {
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 40px;
 }
 
@@ -336,12 +336,12 @@
 
 .page-numbers {
     display: flex;
-    gap: 8px;
+    gap: 12px;
     margin: 0 auto;
 }
 
 .page-numbers button {
-    padding: 8px 15px;
+    height: 40px; width: 40px;
 }
 
 .page-numbers span {
@@ -382,6 +382,6 @@
 }
 
 .active-category {
-    color: #e09a03;
+    color: #d47b33;
     font-weight: bold;
 }

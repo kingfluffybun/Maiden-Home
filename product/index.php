@@ -95,6 +95,21 @@ $result = mysqli_query($conn, $sql);
             <form class="search-products">
                 <input type="search" placeholder="Search">
             </form>
+            <section class="sort-section">
+                <?php
+                    $base_url = "?";
+                    if (isset($_GET['category_id'])) $base_url .= "category_id=" . (int)$_GET['category_id'] . "&";
+                    if (isset($_GET['sub_id'])) $base_url .= "sub_id=" . (int)$_GET['sub_id'] . "&";
+                ?>
+                <select class="sort-by" onchange="location = this.value;">
+                    <option value="">Sort By</option>
+                    <option value="<?= $base_url ?>sort=featured">Featured</option>
+                    <option value="<?= $base_url ?>sort=latest">Latest</option>
+                    <option value="<?= $base_url ?>sort=popular">Most Popular</option>
+                    <option value="<?= $base_url ?>sort=price_desc">Price, High to Low</option>
+                    <option value="<?= $base_url ?>sort=price_asc">Price, Low to High</option>
+                </select>
+            </section>
         </div>
     </section>
     <section class='grid'>
@@ -145,21 +160,6 @@ $result = mysqli_query($conn, $sql);
             </div>
         </section>
         <section class="product-grid">
-            <section class="sort-section">
-                <?php
-                    $base_url = "?";
-                    if (isset($_GET['category_id'])) $base_url .= "category_id=" . (int)$_GET['category_id'] . "&";
-                    if (isset($_GET['sub_id'])) $base_url .= "sub_id=" . (int)$_GET['sub_id'] . "&";
-                ?>
-                <select class="sort-by" onchange="location = this.value;">
-                    <option value="">Sort By</option>
-                    <option value="<?= $base_url ?>sort=featured">Featured</option>
-                    <option value="<?= $base_url ?>sort=latest">Latest</option>
-                    <option value="<?= $base_url ?>sort=popular">Most Popular</option>
-                    <option value="<?= $base_url ?>sort=price_desc">Price, High to Low</option>
-                    <option value="<?= $base_url ?>sort=price_asc">Price, Low to High</option>
-                </select>
-            </section>
             <?php if (mysqli_num_rows($result) > 0): ?>
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
                     <div class="product-card">
@@ -191,9 +191,9 @@ $result = mysqli_query($conn, $sql);
     </section>
     <section class="pagination">
         <?php if($page > 1): ?>
-            <a href="?page=<?= $page - 1 ?>&<?= http_build_query($_GET) ?>"><button class="prev">Prev</button></a>
+            <a href="?page=<?= $page - 1 ?>&<?= http_build_query($_GET) ?>"><button class="prev"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-left-icon lucide-move-left"><path d="M6 8L2 12L6 16"/><path d="M2 12H22"/></svg></button></a>
         <?php else: ?>
-            <button class="prev" disabled>Prev</button>
+            <button class="prev" disabled><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-left-icon lucide-move-left"><path d="M6 8L2 12L6 16"/><path d="M2 12H22"/></svg></button>
         <?php endif; ?>
         <div class="page-numbers">
             <?php for($i = 1; $i <= $total_page; $i++): ?>
@@ -203,9 +203,9 @@ $result = mysqli_query($conn, $sql);
             <?php endfor; ?>
         </div>
         <?php if($page < $total_page): ?>
-            <a href="?page=<?= $page + 1 ?>&<?= http_build_query($_GET) ?>"><button class="next">Next</button></a>
+            <a href="?page=<?= $page + 1 ?>&<?= http_build_query($_GET) ?>"><button class="next"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></button></a>
         <?php else: ?>
-            <button class="next" disabled>Next</button>
+            <button class="next" disabled><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></button>
         <?php endif; ?>
     </section>
     <?php include "../includes/footer.php" ?>
