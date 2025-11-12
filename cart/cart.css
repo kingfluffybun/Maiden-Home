@@ -20,6 +20,7 @@ body {
     grid-template-columns: 1.5fr 1fr;
     gap: 50px;
     padding: 8vh 16vw;
+    height: 90vh;
 }
 
 .cart-left {

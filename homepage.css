@@ -14,8 +14,11 @@ body {
     display: flex; flex-direction: column;
     justify-content: center;
     padding: 0 8vw;
-    gap: 28px;
 }
+.container section {
+    padding-top: 4vh;
+}
+
 .hero-section {
     position: relative;
     width: 100%;
@@ -43,7 +46,7 @@ body {
 }
 .hero-text p {
     font-size: 1.5rem; 
-    line-height: 2.25;
+    line-height: 2;
 }
 .action {
     display: flex;
@@ -70,6 +73,7 @@ body {
 }
 
 .description {
+    padding-top: 2vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     width: 100%;
@@ -100,15 +104,19 @@ body {
 }
 
 .shop-now-section {
+    padding-top: 4vh;
     display: grid; gap: 24px;
     grid-template-columns: 1fr 1fr;
     grid-auto-rows: 1fr;
-    border-radius: 30px;
 }
 
-.shop-now-section div, .shop-now-section img {
+.shop-now-section div {
     background-color: #F9EFE9;
-    border-radius: 30px;
+    border-radius: 120px 0px 0px 120px;
+}
+
+.shop-now-section img {
+    border-radius: 0px 120px 120px 0px;
 }
 
 .shop-now-section div {
@@ -128,10 +136,6 @@ body {
     background-color: #d47b33;
     display: flex; justify-content: center; align-items: center;
     text-decoration: none;
-}
-
-.shop-by {
-    padding: 12px 0;
 }
 
 .shop-by-header {
