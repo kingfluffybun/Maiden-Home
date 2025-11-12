@@ -39,29 +39,22 @@ include "../includes/db.php";
 
 <body>
     <section class="category-banner">
-        <img src="../assets/PRODUCTS/BANNER.jpg" alt="Banner">
+        <img src="../assets/Banner.png" alt="Banner">
     </section>
     <section class="search-section">
-        <div>
-            <div class="sort-buttons">
-                <?php if (isset($_SESSION['role']) && strtolower($_SESSION['role']) == 'admin'): ?>
-                    <a href="../product-input.php"><button>Add Product</button></a>
-                <?php endif; ?>
-            </div>
+        <div class="search-container">
+            <form class="search-products">
+                <input type="search" type="search" placeholder="Search">
+            </form>
         </div>
     </section>
     <section class='grid'>
-        <section class="sort-bar">
-            <div class="sort-area">
-                <div class="sort-buttons">
-                    <h2>Sort By:</h2>
-                    <select style="margin-left: 16px;">
-                        <option>Featured Products</option>
-                        <option>Latest</option>
-                        <option>Best Selling</option>
-                        <option>Price</option>
-                    </select>
-                    <h2>Categories</h2>
+        <section class="filter">
+            <div class="filter-area">
+                <div class="filter-buttons">
+                    <b>Filters</b>
+                    <hr>
+                    <b>Categories</b>
                     <ul style="padding-left: 16px;">
                         <li><a>Storage & Organization</a></li>
                         <li><a>Beds & Mattresses</a></li>
@@ -72,8 +65,9 @@ include "../includes/db.php";
                         <li><a>Office Decorations</a></li>
                         <li><a>Outdoors Decorations</a></li>
                     </ul>
-                    <h2>Subcategories</h2>
-                    <!--<ul style="padding-left: 16px;">
+                    <hr>
+                    <b>Subcategories</b>
+                    <ul style="padding-left: 16px;">
                         <li><a>Bookcases & Shelving Units</a></li>
                         <li><a>Chests of drawers & drawer units</a></li>
                         <li><a>Cabinets & Cupboards</a></li>
@@ -114,12 +108,22 @@ include "../includes/db.php";
                         <li><a>Umbrellas, Pergolas & Shade</a></li>
                         <li><a>Outdoor Storage</a></li>
                         <li><a>Outdoor Décor & Accents</a></li>
-                    </ul>-->
+                    </ul>
                 </div>
             </div>
         </section>
 
         <section class="product-grid">
+             <section class="sort-section">
+                <select class="sort-by">
+                    <option>Sort By</option>
+                    <option>Featured</option>
+                    <option>Latest</option>
+                    <option>Most Popular</option>
+                    <option>Price, High to Low</option>
+                    <option>Price, Low to High</option>
+                </select>
+             </section>
             <?php while ($row = mysqli_fetch_assoc($result)): ?>
             <div class="product-card">
                 <div class="img-container">
@@ -139,9 +143,9 @@ include "../includes/db.php";
     </section>
     <section class="pagination">
         <?php if($page > 1): ?>
-            <a href="?page=<?= $page - 1 ?>"><button class="prev">&lt;</button></a>
+            <a href="?page=<?= $page - 1 ?>"><button class="prev"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-left-icon lucide-move-left"><path d="M6 8L2 12L6 16"/><path d="M2 12H22"/></svg></button></a>
         <?php else: ?>
-            <button class="prev" disabled>&lt;</button>
+            <button class="prev" disabled><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-left-icon lucide-move-left"><path d="M6 8L2 12L6 16"/><path d="M2 12H22"/></svg></button>
         <?php endif; ?>
         <div class="page-numbers">
             <?php for($i = 1; $i <= $total_page; $i++): ?>
@@ -149,9 +153,9 @@ include "../includes/db.php";
             <?php endfor; ?>
         </div>
         <?php if($page < $total_page): ?>
-            <a href="?page=<?= $page + 1 ?>"><button class="next">&gt;</button></a>
+            <a href="?page=<?= $page + 1 ?>"><button class="next"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></button></a>
         <?php else: ?>
-            <button class="next" disabled>&gt;</button>
+            <button class="next" disabled><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></div></button>
         <?php endif; ?>
     </section>
 </body>
