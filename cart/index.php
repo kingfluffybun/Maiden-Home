@@ -116,26 +116,28 @@ $total = $subtotal;
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
-        <div class="cart-right">
-            <h2 class="cart-header">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-basket-icon lucide-shopping-basket"><path d="m15 11-1 9"/><path d="m19 11-4-7"/><path d="M2 11h20"/><path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4"/><path d="M4.5 15.5h15"/><path d="m5 11 4-7"/><path d="m9 11 1 9"/></svg>
-                Order Summary
-            </h2>
-            <div class="summary-row">
-                <p>Subtotal (<?php echo count($cart_items); ?> items)</p>
-                <b>₱<?php echo number_format($subtotal, 2); ?></b>
+        <?php if(!empty($cart_items)): ?>
+            <div class="cart-right">
+                <h2 class="cart-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-basket-icon lucide-shopping-basket"><path d="m15 11-1 9"/><path d="m19 11-4-7"/><path d="M2 11h20"/><path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4"/><path d="M4.5 15.5h15"/><path d="m5 11 4-7"/><path d="m9 11 1 9"/></svg>
+                    Order Summary
+                </h2>
+                <div class="summary-row">
+                    <p>Subtotal (<?php echo count($cart_items); ?> items)</p>
+                    <b>₱<?php echo number_format($subtotal, 2); ?></b>
+                </div>
+                <div class="summary-row">
+                    <p>Shipping Fee</p>
+                    <b>Free</b>
+                </div>
+                <hr>
+                <div class="summary-row">
+                    <p>Total</p>
+                    <h2>₱<?php echo number_format($total, 2); ?></h2>
+                </div>
+                <button class="checkout-btn">Proceed to Checkout</button>
             </div>
-            <div class="summary-row">
-                <p>Shipping Fee</p>
-                <b>Free</b>
-            </div>
-            <hr>
-            <div class="summary-row">
-                <p>Total</p>
-                <h2>₱<?php echo number_format($total, 2); ?></h2>
-            </div>
-            <button class="checkout-btn">Proceed to Checkout</button>
-        </div>
+        <?php endif ?>
     </div>
     <?php include "../includes/footer.php" ?>
 </body>
