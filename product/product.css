@@ -301,9 +301,8 @@
 }
 
 .pagination button {
-    border: none;
-    background: #d47b33;
-    color: #fff;
+    border: #d47b33 solid 1px;
+    background-color: transparent;
     font-size: 1.2rem;
     border-radius: 50px;
     cursor: pointer;
@@ -325,16 +324,24 @@
 
 .pagination button:hover {
     background: #e58c3a;
+    color: #fff;
 }
 
 .page-numbers {
     display: flex;
-    gap: 12px;
+    gap: 20px;
     margin: 0 auto;
 }
 
 .page-numbers button {
     height: 40px; width: 40px;
+    background-color: transparent;
+    color: #323232;
+}
+
+.page-numbers button:active {
+    background: #d47b33;
+    color: #fff;
 }
 
 .page-numbers span {
