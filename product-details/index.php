@@ -142,6 +142,7 @@ $product = $result->fetch_assoc();
     <link rel="stylesheet" href="../css/nav-bar.css">
     <link rel="stylesheet" href="product-detail.css">
     <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/all.css">
     <script src="../js/script.js"></script>
     <script src="script.js"></script>
 

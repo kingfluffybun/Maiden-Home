@@ -15,6 +15,7 @@ session_start();
         <link rel="stylesheet" href="homepage.css" />
         <link rel="stylesheet" href="css/scroll.css">
         <link rel="stylesheet" href="css/nav-bar.css">
+        <link rel="stylesheet" href="css/all.css">
         <link rel="stylesheet" href="css/footer.css">
         <script src="js/script.js"></script>
     </head>
