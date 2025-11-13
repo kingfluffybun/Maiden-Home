@@ -175,7 +175,7 @@ session_start();
             </div>
             <img src="assets/Rooms/bedroom.png" style="object-fit: cover; width: 100%;" alt="">
         </section>
-        <div class="container">
+        <div class="container" style="margin-bottom: 8vh;">
             <section class="shop-by">
                 <div class="shop-by-header">
                     <h2>Featured Products</h2>
@@ -321,7 +321,6 @@ session_start();
                 </div>
             </section>
         </div>
-        <section class="action"></section>
     </body>
     <?php include "./includes/footer.php" ?>
 </html>

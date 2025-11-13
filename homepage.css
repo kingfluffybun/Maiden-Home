@@ -46,7 +46,7 @@ body {
     width: 100%;
     gap: 18px;
 }
-.action a {
+/*.action a {
     display: flex; justify-content: center; align-items: center;
     text-decoration: none;
     border: none;
@@ -56,7 +56,7 @@ body {
     cursor: pointer;
     font-size: 16px;
     color: #080604;
-}
+}*/
 #shop-now {
     background-color: #d47b33;
 }
@@ -118,7 +118,7 @@ body {
     padding: 80px;
 }
 
-.shop-now-section a , .shop-now-section-reversed a {
+.shop-now-section a , .shop-now-section-reversed a, .action a  {
     border: none;
     padding: 1em 6em;
     border-radius: 30px;
@@ -297,12 +297,4 @@ body {
 
 .room-box:hover .room-img {filter: brightness(50%);}
 .room-box:hover .room-title {opacity: 1;}
-
-@view-transition {
-    navigation: auto;
-}
-
-::view-transition-group(*) {
-    animation-duration: 0.5s;
-}
 
