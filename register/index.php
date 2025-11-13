@@ -70,118 +70,86 @@ function userAndEmailAlert()
 ?>
 
 <html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account</title>
-    <link rel="stylesheet" href="../css/login-signup.css">
-</head>
-
-<body>
-    <section class="login-section">
-        <div class="container">
-            <div class="login-box">
-                <a href="../index.php" style="text-decoration: none;">
-                    <div class="logo">
-                        <img src="../assets/Logo.png" alt="">
-                        <h1>MAIDEN HOME</h1>
-                    </div>
-                </a>
-                <h2>Create Account</h2>
-                <br>
-                <form action="./" method="post">
-                    <div class="input-group <?php if (!empty($alert_html_output['user_error'])) {
-                                                echo ' has-error';
-                                            } ?>">
-                        <input type="text" id="username" name="username" required placeholder=" ">
-                        <label for="username">Username</label>
-                        <?php
-                        if (!empty($alert_html_output['user_error'])) {
-                            echo $alert_html_output['user_error'];
-                        }
-                        ?>
-                    </div>
-                    <div class="input-group <?php if (!empty($alert_html_output['email_error'])) {
-                                                echo ' has-error';
-                                            } ?>">
-                        <input type="email" id="email" name="email" required placeholder=" ">
-                        <label for="email">Email</label>
-                        <?php
-                        if (!empty($alert_html_output['email_error'])) {
-                            echo $alert_html_output['email_error'];
-                        }
-                        ?>
-                    </div>
-                    <div class="password">
-                        <div class="input-group 
-                            <?php if (!empty($alert_html_output['pass_error'])) {
-                                echo ' has-error';
-                            } ?>">
-                            <input
-                                type="password"
-                                id="password"
-                                name="password"
-                                required placeholder=" "
-                                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$"
-                                title="Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.">
-                            <label for="password">Password</label>
-                            <button type="button" class="toggle-password" id="togglePassword">
-                                <img src="../assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="Show Password">
-                            </button>
-
-                            <?php
-                            if (!empty($alert_html_output['pass_error'])) {
-                                echo $alert_html_output['pass_error'];
-                            }
-                            ?>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Create Account</title>
+        <link rel="stylesheet" href="../css/login-signup.css">
+    </head>
+    <body>
+        <section class="login-section">
+            <div class="container">
+                <div class="login-box">
+                    <a href="../index.php" style="text-decoration: none;">
+                        <div class="logo">
+                            <img src="../assets/Logo.png" alt="">
+                            <h1>MAIDEN HOME</h1>
                         </div>
-                        <div class="input-group 
-                            <?php if (!empty($alert_html_output['pass_error'])) {
-                                echo ' has-error';
-                            } ?>">
-                            <input type="password" id="confirm-password" name="confirm-password" required placeholder=" ">
-                            <label for="confirm-password">Confirm Password</label>
-                            <button type="button" class="toggle-password" id="toggleConfirm">
-                                <img src="../assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="Show Password">
-                            </button>
-
+                    </a>
+                    <h2>Create Account</h2>
+                    <br>
+                    <form action="./" method="post">
+                        <div class="input-group <?php if (!empty($alert_html_output['user_error'])) {echo ' has-error';} ?>">
+                            <input type="text" id="username" name="username" required placeholder=" ">
+                            <label for="username">Username</label>
+                            <?phpif (!empty($alert_html_output['user_error'])) {echo $alert_html_output['user_error'];}?>
                         </div>
-                    </div>
-                    <input type="submit" value="Sign Up" name="register" class="login-btn">
-                    <?php
-                    if (!empty($alert_html_output['success'])) {
-                        echo $alert_html_output['success'];
-                    }
-                    ?>
-                </form>
-                <p class="create-account">Already have an account? <a href="../login">Log In</a></p>
+                        <div class="input-group <?php if (!empty($alert_html_output['email_error'])) {echo ' has-error';} ?>">
+                            <input type="email" id="email" name="email" required placeholder=" ">
+                            <label for="email">Email</label>
+                            <?php if (!empty($alert_html_output['email_error'])) {echo $alert_html_output['email_error'];} ?>
+                        </div>
+                        <div class="password">
+                            <div class="input-group <?php if (!empty($alert_html_output['pass_error'])) {echo ' has-error';} ?>">
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    required placeholder=" "
+                                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$"
+                                    title="Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.">
+                                <label for="password">Password</label>
+                                <button type="button" class="toggle-password" id="togglePassword">
+                                    <img src="../assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="Show Password">
+                                </button>
+                                <?php if (!empty($alert_html_output['pass_error'])) {echo $alert_html_output['pass_error'];}?>
+                            </div>
+                            <div class="input-group <?php if (!empty($alert_html_output['pass_error'])) {echo ' has-error';} ?>">
+                                <input type="password" id="confirm-password" name="confirm-password" required placeholder=" ">
+                                <label for="confirm-password">Confirm Password</label>
+                                <button type="button" class="toggle-password" id="toggleConfirm">
+                                    <img src="../assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="Show Password">
+                                </button>
+                            </div>
+                        </div>
+                        <input type="submit" value="Sign Up" name="register" class="login-btn">
+                        <?php if (!empty($alert_html_output['success'])) {echo $alert_html_output['success'];}?>
+                    </form>
+                    <p class="create-account">Already have an account? <a href="../login">Log In</a></p>
+                </div>
             </div>
-        </div>
-        <div class="background">
+            <div class="background">
 
-        </div>
-    </section>
-    <script>
-const togglePassword = document.getElementById('togglePassword');
-const toggleConfirm = document.getElementById('toggleConfirm');
-const password = document.getElementById('password');
-const confirmPassword = document.getElementById('confirm-password');
+            </div>
+        </section>
+        <script>
+            const togglePassword = document.getElementById('togglePassword');
+            const toggleConfirm = document.getElementById('toggleConfirm');
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirm-password');
 
-function toggleVisibility(input, button) {
-    const img = button.querySelector('img');
-    const isHidden = input.type === 'password';
-    input.type = isHidden ? 'text' : 'password';
-    button.classList.toggle('active', isHidden);
-    img.src = isHidden 
-        ? '../assets/Show Password/visibility_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg' 
-        : '../assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg';
-}
+            function toggleVisibility(input, button) {
+                const img = button.querySelector('img');
+                const isHidden = input.type === 'password';
+                input.type = isHidden ? 'text' : 'password';
+                button.classList.toggle('active', isHidden);
+                img.src = isHidden 
+                    ? '../assets/Show Password/visibility_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg' 
+                    : '../assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg';
+            }
 
-togglePassword.addEventListener('click', () => toggleVisibility(password, togglePassword));
-toggleConfirm.addEventListener('click', () => toggleVisibility(confirmPassword, toggleConfirm));
-</script>
-
-</body>
-
+            togglePassword.addEventListener('click', () => toggleVisibility(password, togglePassword));
+            toggleConfirm.addEventListener('click', () => toggleVisibility(confirmPassword, toggleConfirm));
+        </script>
+    </body>
 </html>
