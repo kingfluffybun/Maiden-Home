@@ -184,7 +184,7 @@ $conn->close();
                     <span>Shipping Fee:</span>
                     <span>Free</span>
                 </div>
-                <hr class="before-total">
+                <hr style="margin: 0 20px;">
                 <div class="summary-row total">
                     <span>Total:</span>
                     <span>₱

@@ -29,7 +29,7 @@ body {
 
 .checkout-left h3 {
     font-size: 17px;
-    margin-top: 28px;
+    margin-top: 20px;
     margin-bottom: 14px;
     font-weight: 500;
     color: #333;
@@ -39,6 +39,7 @@ body {
     display: grid;
     grid-template-columns: auto auto auto;
     gap: 12px;
+    margin-bottom: 20px;
 }
 
 .process-step {
@@ -116,7 +117,7 @@ body {
     flex-direction: column;
     gap: 12px;
     border-radius: 14px;
-    padding: 30px;
+    padding: 20px;
     height: fit-content;
 }
 
@@ -131,7 +132,7 @@ body {
 }
 
 .cart-container {
-    padding: 0 12px;
+    padding: 12px;
     height: 40vh;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -259,9 +260,4 @@ hr {
 .payment-option.active {
     border-color: #d47b33;
     background-color: #fff9f3;
-}
-
-hr.before-total {
-    border: none;
-    border-top: 2px solid #000;
 }
