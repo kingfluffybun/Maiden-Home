@@ -190,21 +190,28 @@ $result = mysqli_query($conn, $sql);
             <?php endif; ?>
         </section>
     </section>
+    <?php $query_params = $_GET;
+        unset($query_params['page']);
+        $query_string = http_build_query($query_params);
+    if (!empty($query_string)) {
+        $query_string = '&' . $query_string;
+        }
+    ?>
     <section class="pagination">
         <?php if($page > 1): ?>
-            <a href="?page=<?= $page - 1 ?>&<?= http_build_query($_GET) ?>"><button class="prev"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-left-icon lucide-move-left"><path d="M6 8L2 12L6 16"/><path d="M2 12H22"/></svg></button></a>
+            <a href="?page=<?= $page - 1 ?><?= $query_string ?>"><button class="prev"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-left-icon lucide-move-left"><path d="M6 8L2 12L6 16"/><path d="M2 12H22"/></svg></button></a>
         <?php else: ?>
             <button class="prev" disabled><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-left-icon lucide-move-left"><path d="M6 8L2 12L6 16"/><path d="M2 12H22"/></svg></button>
         <?php endif; ?>
         <div class="page-numbers">
             <?php for($i = 1; $i <= $total_page; $i++): ?>
-                <a href="?page=<?= $i ?>&<?= http_build_query($_GET) ?>">
+                <a href="?page=<?= $i ?><?= $query_string ?>">
                     <button class="page-number <?= $i == $page ? 'active' : '' ?>"><?= $i ?></button>
                 </a>
             <?php endfor; ?>
         </div>
         <?php if($page < $total_page): ?>
-            <a href="?page=<?= $page + 1 ?>&<?= http_build_query($_GET) ?>"><button class="next"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></button></a>
+            <a href="?page=<?= $page + 1 ?><?= $query_string ?>"><button class="next"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></button></a>
         <?php else: ?>
             <button class="next" disabled><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></button>
         <?php endif; ?>

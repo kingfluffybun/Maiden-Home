@@ -15,19 +15,36 @@ if ($product_id <= 0) {
     exit;
 }
 
-if (!isset($_SESSION['counter'])) {
+$current_product_id = $_GET['product_id'] ?? null;
+
+// 2. CHECK IF PRODUCT HAS CHANGED (OR IS NEW)
+// If the counter isn't set, OR the product ID has changed
+if (!isset($_SESSION['counter']) || !isset($_SESSION['product_id']) || $_SESSION['product_id'] != $current_product_id) {
+    
+    // Reset the counter to 1
     $_SESSION['counter'] = 1;
+    
+    // Store this product ID as the "current" one
+    $_SESSION['product_id'] = $current_product_id;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
-    if ($_POST['action'] === 'add') {
-        $_SESSION['counter']++;
-    } elseif ($_POST['action'] === 'subtract') {
-        $_SESSION['counter']--;
-        if ($_SESSION['counter'] < 1) {
-             $_SESSION['counter'] = 1; 
+    
+    // Ensure the post action is for the current product
+    // This prevents mix-ups if a user has multiple tabs open
+    if (isset($_POST['product_id']) && $_POST['product_id'] == $current_product_id) {
+    
+        if ($_POST['action'] === 'add') {
+            $_SESSION['counter']++;
+        } elseif ($_POST['action'] === 'subtract') {
+            $_SESSION['counter']--;
+            if ($_SESSION['counter'] < 1) {
+                $_SESSION['counter'] = 1;
             }
+        }
     }
+    
+    // Redirect to prevent form resubmission
     header("Location: " . $_SERVER['REQUEST_URI']);
     exit;
 }
