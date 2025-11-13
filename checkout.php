@@ -19,22 +19,17 @@ $lname = $_POST['lname'];
 $phone = $_POST['phone'];
 $address = $_POST['add_name'];
 $region = $_POST['region'];
- $province = $_POST['province'];
- $city = $_POST['city'];
+$province = $_POST['province'];
+$city = $_POST['city'];
  
  $sql = "INSERT INTO address (user_id, user_firstname, user_lastname, phone_number, add_name, region, province, city) 
    VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
  
- $stmt = $conn->prepare($sql);
- $stmt->bind_param("isssssss", $user_id, $fname, $lname, $phone, $address, $region, $province, $city);
-    if ($stmt->execute()) {
-        $stmt->close();
-        header("Location: ./checkout.php");
-        exit; 
- } else {
-        echo "Error: " . $stmt->error;
-    }
-    $stmt->close();
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("isssssss", $user_id, $fname, $lname, $phone, $address, $region, $province, $city);
+$stmt->execute();
+    header("Location: " . $_SERVER['REQUEST_URI']);
+    exit;
 }
 
 $sql2 = "SELECT c.cart_id, c.quantity, c.color, c.material, c.sizes, p.product_name, p.price, p.product_img
