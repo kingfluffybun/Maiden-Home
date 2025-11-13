@@ -114,7 +114,7 @@ body {
 .checkout-right {
     display: flex;
     flex-direction: column;
-    gap: 22px;
+    gap: 12px;
     border-radius: 14px;
     padding: 30px;
     height: fit-content;
@@ -128,6 +128,13 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+}
+
+.cart-container {
+    padding: 0 12px;
+    height: 40vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .cart-item {
@@ -160,16 +167,10 @@ body {
     margin-bottom: 5px;
 }
 
-.item-details-header h4 {
-    font-size: 15px;
+.item-details-header h4, .price {
     font-weight: 600;
     color: #000;
-}
-
-.item-details-header .price {
-    font-weight: 600;
-    color: #000;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .item-details p {
@@ -189,6 +190,10 @@ body {
     font-weight: 600;
     font-size: 16px;
     margin-top: 12px;
+}
+
+.summary-row, .summary-row.total {
+    padding: 0 24px;
 }
 
 .checkout-btn {
@@ -259,5 +264,4 @@ hr {
 hr.before-total {
     border: none;
     border-top: 2px solid #000;
-    margin: 12px 0;
 }

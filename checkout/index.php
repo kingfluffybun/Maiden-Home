@@ -146,32 +146,34 @@ $conn->close();
                 <?php if (empty($cart_items)): ?>
                 <p>Your cart is empty.</p>
                 <?php else: ?>
-                <?php foreach ($cart_items as $item): ?>
-                <div class="cart-item">
-                    <div class="item-image"><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($item['product_img']); ?>" alt="<?php echo htmlspecialchars($item['product_name']); ?>" width="100"></div>
-                    <div class="item-details">
-                        <div class="item-details-header">
-                            <h4>
-                                <?php echo $item['quantity']; ?>x
-                                <?php echo htmlspecialchars($item['product_name']); ?>
-                            </h4>
-                            <span class="price">₱
-                                <?php echo number_format($item['price'], 2); ?>
-                            </span>
+                <div class="cart-container">
+                    <?php foreach ($cart_items as $item): ?>
+                    <div class="cart-item">
+                        <div class="item-image"><img src="../assets/PRODUCTS/<?php echo htmlspecialchars($item['product_img']); ?>" alt="<?php echo htmlspecialchars($item['product_name']); ?>" width="100"></div>
+                        <div class="item-details">
+                            <div class="item-details-header">
+                                <h4>
+                                    <?php echo $item['quantity']; ?>x
+                                    <?php echo htmlspecialchars($item['product_name']); ?>
+                                </h4>
+                                <span class="price">₱
+                                    <?php echo number_format($item['price'], 2); ?>
+                                </span>
+                            </div>
+                            <p><span style="font-weight: 500;">Color:</span>
+                                <?php echo htmlspecialchars($item['color']); ?>
+                            </p>
+                            <p><span style="font-weight: 500;">Material:</span>
+                                <?php echo htmlspecialchars($item['material']); ?>
+                            </p>
+                            <p><span style="font-weight: 500;">Size:</span>
+                                <?php echo htmlspecialchars($item['sizes']); ?>
+                            </p>
                         </div>
-                        <p><span style="font-weight: 500;">Color:</span>
-                            <?php echo htmlspecialchars($item['color']); ?>
-                        </p>
-                        <p><span style="font-weight: 500;">Material:</span>
-                            <?php echo htmlspecialchars($item['material']); ?>
-                        </p>
-                        <p><span style="font-weight: 500;">Size:</span>
-                            <?php echo htmlspecialchars($item['sizes']); ?>
-                        </p>
                     </div>
+                    <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
-                <?php endforeach; ?>
-                <?php endif; ?>
                 <div class="summary-row">
                     <span>Subtotal:</span>
                     <span>₱

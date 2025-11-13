@@ -12,9 +12,13 @@ body {
 }
 
 .cart-left {
+    padding: 0 24px;
+    height: 68vh;
     display: flex;
     flex-direction: column;
     gap: 24px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .cart-left hr {
