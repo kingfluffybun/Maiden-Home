@@ -26,14 +26,14 @@
         <div class="shop-by-footer">
             <p class="footer-header">Shop By</p>
             <ul style="list-style-type: none;">
-                <li><a href="./product/?category_id=1">Storage & Organization</a></li>
-                <li><a href="./product/?category_id=2">Beds & Mattresses</a></li>
-                <li><a href="./product/?category_id=3">Table & Chairs</a></li>
-                <li><a href="./product/?category_id=4">Sofas & Armchair</a></li>
-                <li><a href="./product/?category_id=5">Home Decorations</a></li>
-                <li><a href="./product/?category_id=6">Light Fixtures</a></li>
-                <li><a href="./product/?category_id=7">Office Furniture</a></li>
-                <li><a href="./product/?category_id=8">Outdoor Furniture</a></li>
+                <li><a href="../product/?category_id=1">Storage & Organization</a></li>
+                <li><a href="../product/?category_id=2">Beds & Mattresses</a></li>
+                <li><a href="../product/?category_id=3">Table & Chairs</a></li>
+                <li><a href="../product/?category_id=4">Sofas & Armchair</a></li>
+                <li><a href="../product/?category_id=5">Home Decorations</a></li>
+                <li><a href="../product/?category_id=6">Light Fixtures</a></li>
+                <li><a href="../product/?category_id=7">Office Furniture</a></li>
+                <li><a href="../product/?category_id=8">Outdoor Furniture</a></li>
             </ul>
         </div>
         <div style="display: flex; flex-direction: column; gap: 24px;">

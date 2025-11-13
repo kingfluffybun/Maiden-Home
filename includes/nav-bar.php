@@ -2,8 +2,8 @@
 $productPage = '/maiden-home/product/index.php';
 ?>
 <nav>
-    <a href="/Maiden-Home/" style="text-decoration: none;" id="home-link"><div class="logo">
-        <img src="/Maiden-Home/assets/Logo.png" alt="">
+    <a href="../" style="text-decoration: none;" id="home-link"><div class="logo">
+        <img src="../assets/Logo.png" alt="">
         <h1 style="color: #d47b33;">MAIDEN HOME</h1>
     </div></a>
         <form action="<?= $productPage ?>" method="GET" class="search">

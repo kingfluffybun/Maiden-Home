@@ -75,6 +75,7 @@ function userAndEmailAlert()
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Create Account</title>
         <link rel="stylesheet" href="../css/login-signup.css">
+        <link rel="stylesheet" href="../css/all.css">
     </head>
     <body>
         <section class="login-section">
