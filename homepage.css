@@ -95,39 +95,47 @@ body {
     max-width: 12rem;
 }
 
-.shop-now-section {
+.shop-now-section, .shop-now-section-reversed {
     padding-top: 4vh;
     display: grid; gap: 24px;
     grid-template-columns: 1fr 1fr;
     grid-auto-rows: 1fr;
 }
 
-.shop-now-section div {
-    background-color: #F9EFE9;
+.shop-now-section div, .shop-now-section-reversed img {
     border-radius: 120px 0px 0px 120px;
 }
 
-.shop-now-section img {
+.shop-now-section img, .shop-now-section-reversed div {
     border-radius: 0px 120px 120px 0px;
 }
 
-.shop-now-section div {
+.shop-now-section div, .shop-now-section-reversed div {
+    background-color: #F9EFE9;
     display: flex; align-items: flex-start; flex-direction: column;
     gap: 24px;
     font-size: 20px; line-height: 1.75;
-    padding: 80px 60px;
+    padding: 80px;
 }
 
-.shop-now-section a {
+.shop-now-section a , .shop-now-section-reversed a {
     border: none;
-    padding: 0.5em 4em;
+    padding: 1em 6em;
     border-radius: 30px;
     cursor: pointer;
     font-size: 16px;
-    color: #080604;
+    color: white;
     background-color: #d47b33;
     display: flex; justify-content: center; align-items: center;
     text-decoration: none;
+}
+
+.shop-now-section-reversed div {
+    text-align: right;
+}
+
+.shop-now-section-reversed a, .shop-now-section-reversed h2 {
+    margin-left: auto;
 }
 
 .shop-by-header {
@@ -136,7 +144,7 @@ body {
 }
 
 .shop-by-header h2 {
-    padding: 20px;
+    padding-bottom: 20px;
     font-weight: normal;
     font-size: 56px;
 }

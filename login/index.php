@@ -59,92 +59,88 @@ function userAndPassCorrect()
 ?>
 
 <html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="../css/login-signup.css">
-</head>
-
-<body>
-    <section class="login-section">
-        <div class="container">
-            <div class="login-box">
-                <a href="../" style="text-decoration: none;">
-                    <div class="logo">
-                        <img src="../assets/Logo.png" alt="">
-                        <h1>MAIDEN HOME</h1>
-                    </div>
-                </a>
-                <h2>Log In</h2>
-                <?php if (isset($_GET['registered']) && $_GET['registered'] == 1): ?>
-                    <div class="alert-msg success">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M9 12l2 2l4-4"></path>
-                        </svg>
-                        <p>Your account has been created successfully! Please log in.</p>
-                    </div>
-                <?php endif; ?>
-                <br>
-                <form method="POST">
-                    <div class="input-group <?php if (!empty($alert_html_output['user_error'])) {
-                                                echo ' has-error';
-                                            } ?>">
-                        <input type="text" id="username" name="user" required placeholder=" ">
-                        <label for="username">Email / Username</label>
-                        <?php
-                        if (!empty($alert_html_output['user_error'])) {
-                            echo $alert_html_output['user_error'];
-                        }
-                        ?>
-                    </div>
-                    <div class="input-group password-group <?php if (!empty($alert_html_output['pass_error'])) {
-                        echo ' has-error';
-                    } ?>">
-                        <input type="password" id="password" name="pass" required placeholder=" ">
-                            <label for="password">Password</label>
-                                <button type="button" class="toggle-password" id="togglePassword">
-                                    <img src="../assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="show/hide">
-                                </button>
-                                <?php
-                            if (!empty($alert_html_output['pass_error'])) {
-                            echo $alert_html_output['pass_error'];
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <link rel="stylesheet" href="../css/login-signup.css">
+        <link rel="stylesheet" href="../css/all.css">
+    </head>
+    <body>
+        <section class="login-section">
+            <div class="container">
+                <div class="login-box">
+                    <a href="../" style="text-decoration: none;">
+                        <div class="logo">
+                            <img src="../assets/Logo.png" alt="">
+                            <h1>MAIDEN HOME</h1>
+                        </div>
+                    </a>
+                    <h2>Log In</h2>
+                    <?php if (isset($_GET['registered']) && $_GET['registered'] == 1): ?>
+                        <div class="alert-msg success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9 12l2 2l4-4"></path>
+                            </svg>
+                            <p>Your account has been created successfully! Please log in.</p>
+                        </div>
+                    <?php endif; ?>
+                    <br>
+                    <form method="POST">
+                        <div class="input-group <?php if (!empty($alert_html_output['user_error'])) {
+                                                    echo ' has-error';
+                                                } ?>">
+                            <input type="text" id="username" name="user" required placeholder=" ">
+                            <label for="username">Email / Username</label>
+                            <?php
+                            if (!empty($alert_html_output['user_error'])) {
+                                echo $alert_html_output['user_error'];
                             }
                             ?>
-                    </div>
-                    <div class="remember-forgot">
-                        <div class="remember-me">
-                            <input type="checkbox" id="remember" name="remember">
-                            <label for="remember">Remember Me</label>
                         </div>
-                        <div class="forgot-password">
-                            <a href="forgotPassword.html">Forgot Password?</a>
+                        <div class="input-group password-group <?php if (!empty($alert_html_output['pass_error'])) {
+                            echo ' has-error';
+                        } ?>">
+                            <input type="password" id="password" name="pass" required placeholder=" ">
+                                <label for="password">Password</label>
+                                    <button type="button" class="toggle-password" id="togglePassword">
+                                        <img src="../assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="show/hide">
+                                    </button>
+                                    <?php
+                                if (!empty($alert_html_output['pass_error'])) {
+                                echo $alert_html_output['pass_error'];
+                                }
+                                ?>
                         </div>
-                    </div>
-                    <input type="submit" class="login-btn" value="Log In" name="login">
-                </form>
-                <p class="create-account">New user? <a href="../register">Create New Account</a></p>
+                        <div class="remember-forgot">
+                            <div class="remember-me">
+                                <input type="checkbox" id="remember" name="remember">
+                                <label for="remember">Remember Me</label>
+                            </div>
+                            <div class="forgot-password">
+                                <a href="forgotPassword.html">Forgot Password?</a>
+                            </div>
+                        </div>
+                        <input type="submit" class="login-btn" value="Log In" name="login">
+                    </form>
+                    <p class="create-account">New user? <a href="../register">Create New Account</a></p>
+                </div>
             </div>
-        </div>
-        <div class="background">
+            <div class="background"></div>
+        </section>
+        <script>
+            const passwordInput = document.getElementById('password');
+            const togglePassword = document.getElementById('togglePassword');
+            const toggleIcon = togglePassword.querySelector('img');
 
-        </div>
-    </section>
-    <script>
-        const passwordInput = document.getElementById('password');
-        const togglePassword = document.getElementById('togglePassword');
-        const toggleIcon = togglePassword.querySelector('img');
-
-        togglePassword.addEventListener('click', () => {
-            const isHidden = passwordInput.getAttribute('type') === 'password';
-                passwordInput.setAttribute('type', isHidden ? 'text' : 'password');
-                toggleIcon.src = isHidden
-                    ? '../assets/Show Password/visibility_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg'
-                    : '../assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg';
-        });
-    </script>
-</body>
-
+            togglePassword.addEventListener('click', () => {
+                const isHidden = passwordInput.getAttribute('type') === 'password';
+                    passwordInput.setAttribute('type', isHidden ? 'text' : 'password');
+                    toggleIcon.src = isHidden
+                        ? '../assets/Show Password/visibility_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg'
+                        : '../assets/Show Password/visibility_off_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg';
+            });
+        </script>
+    </body>
 </html>

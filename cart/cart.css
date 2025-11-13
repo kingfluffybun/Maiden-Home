@@ -17,7 +17,9 @@ body {
     gap: 24px;
 }
 
-.cart-left hr {margin: -12px;}
+.cart-left hr {
+    margin: -12px;
+}
 
 .cart-header {
     display: flex;
@@ -38,7 +40,7 @@ body {
 
 .cart-item:hover {
     background-color: #fafafa;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.2), 0 15px 40 rgba(0,0,0,0.5);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2), 0 15px 40 rgba(0, 0, 0, 0.5);
 }
 
 .product-box {
@@ -48,7 +50,8 @@ body {
 }
 
 .product-box img {
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     border: #ececec solid 1px;
 }
@@ -60,11 +63,17 @@ body {
 }
 
 .name-price {
-    display: flex; justify-content: space-between; font-weight: 600; font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 16px;
 }
 
 .product-detail {
-    display: flex; justify-content: center; flex-direction: column; gap: 8px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
     font-weight: 300;
     font-size: 12px;
 }
@@ -75,7 +84,8 @@ body {
 }
 
 .options {
-    display: flex; justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
 .quantity {
@@ -109,7 +119,7 @@ body {
 }
 
 .quantity button:hover {
-    background-color: rgba(212,123,51,0.1);
+    background-color: rgba(212, 123, 51, 0.1);
 }
 
 .quantity button:hover svg {
@@ -153,7 +163,7 @@ body {
 }
 
 .item-actions button:hover {
-    background-color: rgba(212,123,51,0.1);
+    background-color: rgba(212, 123, 51, 0.1);
 }
 
 .item-actions button svg {
@@ -195,11 +205,14 @@ body {
 }
 
 .cart-right {
-    display: flex; flex-direction: column; gap: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
     border-radius: 12px;
     padding: 24px;
     height: fit-content;
-    background-color: #F9EFE9;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    margin-bottom: 24px;
 }
 
 .summary-row {
@@ -208,7 +221,9 @@ body {
     font-size: 16px;
 }
 
-.cart-right hr {margin: 0;}
+.cart-right hr {
+    margin: 0;
+}
 
 .checkout-btn {
     width: 100%;
@@ -225,4 +240,27 @@ body {
 .checkout-btn:hover {
     background-color: #c06d2e;
     transform: scale(1.02);
+}
+
+.shop-guarantee-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 8px;
+    gap: 24px;
+}
+
+.shop-guarantee-container p {
+    padding: 0 8px;
+    font-size: 12px;
+}
+
+.shop-guarantee-container div {
+    display: flex;
+    align-items: center;
+}
+
+.shop-guarantee div {
+    background-color: #d47b33;
+    border-radius: 50px;
+    padding: 4px;
 }

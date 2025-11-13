@@ -87,7 +87,7 @@ session_start();
             </section>
         </div>
         <section class="shop-now-section">
-            <img src="./assets/Rooms/living room.png" style="object-fit: cover; width: 100%;" alt="">
+            <img src="assets/Rooms/living room.png" style="object-fit: cover; width: 100%;" alt="">
             <div>
                 <h2>Furniture That Feels Like Home</h2>
                 <p>Find the pieces that truly feel like home, designed to be the foundation for every moment. Explore our collection of handcrafted bed frames, iconic deep-seated sofas, and tailored accent chairs. It's the perfect blend of lasting aesthetic and deep comfort—timeless, personal, and made just for you.</p>
@@ -167,13 +167,13 @@ session_start();
                 </div>
             </section>
         </div>
-        <section class="shop-now-section">
+        <section class="shop-now-section-reversed">
             <div>
-                <h2>Furniture That Feels Like Home</h2>
-                <p>Find the pieces that truly feel like home, designed to be the foundation for every moment. Explore our collection of handcrafted bed frames, iconic deep-seated sofas, and tailored accent chairs. It's the perfect blend of lasting aesthetic and deep comfort—timeless, personal, and made just for you.</p>
+                <h2>Your Personal Sanctuary</h2>
+                <p>Create a space that is uniquely yours, a personal retreat designed for quiet reflection and true relaxation. Discover our plush modular sectionals, solid wood media consoles, and serene, upholstered headboards. This is where refined design meets everyday livability—calm, curated, and built to inspire comfort.</p>
                 <a href="./product/"><p>Shop Now</p></a>
             </div>
-            <img src="./assets/Rooms/bedroom.png" style="object-fit: cover; width: 100%;" alt="">
+            <img src="assets/Rooms/bedroom.png" style="object-fit: cover; width: 100%;" alt="">
         </section>
         <div class="container">
             <section class="shop-by">
@@ -321,6 +321,7 @@ session_start();
                 </div>
             </section>
         </div>
+        <section class="action"></section>
     </body>
     <?php include "./includes/footer.php" ?>
 </html>
