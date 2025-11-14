@@ -71,7 +71,7 @@ $conn->close();
             <div class="checkout-left">
                 <h1>Checkout</h1>
                 <div class="process-step-container">
-                    <div class="process-step" active>Information</div>
+                    <div class="process-step-active">Information</div>
                     <div class="process-step">Payment Method</div>
                     <div class="process-step">Confirmation</div>
                 </div>

@@ -93,7 +93,7 @@ function userAndEmailAlert()
                         <div class="input-group <?php if (!empty($alert_html_output['user_error'])) {echo ' has-error';} ?>">
                             <input type="text" id="username" name="username" required placeholder=" ">
                             <label for="username">Username</label>
-                            <?phpif (!empty($alert_html_output['user_error'])) {echo $alert_html_output['user_error'];}?>
+                            <?php if (!empty($alert_html_output['user_error'])) {echo $alert_html_output['user_error'];}?>
                         </div>
                         <div class="input-group <?php if (!empty($alert_html_output['email_error'])) {echo ' has-error';} ?>">
                             <input type="email" id="email" name="email" required placeholder=" ">

@@ -43,8 +43,15 @@ body {
 }
 
 .process-step {
-    padding: 4px 12px;
+    padding: 4px 8px;
+    border-bottom: #c8c8c8 2px solid;
+    color: #d9d9d9;
+}
+
+.process-step-active {
+    padding: 4px 8px;
     border-bottom: #d47b33 2px solid;
+    color: #d47b33;
 }
 
 .process-number {
