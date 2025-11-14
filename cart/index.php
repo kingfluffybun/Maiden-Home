@@ -57,6 +57,7 @@ $total = $subtotal;
         <link rel="stylesheet" href="cart.css">
         <link rel="stylesheet" href="../css/nav-bar.css">
         <link rel="stylesheet" href="../css/footer.css">
+        <link rel="stylesheet" href="../css/scroll.css">
         <link rel="stylesheet" href="../css/all.css">
         <script src="../js/script.js"></script>
     </head>
