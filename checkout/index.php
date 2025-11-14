@@ -90,7 +90,7 @@ $conn->close();
                     </div>
                     <div class="form-row">
                         <div class="input-container">
-                            <input type="text" id="phone" name="phone" placeholder=" " required>
+                            <input type="number" id="phone" name="phone" placeholder=" " required>
                             <label for="phone">Phone Number</label>
                         </div>
                         <div class="input-container">
