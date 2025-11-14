@@ -56,7 +56,7 @@ function userAndEmailAlert()
                 $sql = "INSERT INTO user (username, user_pass, user_email)
                     VALUES ('$user', '$hashed_pass', '$email')";
                 if ($conn->query($sql)) {
-                    header("location: ../login?registered=1");
+                    header("location: /Maiden-Home/");
                     exit;
                 } else {
                     die("Error inserting record: " . $conn->error);
