@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "../includes/db.php";
 
 $alert_html_output = userAndEmailAlert();
@@ -56,6 +57,11 @@ function userAndEmailAlert()
                 $sql = "INSERT INTO user (username, user_pass, user_email)
                     VALUES ('$user', '$hashed_pass', '$email')";
                 if ($conn->query($sql)) {
+                    $user_id = $conn->insert_id;
+                    $_SESSION['user_id'] = $user_id;
+                    $_SESSION['username'] = $user;
+                    $_SESSION['user_email'] = $email;
+                    $_SESSION['role'] = "user";
                     header("location: /Maiden-Home/");
                     exit;
                 } else {
