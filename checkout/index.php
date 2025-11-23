@@ -2,46 +2,92 @@
 session_start();
 include "../includes/db.php";
 
-// Check for login
 if (!isset($_SESSION['user_id'])) {
-    // Assuming login.php is in the same main folder (Maiden-Home)
-header("Location: /login.php"); 
-exit;
+    header("Location: /login.php"); 
+    exit;
 }
 
 $user_id = $_SESSION['user_id'];
+$conn_status = $conn;
 
-// --- PROCESS THE FORM SUBMISSION ---
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
-
-$fname = $_POST['fname'];
-$lname = $_POST['lname'];
-$phone = $_POST['phone'];
-$address = $_POST['add_name'];
-$region = $_POST['region'];
- $province = $_POST['province'];
- $city = $_POST['city'];
- 
- $sql = "INSERT INTO address (user_id, user_firstname, user_lastname, phone_number, add_name, region, province, city) 
-   VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
- 
- $stmt = $conn->prepare($sql);
- $stmt->bind_param("isssssss", $user_id, $fname, $lname, $phone, $address, $region, $province, $city);
-    if ($stmt->execute()) {
-        $stmt->close();
-        header("Location: ./checkout.php");
-        exit; 
- } else {
-        echo "Error: " . $stmt->error;
+    $fname = $_POST['fname'];
+    $lname = $_POST['lname'];
+    $phone = $_POST['phone'];
+    $address = $_POST['add_name'];
+    $region = $_POST['region'];
+    $province = $_POST['province'];
+    $city = $_POST['city'];
+    $barangay = $_POST['barangay'];
+    if ($conn_status->connect_error) {
+        die("Connection failed: " . $conn_status->connect_error);
     }
-    $stmt->close();
+    try {
+        $sql_address = "INSERT INTO address (user_id, user_firstname, user_lastname, phone_number, add_name, region, province, city, barangay) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt_address = $conn_status->prepare($sql_address);
+        $stmt_address->bind_param("issssssss", $user_id, $fname, $lname, $phone, $address, $region, $province, $city, $barangay);
+        
+        if (!$stmt_address->execute()) {
+            throw new Exception("Address Insertion Error: " . $stmt_address->error);
+        }
+        $address_id = $conn_status->insert_id;
+        $stmt_address->close();
+
+        $sql_cart_items = "SELECT c.product_id, c.quantity, p.price
+                           FROM addtocart c
+                           JOIN products p ON c.product_id = p.product_id
+                           WHERE c.user_id = ?";
+        $stmt_cart = $conn_status->prepare($sql_cart_items);
+        $stmt_cart->bind_param("i", $user_id);
+        $stmt_cart->execute();
+        $cart_result = $stmt_cart->get_result();
+        $cart_items_for_order = [];
+        while ($row = $cart_result->fetch_assoc()) {
+            $cart_items_for_order[] = $row;
+        }
+        $stmt_cart->close();
+
+        if (empty($cart_items_for_order)) {
+            throw new Exception("Your cart is empty. Cannot place an order.");
+        }
+
+        $sql_order = "INSERT INTO `order` (user_id, product_id, address_id, total_order, payment, payment_status, order_status) 
+                      VALUES (?, ?, ?, ?, 'cod', 'pending', 'order placed')"; 
+        $stmt_order = $conn_status->prepare($sql_order);
+        foreach ($cart_items_for_order as $item) {
+            $product_id = $item['product_id'];
+            $quantity = $item['quantity'];
+            $price = $item['price'];
+            $item_total = $price * $quantity;
+            $stmt_order->bind_param("iiii", $user_id, $product_id, $address_id, $item_total);
+            if (!$stmt_order->execute()) {
+                throw new Exception("Order Item Insertion Error: " . $stmt_order->error);
+            }
+        }
+        $stmt_order->close(); 
+
+        $sql_clear_cart = "DELETE FROM addtocart WHERE user_id = ?";
+        $stmt_clear_cart = $conn_status->prepare($sql_clear_cart);
+        $stmt_clear_cart->bind_param("i", $user_id);
+        
+        if (!$stmt_clear_cart->execute()) {
+            throw new Exception("Cart Clearing Error: " . $stmt_clear_cart->error);
+        }
+        $stmt_clear_cart->close();
+        header("Location: ../cart");
+        exit;
+
+    } catch (Exception $e) {
+        echo "Error placing order: " . $e->getMessage();
+    }
 }
 
-$sql2 = "SELECT c.cart_id, c.quantity, c.color, c.material, c.sizes, p.product_name, p.price, p.product_img
-  FROM addtocart c
-  JOIN products p ON c.product_id = p.product_id
-  WHERE c.user_id = ?";
-$stmt = $conn->prepare($sql2);
+$sql2 = "SELECT c.cart_id, c.quantity, c.color, c.material, c.sizes, p.product_name, p.price, p.product_img, p.product_id
+         FROM addtocart c
+         JOIN products p ON c.product_id = p.product_id
+         WHERE c.user_id = ?";
+$stmt = $conn_status->prepare($sql2);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -50,12 +96,12 @@ $cart_items = [];
 $subtotal = 0;
 
 while ($row = $result->fetch_assoc()) {
- $cart_items[] = $row;
- $subtotal += $row['price'] * $row['quantity'];
+    $cart_items[] = $row;
+    $subtotal += $row['price'] * $row['quantity'];
 }
 $total = $subtotal;
 $stmt->close();
-$conn->close();
+$conn_status->close();
 ?>
 <html>
     <head>
@@ -67,6 +113,16 @@ $conn->close();
         <link rel="stylesheet" href="checkout.css" />
     </head>
     <body>
+        <style>
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+        input[type=number] {
+        -moz-appearance: textfield;
+        }
+</style>
         <?php include("../includes/nav-bar.php"); ?>
         <div class="checkout-wrapper">
             <div class="checkout-left">
@@ -77,7 +133,7 @@ $conn->close();
                     <div class="process-step">Confirmation</div>
                 </div>
                 <h3>Contact Information</h3>
-                <form class="checkout-form" method="POST" action="checkout.php">
+                <form class="checkout-form" method="POST">
                     <div class="form-row">
                         <div class="input-container">
                             <input type="text" id="fname" name="fname" placeholder=" " required>
@@ -90,7 +146,7 @@ $conn->close();
                     </div>
                     <div class="form-row">
                         <div class="input-container">
-                            <input type="number" id="phone" name="phone" placeholder=" " required>
+                            <input type="number" id="phone" name="phone" placeholder=" " required maxlength="11">
                             <label for="phone">Phone Number</label>
                         </div>
                         <div class="input-container">
@@ -123,22 +179,10 @@ $conn->close();
                             <label for="barangay">Barangay</label>
                         </div>
                     </div>
-                    <button type="submit" name="place_order" class="checkout-btn">Proceed</button>
+                    <button type="submit" name="place_order" class="checkout-btn">Proceed to Payment Method</button>
                 </form>
-                <form method="POST">
-                    <!--<h3>Payment Method</h3>
-            <div class="payment-methods">
-                <div class="payment-option selected" id="card">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg><span>Card</span>
                 </div>
-                <div class="payment-option" id="ewallet">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg><span>E-Wallet</span>
-                </div>
-                <div class="payment-option" id="cod">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17"/><path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/><path d="m2 16 6 6"/><circle cx="16" cy="9" r="2.9"/><circle cx="6" cy="5" r="3"/></svg><span>Cash on Delivery</span>
-                </div>
-            </div>-->
-            </div>
+            
             <div class="checkout-right">
                 <h2>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m15 11-1 9" /> <path d="m19 11-4-7" /> <path d="M2 11h20" /> <path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4" /> <path d="M4.5 15.5h15" /> <path d="m5 11 4-7" /> <path d="m9 11 1 9" /> </svg>
@@ -192,9 +236,16 @@ $conn->close();
                         <?php echo number_format($total, 2); ?>
                     </span>
                 </div>
-                <button class="checkout-btn">Place Order</button>
-            </div>
+                </div>
         </div>
         <?php include "../includes/footer.php" ?>
+        <script>
+        document.getElementById('phone').addEventListener('input', function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+            if (this.value.length > 11) {
+                this.value = this.value.slice(0, 11);
+            }
+        });
+        </script>
     </body>
 </html>
