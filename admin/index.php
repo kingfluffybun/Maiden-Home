@@ -82,22 +82,40 @@ if (isset($_POST['finish'])) {
 <head>
     <title>Admin</title>
     <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="../css/all.css">
+    <link rel="stylesheet" href="/css/scroll.css">  
 </head>
 <body>
 
 <div class="admin-wrapper">
-
     <div class="sidebar">
-        <div class="side-btn">Users</div>
-        <div class="side-btn">Orders</div>
-        <div class="side-btn"><a href="./product-list/">Product List</a></div>
-        <div class="side-btn active">Add Products</div>
+        <a href="/Maiden-Home/" style="text-decoration: none;" id="home-link">
+            <div class="logo">
+                <img src="\Maiden-Home\assets\Logo.png">
+                <h1 style="color: #d47b33; font-size: 24;">MAIDEN HOME</h1>
+            </div>
+        </a>
+        <br>
+        <div class="side-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-icon lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg>
+            Customers
+        </div>
+        <div class="side-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag-icon lucide-shopping-bag"><path d="M16 10a4 4 0 0 1-8 0"/><path d="M3.103 6.034h17.794"/><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/></svg>
+            Orders
+        </div>
+        <a href="product-list/"><div class="side-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package2-icon lucide-package-2"><path d="M12 3v6"/><path d="M16.76 3a2 2 0 0 1 1.8 1.1l2.23 4.479a2 2 0 0 1 .21.891V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.472a2 2 0 0 1 .211-.894L5.45 4.1A2 2 0 0 1 7.24 3z"/><path d="M3.054 9.013h17.893"/></svg>
+            Product List
+        </div></a>
+        <div class="side-btn active">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package-plus-icon lucide-package-plus"><path d="M16 16h6"/><path d="M19 13v6"/><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14"/><path d="m7.5 4.27 9 5.15"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" x2="12" y1="22" y2="12"/></svg>
+            Add Product
+        </div>
     </div>
-
+    <div class="top-header"></div>
     <div class="content">
-
-        <div class="top-header"></div>
-
+        <h1 style="margin-bottom: 16px;">Add Product</h1>
         <div class="steps">
             <div class="step active">Product Information</div>
             <div class="step">Product Images</div>
@@ -238,37 +256,40 @@ if (isset($_POST['finish'])) {
             <div class="page" id="page3">
                 <div class="form-area">
 
-                    <h3>Sizes</h3>
+                    <h3 style="margin-bottom: 8px;">Sizes</h3>
                     <div class="input-row">
                         <input type="text" class="half" name="size1" placeholder="Size 1">
                         <input type="text" class="half" name="size2" placeholder="Size 2">
                         <input type="text" class="half" name="size3" placeholder="Size 3">
                     </div>
-
-                    <h3>Materials</h3>
+                    <br>
+                    <h3 style="margin-bottom: 8px;">Materials</h3>
                     <div class="input-row">
                         <input type="text" class="half" name="mat1" placeholder="Material 1">
                         <input type="text" class="half" name="mat2" placeholder="Material 2">
                         <input type="text" class="half" name="mat3" placeholder="Material 3">
                     </div>
-
-                    <h3>Colors</h3>
+                    <br>
+                    <h3 style="margin-bottom: 8px;">Colors</h3>
                     <div class="input-row">
                         <div class="input-group half">
                             <label>Color Name 1</label>
                             <input type="text" name="color1" placeholder="Color name">
+                            <br>
                             <label>Color Image 1</label>
                             <input type="file" name="color1_img">
                         </div>
                         <div class="input-group half">
                             <label>Color Name 2</label>
                             <input type="text" name="color2" placeholder="Color name">
+                            <br>
                             <label>Color Image 2</label>
                             <input type="file" name="color2_img">
                         </div>
                         <div class="input-group half">
                             <label>Color Name 3</label>
                             <input type="text" name="color3" placeholder="Color name">
+                            <br>
                             <label>Color Image 3</label>
                             <input type="file" name="color3_img">
                         </div>
@@ -279,30 +300,33 @@ if (isset($_POST['finish'])) {
 
             <div class="page" id="page4">
                 <h2>Review Before Confirm</h2>
-                <div class="review-card">
-                    <h3>Basic Information</h3>
-                    <p><strong>Name:</strong> <span id="review_name"></span></p>
-                    <p><strong>Price:</strong> ₱<span id="review_price"></span></p>
-                    <p><strong>Stocks:</strong> <span id="review_stocks"></span></p>
-                    <p><strong>Category:</strong> <span id="review_category"></span></p>
-                    <p><strong>Sub-Category:</strong> <span id="review_sub"></span></p>
-                    <p><strong>Description:</strong> <span id="review_desc"></span></p>
-                </div>
+                <br>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px;">
+                    <div class="review-card">
+                        <h3>Basic Information</h3>
+                        <p><strong>Name:</strong> <span id="review_name"></span></p>
+                        <p><strong>Price:</strong> ₱<span id="review_price"></span></p>
+                        <p><strong>Stocks:</strong> <span id="review_stocks"></span></p>
+                        <p><strong>Category:</strong> <span id="review_category"></span></p>
+                        <p><strong>Sub-Category:</strong> <span id="review_sub"></span></p>
+                        <p><strong>Description:</strong> <span id="review_desc"></span></p>
+                    </div>
 
-                <div class="review-card">
-                    <h3>Sizes</h3>
-                    <ul>
-                        <li id="review_size1"></li>
-                        <li id="review_size2"></li>
-                        <li id="review_size3"></li>
-                    </ul>
+                    <div class="review-card">
+                        <h3>Sizes</h3>
+                        <ul>
+                            <li id="review_size1"></li>
+                            <li id="review_size2"></li>
+                            <li id="review_size3"></li>
+                        </ul>
 
-                    <h3>Materials</h3>
-                    <ul>
-                        <li id="review_mat1"></li>
-                        <li id="review_mat2"></li>
-                        <li id="review_mat3"></li>
-                    </ul>
+                        <h3>Materials</h3>
+                        <ul>
+                            <li id="review_mat1"></li>
+                            <li id="review_mat2"></li>
+                            <li id="review_mat3"></li>
+                        </ul>
+                    </div>
                 </div>
                 
                 <div class="review-card">
@@ -353,14 +377,12 @@ if (isset($_POST['finish'])) {
                     </div>
                 </div>
             </div>
-
-            <div class="nav-buttons">
-                <button type="button" class="back-btn" id="backBtn">Back</button>
-                <button type="button" class="next-btn" id="nextBtn">Next</button>
-                <button type="submit" name="finish" class="next-btn" id="subBtn">Confirm & Add Product</button>
-            </div>
         </form>
-
+        <div class="nav-buttons">
+            <button type="button" class="back-btn" id="backBtn">Back</button>
+            <button type="button" class="next-btn" id="nextBtn">Next</button>
+            <button type="submit" name="finish" class="next-btn" id="subBtn">Confirm & Add Product</button>
+        </div>
     </div>
 </div>
 

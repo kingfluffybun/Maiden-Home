@@ -30,14 +30,15 @@ function showPage(i){
     }
 }
 
-steps.forEach((step, index) => {
+// d dapat 'to napipindot -clarence
+/*steps.forEach((step, index) => {
     step.addEventListener("click", () => {
         current = index;
         showPage(current);
         updateReview();
     });
 });
-
+*/
 
 document.getElementById("nextBtn").onclick = function(){
     if(current < pages.length-1){ current++; showPage(current); 
