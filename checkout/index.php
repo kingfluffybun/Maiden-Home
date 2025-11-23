@@ -111,18 +111,19 @@ $stmt->close();
         <link rel="stylesheet" href="../css/footer.css">
         <link rel="stylesheet" href="../css/scroll.css">
         <link rel="stylesheet" href="checkout.css" />
+        <style>
+            input[type=number]::-webkit-inner-spin-button,
+            input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+            }
+            input[type=number] {
+            -moz-appearance: textfield;
+            }
+        </style>
     </head>
     <body>
-        <style>
-        input[type=number]::-webkit-inner-spin-button,
-        input[type=number]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-        }
-        input[type=number] {
-        -moz-appearance: textfield;
-        }
-</style>
+        
         <?php include("../includes/nav-bar.php"); ?>
         <div class="checkout-wrapper">
             <div class="checkout-left">
