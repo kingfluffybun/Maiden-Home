@@ -19,6 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
     $province = $_POST['province'];
     $city = $_POST['city'];
     $barangay = $_POST['barangay'];
+    $payment_method = 'cod'; 
+
     if ($conn_status->connect_error) {
         die("Connection failed: " . $conn_status->connect_error);
     }
@@ -34,10 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
         $address_id = $conn_status->insert_id;
         $stmt_address->close();
 
-        $sql_cart_items = "SELECT c.product_id, c.quantity, p.price
-                           FROM addtocart c
-                           JOIN products p ON c.product_id = p.product_id
-                           WHERE c.user_id = ?";
+        $sql_cart_items = "SELECT c.product_id, c.quantity, p.price, c.color, c.material, c.sizes
+                            FROM addtocart c
+                            JOIN products p ON c.product_id = p.product_id
+                            WHERE c.user_id = ?";
         $stmt_cart = $conn_status->prepare($sql_cart_items);
         $stmt_cart->bind_param("i", $user_id);
         $stmt_cart->execute();
@@ -47,26 +49,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
             $cart_items_for_order[] = $row;
         }
         $stmt_cart->close();
-
         if (empty($cart_items_for_order)) {
             throw new Exception("Your cart is empty. Cannot place an order.");
         }
 
-        $sql_order = "INSERT INTO `order` (user_id, product_id, address_id, total_order, payment, payment_status, order_status) 
-                      VALUES (?, ?, ?, ?, 'cod', 'pending', 'order placed')"; 
+        $sql_order = "INSERT INTO `order` (user_id, product_id, address_id, total_order, payment, payment_status, order_status, color, material, sizes) 
+                      VALUES (?, ?, ?, ?, ?, 'pending', 'order placed', ?, ?, ?)"; 
         $stmt_order = $conn_status->prepare($sql_order);
+        
         foreach ($cart_items_for_order as $item) {
             $product_id = $item['product_id'];
             $quantity = $item['quantity'];
             $price = $item['price'];
+            $color = $item['color'];
+            $material = $item['material'];
+            $sizes = $item['sizes'];
             $item_total = $price * $quantity;
-            $stmt_order->bind_param("iiii", $user_id, $product_id, $address_id, $item_total);
+            $stmt_order->bind_param("iiiissss", $user_id, $product_id, $address_id, $item_total, $payment_method, $color, $material, $sizes);
             if (!$stmt_order->execute()) {
                 throw new Exception("Order Item Insertion Error: " . $stmt_order->error);
             }
         }
         $stmt_order->close(); 
-
         $sql_clear_cart = "DELETE FROM addtocart WHERE user_id = ?";
         $stmt_clear_cart = $conn_status->prepare($sql_clear_cart);
         $stmt_clear_cart->bind_param("i", $user_id);
@@ -77,21 +81,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
         $stmt_clear_cart->close();
         header("Location: ../cart");
         exit;
-
     } catch (Exception $e) {
         echo "Error placing order: " . $e->getMessage();
     }
 }
-
 $sql2 = "SELECT c.cart_id, c.quantity, c.color, c.material, c.sizes, p.product_name, p.price, p.product_img, p.product_id
-         FROM addtocart c
-         JOIN products p ON c.product_id = p.product_id
-         WHERE c.user_id = ?";
+          FROM addtocart c
+          JOIN products p ON c.product_id = p.product_id
+          WHERE c.user_id = ?";
 $stmt = $conn_status->prepare($sql2);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
-
 $cart_items = [];
 $subtotal = 0;
 
@@ -101,7 +102,6 @@ while ($row = $result->fetch_assoc()) {
 }
 $total = $subtotal;
 $stmt->close();
-$conn_status->close();
 ?>
 <html>
     <head>
