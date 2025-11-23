@@ -61,7 +61,7 @@
                                 </div>
                             </a>
                         </li>
-                        <?php if (isset($_SESSION['role']) == "admin"): ?>
+                        <?php if (isset($_SESSION['role']) && $_SESSION['role'] == "admin"): ?>
                         <li>
                             <a href="/Maiden-Home/admin">
                                 <div style="display: flex; align-items:center; gap:8px;">
