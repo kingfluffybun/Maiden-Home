@@ -1,3 +1,83 @@
+<?php
+session_start();
+include "../includes/db.php";
+
+if (isset($_POST['finish'])) {
+    $product_name = $_POST['product_name'];
+    $price = $_POST['price'];
+    $stocks = $_POST['stocks'];
+    $category_id = $_POST['category_id'];
+    $sub_id = $_POST['sub_id'];
+    $product_description = $_POST['product_description'];
+    $size1 = $_POST['size1'];
+    $size2 = $_POST['size2'];
+    $size3 = $_POST['size3'];
+    $mat1 = $_POST['mat1'];
+    $mat2 = $_POST['mat2'];
+    $mat3 = $_POST['mat3'];
+    $color1 = $_POST['color1'];
+    $color2 = $_POST['color2'];
+    $color3 = $_POST['color3'];
+
+    function uploadFile($fileInputName) {
+        if (isset($_FILES[$fileInputName]) && $_FILES[$fileInputName]['error'] === 0) {
+            $img_name = $img_name = preg_replace("/[^a-zA-Z0-9\.\-_]/", "_", $_FILES[$fileInputName]['name']);
+            $tmp_name = $_FILES[$fileInputName]['tmp_name'];
+            $target_dir = "../assets/PRODUCTS/";
+            $target_file = $target_dir . basename($img_name);
+
+            if (move_uploaded_file($tmp_name, $target_file)) {
+                return $img_name;
+            } else {
+                echo "Error uploading $fileInputName.";
+                return '';
+            }
+        } else {
+            echo "No file selected for $fileInputName.";
+            return '';
+        }
+    }
+
+    $product_img = uploadFile('product_img');
+    $product_img2 = uploadFile('product_img2');
+    $product_img3 = uploadFile('product_img3');
+    $product_img4 = uploadFile('product_img4');
+    $product_img5 = uploadFile('product_img5');
+    $product_img_hover = uploadFile('product_img_hover');
+    $color1_img = uploadFile('color1_img');
+    $color2_img = uploadFile('color2_img');
+    $color3_img = uploadFile('color3_img');
+
+    $stmt = $conn->prepare("INSERT INTO products (
+        product_name, price, stocks,
+        product_img, product_img2, product_img3, product_img4, product_img5,
+        product_img_hover, product_description, category_id, sub_id,
+        size1, size2, size3, mat1, mat2, mat3,
+        color1, color2, color3, color1_img, color2_img, color3_img
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+    $stmt->bind_param("sdisssssssisssssssssssss",
+        $product_name, $price, $stocks,
+        $product_img, $product_img2, $product_img3, $product_img4, $product_img5,
+        $product_img_hover, $product_description, $category_id, $sub_id,
+        $size1, $size2, $size3, $mat1, $mat2, $mat3,
+        $color1, $color2, $color3,
+        $color1_img, $color2_img, $color3_img
+    );
+
+    if ($stmt->execute()) {
+        header("Location: ./");
+            echo "Product added successfully!";
+            exit;
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+?>
+
 <html>
 <head>
     <title>Admin</title>
@@ -10,7 +90,7 @@
     <div class="sidebar">
         <div class="side-btn">Users</div>
         <div class="side-btn">Orders</div>
-        <div class="side-btn">Product List</div>
+        <div class="side-btn"><a href="./product-list/">Product List</a></div>
         <div class="side-btn active">Add Products</div>
     </div>
 
@@ -25,40 +105,92 @@
             <div class="step">Confirmation</div>
         </div>
 
-        <form id="addProductForm">
+        <form id="addProductForm" method="POST" enctype="multipart/form-data">
 
             <div class="page active" id="page1">
                 <div class="form-area">
 
                     <div class="input-group">
                         <label>Product Name</label>
-                        <input type="text" name="product_name" placeholder="Enter product name">
+                        <input type="text" name="product_name" placeholder="Enter product name" required>
                     </div>
 
                     <div class="input-row">
                         <div class="input-group half">
                             <label>Price</label>
-                            <input type="number" name="price" placeholder="₱">
+                            <input type="number" name="price" placeholder="₱" required>
                         </div>
                         <div class="input-group half">
                             <label>Stock</label>
-                            <input type="number" name="stock" placeholder="0">
+                            <input type="number" name="stocks" placeholder="0" required>
                         </div>
                     </div>
 
                     <div class="input-group">
                         <label>Product Description</label>
-                        <textarea name="description" placeholder="Enter product description"></textarea>
+                        <textarea name="product_description" placeholder="Enter product description" required></textarea>
                     </div>
 
                     <div class="input-row">
                         <div class="input-group half">
                             <label>Category</label>
-                            <input type="text" name="category" placeholder="Category">
+                            <select name="category_id" required>
+                                <option value="" disabled selected></option>
+                                <option value="1">Storage & Organization</option>
+                                <option value="2">Beds & Mattresses</option>
+                                <option value="3">Table & Chairs</option>
+                                <option value="4">Sofas & Armchair</option>
+                                <option value="5">Home Decorations</option>
+                                <option value="6">Light Fixtures</option>
+                                <option value="7">Office Furniture</option>
+                                <option value="8">Outdoor Furniture</option>
+                            </select>
                         </div>
                         <div class="input-group half">
                             <label>Sub-Category</label>
-                            <input type="text" name="subcategory" placeholder="Sub-Category">
+                            <select name="sub_id" required>
+                                <option value="" disabled selected></option>
+                                <option value="1">Bookcases & Shelving Units</option>
+                                <option value="2">Chests of drawers & drawer units</option>
+                                <option value="3">Cabinets & Cupboards</option>
+                                <option value="4">TV & media furniture</option>
+                                <option value="5">Wardrobes & Closet Systems</option>
+                                <option value="6">Beds</option>
+                                <option value="7">Beddings and Pillows</option>
+                                <option value="8">Mattresses</option>
+                                <option value="9">Under bed storage</option>
+                                <option value="10">Headboards</option>
+                                <option value="11">Dining Tables</option>
+                                <option value="12">Dining Chairs & Benches</option>
+                                <option value="13">Coffee & End Tables</option>
+                                <option value="14">Bar & Counter Stools</option>
+                                <option value="15">Specialty Seating</option>
+                                <option value="16">Sofas & Couches</option>
+                                <option value="17">Armchairs</option>
+                                <option value="18">Sofabeds</option>
+                                <option value="19">Ottomans, footstools & pouffes</option>
+                                <option value="20">Coushions</option>
+                                <option value="21">Wall Décor & Mirrors</option>
+                                <option value="22">Vases, Planters & Greenery</option>
+                                <option value="23">Decorative Accents</option>
+                                <option value="24">Rugs & Floor Coverings</option>
+                                <option value="25">Seasonal</option>
+                                <option value="26">Ceiling Lights & Pendants</option>
+                                <option value="27">Floor Lamps</option>
+                                <option value="28">Table & Desk Lamps</option>
+                                <option value="29">Wall & Vanity Lights</option>
+                                <option value="30">Outdoor Lighting</option>
+                                <option value="31">Desks & Work Surfaces</option>
+                                <option value="32">Office & Task Chairs</option>
+                                <option value="33">Home Office Sets</option>
+                                <option value="34">Gaming Furniture</option>
+                                <option value="35">Filing & Office Storage</option>
+                                <option value="36">Outdoor Lounge & Seating</option>
+                                <option value="37">Outdoor Dining & Bar Sets</option>
+                                <option value="38">Umbrellas, Pergolas & Shade</option>
+                                <option value="39">Outdoor Storage</option>
+                                <option value="40">Outdoor Décor & Accents</option>
+                            </select>
                         </div>
                     </div>
 
@@ -70,33 +202,33 @@
 
                     <div class="input-group">
                         <label>Main Product Image</label>
-                        <input type="file" name="main_img">
+                        <input type="file" name="product_img" required>
                     </div>
 
                     <div class="input-group">
                         <label>Hover Image</label>
-                        <input type="file" name="hover_img">
+                        <input type="file" name="product_img_hover" required>
                     </div>
 
                     <div class="input-row">
                         <div class="input-group half">
                             <label>Angle 1</label>
-                            <input type="file" name="angle1">
+                            <input type="file" name="product_img2">
                         </div>
                         <div class="input-group half">
                             <label>Angle 2</label>
-                            <input type="file" name="angle2">
+                            <input type="file" name="product_img3">
                         </div>
                     </div>
 
                     <div class="input-row">
                         <div class="input-group half">
                             <label>Angle 3</label>
-                            <input type="file" name="angle3">
+                            <input type="file" name="product_img4">
                         </div>
                         <div class="input-group half">
                             <label>Angle 4</label>
-                            <input type="file" name="angle4">
+                            <input type="file" name="product_img5">
                         </div>
                     </div>
 
@@ -124,21 +256,21 @@
                     <div class="input-row">
                         <div class="input-group half">
                             <label>Color Name 1</label>
-                            <input type="text" name="color_name1" placeholder="Color name">
+                            <input type="text" name="color1" placeholder="Color name">
                             <label>Color Image 1</label>
-                            <input type="file" name="color_img1">
+                            <input type="file" name="color1_img">
                         </div>
                         <div class="input-group half">
                             <label>Color Name 2</label>
-                            <input type="text" name="color_name2" placeholder="Color name">
+                            <input type="text" name="color2" placeholder="Color name">
                             <label>Color Image 2</label>
-                            <input type="file" name="color_img2">
+                            <input type="file" name="color2_img">
                         </div>
                         <div class="input-group half">
                             <label>Color Name 3</label>
-                            <input type="text" name="color_name3" placeholder="Color name">
+                            <input type="text" name="color3" placeholder="Color name">
                             <label>Color Image 3</label>
-                            <input type="file" name="color_img3">
+                            <input type="file" name="color3_img">
                         </div>
                     </div>
 
@@ -147,40 +279,92 @@
 
             <div class="page" id="page4">
                 <h2>Review Before Confirm</h2>
+                <div class="review-card">
+                    <h3>Basic Information</h3>
+                    <p><strong>Name:</strong> <span id="review_name"></span></p>
+                    <p><strong>Price:</strong> ₱<span id="review_price"></span></p>
+                    <p><strong>Stocks:</strong> <span id="review_stocks"></span></p>
+                    <p><strong>Category:</strong> <span id="review_category"></span></p>
+                    <p><strong>Sub-Category:</strong> <span id="review_sub"></span></p>
+                    <p><strong>Description:</strong> <span id="review_desc"></span></p>
+                </div>
+
+                <div class="review-card">
+                    <h3>Sizes</h3>
+                    <ul>
+                        <li id="review_size1"></li>
+                        <li id="review_size2"></li>
+                        <li id="review_size3"></li>
+                    </ul>
+
+                    <h3>Materials</h3>
+                    <ul>
+                        <li id="review_mat1"></li>
+                        <li id="review_mat2"></li>
+                        <li id="review_mat3"></li>
+                    </ul>
+                </div>
+                
+                <div class="review-card">
+                    <h3>Product Images</h3>
+                    <div class="img-preview-wrapper">
+                        <div class="image-card">
+                            <img id="prev_main" class="preview-img">
+                            <p>Main Product Image</p>
+                        </div>
+                        <div class="image-card">
+                            <img id="prev_hover" class="preview-img">
+                            <p>Hover Image</p>
+                        </div>
+                        <div class="image-card">
+                            <img id="prev_img2" class="preview-img">
+                            <p>Angle 1</p>
+                        </div>
+                        <div class="image-card">
+                            <img id="prev_img3" class="preview-img">
+                            <p>Angle 2</p>
+                        </div>
+                        <div class="image-card">
+                            <img id="prev_img4" class="preview-img">
+                            <p>Angle 3</p>
+                        </div>
+                        <div class="image-card">
+                            <img id="prev_img5" class="preview-img">
+                            <p>Angle 4</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <h3>Color Variants</h3>
+                    <div class="img-preview-wrapper">
+                        <div class="color-card">
+                            <img id="prev_color1" class="preview-img">
+                            <p id="review_color1"></p>
+                        </div>
+                        <div class="color-card">
+                            <img id="prev_color2" class="preview-img">
+                            <p id="review_color2"></p>
+                        </div>
+                        <div class="color-card">
+                            <img id="prev_color3" class="preview-img">
+                            <p id="review_color3"></p>
+                        </div>
+                    </div>
+                </div>
             </div>
-         
 
             <div class="nav-buttons">
                 <button type="button" class="back-btn" id="backBtn">Back</button>
                 <button type="button" class="next-btn" id="nextBtn">Next</button>
+                <button type="submit" name="finish" class="next-btn" id="subBtn">Confirm & Add Product</button>
             </div>
         </form>
 
     </div>
 </div>
 
-<script>
-let current = 0;
-let pages = document.querySelectorAll(".page");
-let steps = document.querySelectorAll(".step");
-
-function showPage(i){
-    pages.forEach(function(p){ p.classList.remove("active"); });
-    steps.forEach(function(s){ s.classList.remove("active"); });
-    pages[i].classList.add("active");
-    steps[i].classList.add("active");
-}
-
-document.getElementById("nextBtn").onclick = function(){
-    if(current < pages.length-1){ current++; showPage(current); }
-}
-
-document.getElementById("backBtn").onclick = function(){
-    if(current > 0){ current--; showPage(current); }
-}
-
-showPage(0);
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
