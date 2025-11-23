@@ -232,6 +232,10 @@
     navigation: auto;
 }
 
-::view-transition-group(*) {
-    animation-duration: 0.5s;
+::view-transition-old(*) {
+    animation: 0.5s ease both slide-to;
+}
+
+::view-transition-new(*) {
+    animation: 0.5s ease both slide-from;
 }

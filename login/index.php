@@ -65,6 +65,19 @@ function userAndPassCorrect()
         <title>Login</title>
         <link rel="stylesheet" href="../css/login-signup.css">
         <link rel="stylesheet" href="../css/all.css">
+        <style>
+            @keyframes slide-to {
+            to {
+                transform: translateX(-100%);
+            }
+            }
+
+            @keyframes slide-from {
+            from {
+                transform: translateX(100%);
+            }
+            }
+        </style>
     </head>
     <body>
         <section class="login-section">

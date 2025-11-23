@@ -82,9 +82,23 @@ function userAndEmailAlert()
         <title>Create Account</title>
         <link rel="stylesheet" href="../css/login-signup.css">
         <link rel="stylesheet" href="../css/all.css">
+        <style>
+            @keyframes slide-to {
+            to {
+                transform: translateX(100%);
+            }
+            }
+
+            @keyframes slide-from{
+            from {
+                transform: translateX(-100%);
+            }
+            }
+        </style>
     </head>
     <body>
         <section class="login-section">
+            <div class="background"></div>
             <div class="container">
                 <div class="login-box">
                     <a href="../index.php" style="text-decoration: none;">
@@ -134,9 +148,6 @@ function userAndEmailAlert()
                     </form>
                     <p class="create-account">Already have an account? <a href="../login">Log In</a></p>
                 </div>
-            </div>
-            <div class="background">
-
             </div>
         </section>
         <script>
