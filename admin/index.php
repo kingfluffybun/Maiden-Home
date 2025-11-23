@@ -18,6 +18,8 @@ if (isset($_POST['finish'])) {
     $color1 = $_POST['color1'];
     $color2 = $_POST['color2'];
     $color3 = $_POST['color3'];
+    $category_name = $_POST['category_name'];
+    $sub_name = $_POST['sub_name'];
 
     function uploadFile($fileInputName) {
         if (isset($_FILES[$fileInputName]) && $_FILES[$fileInputName]['error'] === 0) {
@@ -51,15 +53,15 @@ if (isset($_POST['finish'])) {
     $stmt = $conn->prepare("INSERT INTO products (
         product_name, price, stocks,
         product_img, product_img2, product_img3, product_img4, product_img5,
-        product_img_hover, product_description, category_id, sub_id,
+        product_img_hover, product_description, category_id, category_name, sub_id, sub_name,
         size1, size2, size3, mat1, mat2, mat3,
         color1, color2, color3, color1_img, color2_img, color3_img
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-    $stmt->bind_param("sdisssssssisssssssssssss",
+    $stmt->bind_param("sdisssssssisssssssssssssss",
         $product_name, $price, $stocks,
         $product_img, $product_img2, $product_img3, $product_img4, $product_img5,
-        $product_img_hover, $product_description, $category_id, $sub_id,
+        $product_img_hover, $product_description, $category_id, $category_name, $sub_id,  $sub_name,
         $size1, $size2, $size3, $mat1, $mat2, $mat3,
         $color1, $color2, $color3,
         $color1_img, $color2_img, $color3_img
@@ -151,67 +153,128 @@ if (isset($_POST['finish'])) {
 
                     <div class="input-row">
                         <div class="input-group half">
-                            <label>Category</label>
+                            <label>Category ID</label>
                             <select name="category_id" required>
                                 <option value="" disabled selected></option>
-                                <option value="1">Storage & Organization</option>
-                                <option value="2">Beds & Mattresses</option>
-                                <option value="3">Table & Chairs</option>
-                                <option value="4">Sofas & Armchair</option>
-                                <option value="5">Home Decorations</option>
-                                <option value="6">Light Fixtures</option>
-                                <option value="7">Office Furniture</option>
-                                <option value="8">Outdoor Furniture</option>
+                                <option value="1">1 - Storage & Organization</option>
+                                <option value="2">2- Beds & Mattresses</option>
+                                <option value="3">3 - Table & Chairs</option>
+                                <option value="4">4 - Sofas & Armchair</option>
+                                <option value="5">5 - Home Decorations</option>
+                                <option value="6">6 - Light Fixtures</option>
+                                <option value="7">7 - Office Furniture</option>
+                                <option value="8">8 - Outdoor Furniture</option>
                             </select>
                         </div>
                         <div class="input-group half">
-                            <label>Sub-Category</label>
+                            <label>Sub-Category ID</label>
                             <select name="sub_id" required>
                                 <option value="" disabled selected></option>
-                                <option value="1">Bookcases & Shelving Units</option>
-                                <option value="2">Chests of drawers & drawer units</option>
-                                <option value="3">Cabinets & Cupboards</option>
-                                <option value="4">TV & media furniture</option>
-                                <option value="5">Wardrobes & Closet Systems</option>
-                                <option value="6">Beds</option>
-                                <option value="7">Beddings and Pillows</option>
-                                <option value="8">Mattresses</option>
-                                <option value="9">Under bed storage</option>
-                                <option value="10">Headboards</option>
-                                <option value="11">Dining Tables</option>
-                                <option value="12">Dining Chairs & Benches</option>
-                                <option value="13">Coffee & End Tables</option>
-                                <option value="14">Bar & Counter Stools</option>
-                                <option value="15">Specialty Seating</option>
-                                <option value="16">Sofas & Couches</option>
-                                <option value="17">Armchairs</option>
-                                <option value="18">Sofabeds</option>
-                                <option value="19">Ottomans, footstools & pouffes</option>
-                                <option value="20">Coushions</option>
-                                <option value="21">Wall Décor & Mirrors</option>
-                                <option value="22">Vases, Planters & Greenery</option>
-                                <option value="23">Decorative Accents</option>
-                                <option value="24">Rugs & Floor Coverings</option>
-                                <option value="25">Seasonal</option>
-                                <option value="26">Ceiling Lights & Pendants</option>
-                                <option value="27">Floor Lamps</option>
-                                <option value="28">Table & Desk Lamps</option>
-                                <option value="29">Wall & Vanity Lights</option>
-                                <option value="30">Outdoor Lighting</option>
-                                <option value="31">Desks & Work Surfaces</option>
-                                <option value="32">Office & Task Chairs</option>
-                                <option value="33">Home Office Sets</option>
-                                <option value="34">Gaming Furniture</option>
-                                <option value="35">Filing & Office Storage</option>
-                                <option value="36">Outdoor Lounge & Seating</option>
-                                <option value="37">Outdoor Dining & Bar Sets</option>
-                                <option value="38">Umbrellas, Pergolas & Shade</option>
-                                <option value="39">Outdoor Storage</option>
-                                <option value="40">Outdoor Décor & Accents</option>
+                                <option value="1">1 - Bookcases & Shelving Units</option>
+                                <option value="2">2 - Chests of drawers & drawer units</option>
+                                <option value="3">3 - Cabinets & Cupboards</option>
+                                <option value="4">4 - TV & media furniture</option>
+                                <option value="5">5 - Wardrobes & Closet Systems</option>
+                                <option value="6">6 - Beds</option>
+                                <option value="7">7 - Beddings and Pillows</option>
+                                <option value="8">8 - Mattresses</option>
+                                <option value="9">9 - Under bed storage</option>
+                                <option value="10">10 - Headboards</option>
+                                <option value="11">11 - Dining Tables</option>
+                                <option value="12">12 - Dining Chairs & Benches</option>
+                                <option value="13">13 - Coffee & End Tables</option>
+                                <option value="14">14 - Bar & Counter Stools</option>
+                                <option value="15">15 - Specialty Seating</option>
+                                <option value="16">16 - Sofas & Couches</option>
+                                <option value="17">17 - Armchairs</option>
+                                <option value="18">18 - Sofabeds</option>
+                                <option value="19">19 - Ottomans, footstools & pouffes</option>
+                                <option value="20">20 - Coushions</option>
+                                <option value="21">21 - Wall Décor & Mirrors</option>
+                                <option value="22">22 - Vases, Planters & Greenery</option>
+                                <option value="23">23 - Decorative Accents</option>
+                                <option value="24">24 - Rugs & Floor Coverings</option>
+                                <option value="25">25 - Seasonal</option>
+                                <option value="26">26 - Ceiling Lights & Pendants</option>
+                                <option value="27">27 - Floor Lamps</option>
+                                <option value="28">28 - Table & Desk Lamps</option>
+                                <option value="29">29 - Wall & Vanity Lights</option>
+                                <option value="30">30 - Outdoor Lighting</option>
+                                <option value="31">31 - Desks & Work Surfaces</option>
+                                <option value="32">32 - Office & Task Chairs</option>
+                                <option value="33">33 - Home Office Sets</option>
+                                <option value="34">34 - Gaming Furniture</option>
+                                <option value="35">35 - Filing & Office Storage</option>
+                                <option value="36">36 - Outdoor Lounge & Seating</option>
+                                <option value="37">37 - Outdoor Dining & Bar Sets</option>
+                                <option value="38">38 - Umbrellas, Pergolas & Shade</option>
+                                <option value="39">39 - Outdoor Storage</option>
+                                <option value="40">40 - Outdoor Décor & Accents</option>
                             </select>
                         </div>
                     </div>
-
+                    <div class="input-row">
+                        <div class="input-group half">
+                            <label>Category Name</label>
+                            <select name="category_name" required>
+                                <option value="" disabled selected></option>
+                                <option value="Storage & Organization">Storage & Organization</option>
+                                <option value="Beds & Mattresses">Beds & Mattresses</option>
+                                <option value="Table & Chairs">Table & Chairs</option>
+                                <option value="Sofas & Armchair">Sofas & Armchair</option>
+                                <option value="Home Decorations">Home Decorations</option>
+                                <option value="Light Fixtures">Light Fixtures</option>
+                                <option value="Office Furniture">Office Furniture</option>
+                                <option value="Outdoor Furniture">Outdoor Furniture</option>
+                            </select>
+                        </div>
+                        <div class="input-group half">
+                            <label>Sub-Category Name</label>
+                            <select name="sub_name" required>
+                                <option value="" disabled selected></option>
+                                <option value="Bookcases & Shelving Units">Bookcases & Shelving Units</option>
+                                <option value="Chests of drawers & drawer units">Chests of drawers & drawer units</option>
+                                <option value="Cabinets & Cupboards">Cabinets & Cupboards</option>
+                                <option value="TV & media furniture">TV & media furniture</option>
+                                <option value="Wardrobes & Closet Systems">Wardrobes & Closet Systems</option>
+                                <option value="Beds">Beds</option>
+                                <option value="Beddings and Pillows">Beddings and Pillows</option>
+                                <option value="Mattresses">Mattresses</option>
+                                <option value="Under bed storage">Under bed storage</option>
+                                <option value="Headboards">Headboards</option>
+                                <option value="Dining Tables">Dining Tables</option>
+                                <option value="Dining Chairs & Benches">Dining Chairs & Benches</option>
+                                <option value="Coffee & End Tables">Coffee & End Tables</option>
+                                <option value="Bar & Counter Stools">Bar & Counter Stools</option>
+                                <option value="Specialty Seating">Specialty Seating</option>
+                                <option value="Sofas & Couches">Sofas & Couches</option>
+                                <option value="Armchairs">Armchairs</option>
+                                <option value="Sofabeds">Sofabeds</option>
+                                <option value="Ottomans, footstools & pouffes">Ottomans, footstools & pouffes</option>
+                                <option value="Coushions">Coushions</option>
+                                <option value="Wall Décor & Mirrors">Wall Décor & Mirrors</option>
+                                <option value="Vases, Planters & Greenery">Vases, Planters & Greenery</option>
+                                <option value="Decorative Accents">Decorative Accents</option>
+                                <option value="Rugs & Floor Coverings">Rugs & Floor Coverings</option>
+                                <option value="Seasonal">Seasonal</option>
+                                <option value="Ceiling Lights & Pendants">Ceiling Lights & Pendants</option>
+                                <option value="Floor Lamps">Floor Lamps</option>
+                                <option value="Table & Desk Lamps">Table & Desk Lamps</option>
+                                <option value="Wall & Vanity Lights">Wall & Vanity Lights</option>
+                                <option value="Outdoor Lighting">Outdoor Lighting</option>
+                                <option value="Desks & Work Surfaces">Desks & Work Surfaces</option>
+                                <option value="Office & Task Chairs">Office & Task Chairs</option>
+                                <option value="Home Office Sets">Home Office Sets</option>
+                                <option value="Gaming Furniture">Gaming Furniture</option>
+                                <option value="Filing & Office Storage">Filing & Office Storage</option>
+                                <option value="Outdoor Lounge & Seating">Outdoor Lounge & Seating</option>
+                                <option value="Outdoor Dining & Bar Sets">Outdoor Dining & Bar Sets</option>
+                                <option value="Umbrellas, Pergolas & Shade">Umbrellas, Pergolas & Shade</option>
+                                <option value="Outdoor Storage">Outdoor Storage</option>
+                                <option value="Outdoor Décor & Accents">Outdoor Décor & Accents</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
 
