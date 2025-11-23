@@ -72,7 +72,7 @@ if(isset($_POST['delete-selected']) && isset($_POST['selected_products'])) {
         
         <div class="info">
             <form method="POST" action="">
-                <button type="submit" name="delete-selected" class="del-btn" onclick="return confirm('Are you sure you want to delete selected items?')">Delete</button>
+                <button type="submit" name="delete-selected" class="del-btn" id="delete-btn" style="display:none;" onclick="return confirm('Are you sure you want to delete selected items?')">Delete</button>
                 <table>
                     <tr>
                         <th>Select</th>
@@ -119,6 +119,19 @@ if(isset($_POST['delete-selected']) && isset($_POST['selected_products'])) {
         </div>
     </div>
 </div>
+
+<script>
+const checkboxes = document.querySelectorAll("input[name='selected_products[]']");
+const deleteBtn = document.getElementById("delete-btn");
+
+checkboxes.forEach(cb => {
+    cb.addEventListener('change', () => {
+        const anyChecked = Array.from(checkboxes).some(chk => chk.checked);
+        deleteBtn.style.display = anyChecked ? 'inline-block' : 'none';
+    });
+});
+</script>
+
 
 </body>
 </html>
