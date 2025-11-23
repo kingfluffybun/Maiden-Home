@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2025 at 06:48 PM
+-- Generation Time: Nov 23, 2025 at 05:19 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -38,6 +38,7 @@ CREATE TABLE `address` (
   `city` varchar(50) NOT NULL,
   `province` varchar(50) NOT NULL,
   `region` varchar(50) NOT NULL,
+  `barangay` varchar(50) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -57,18 +58,6 @@ CREATE TABLE `addtocart` (
   `sizes` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `addtocart`
---
-
-INSERT INTO `addtocart` (`cart_id`, `user_id`, `product_id`, `quantity`, `color`, `material`, `sizes`, `created_at`) VALUES
-(5, 1, 4, 13, '', '', '', '2025-11-09 07:50:16'),
-(22, 1, 1, 3, 'Charcoal', 'Oak Top', '180x80x22.5', '2025-11-11 10:25:02'),
-(23, 1, 2, 3, '', '', '', '2025-11-11 10:28:31'),
-(24, 1, 1, 3, 'Charcoal', 'Oak Top', '80x33x195', '2025-11-11 10:32:59'),
-(25, 1, 7, 4, 'Navy', 'Cotton Fiber', '40x62x1', '2025-11-11 12:23:57'),
-(26, 1, 1, 3, '', '', '', '2025-11-13 13:21:59');
 
 -- --------------------------------------------------------
 
@@ -105,6 +94,10 @@ CREATE TABLE `order` (
   `order_id` int(11) NOT NULL,
   `user_id` int(100) UNSIGNED NOT NULL,
   `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `color` varchar(50) NOT NULL,
+  `material` varchar(50) NOT NULL,
+  `sizes` varchar(50) NOT NULL,
   `address_id` int(11) NOT NULL,
   `total_order` int(11) NOT NULL,
   `payment` enum('Ewallet','Cod','Bank') NOT NULL,
@@ -245,18 +238,7 @@ INSERT INTO `products` (`product_id`, `product_name`, `price`, `stocks`, `produc
 (106, 'LED Lit Parasol', 11940.00, 250, 'LED_Lit_Parasol.png', 'LED_Lit_Parasol_Angle1.png', 'LED_Lit_Parasol_Angle2.png', 'LED_Lit_Parasol_Angle3.png', 'LED_Lit_Parasol_Angle4.png', 'LED_Lit_Parasol_Hover.png', 8, 'Outdoor Furniture', 38, 'Umbrellas, Pergolas & Shade', 'This modern round 2.7m Ivory or Grey Crank & Tilt LED Parasol is perfect for shielding you and your fellow diners from those spontaneous spots of rain as well as the summer sun. The LED lit umbrella also enables you to transition through to the evening as the night draws in, lighting up your outdoor dining table. The fantastic garden brolly can be used as a free-standing umbrella provided you use a weighted base (base not included). The easy open and close crank mechanism with tilting canopy offers a flexible, convenient system for all-day use. The LED lights are solar powered via the solar panel positioned on the top of the canopy.', '225cm W:270cm D:270', '', '', 'Aluminium Frame', 'Polyester Fabric', '', 'Ivory', '', '', 'LED_Lit_Parasol_Ivory.png', '', '', '2025-11-13 13:31:16'),
 (107, 'Wood-Look Aluminium Parasol', 4263.00, 250, 'Wood-Look_Aluminium_Parasol.png', 'Wood-Look_Aluminium_Parasol_Angle1.png', 'Wood-Look_Aluminium_Parasol_Angle2.png', 'Wood-Look_Aluminium_Parasol_Angle3.png', 'Wood-Look_Aluminium_Parasol_Angle4.png', 'Wood-Look_Aluminium_Parasol_Hover.png', 8, 'Outdoor Furniture', 38, 'Umbrellas, Pergolas & Shade', 'This modern round 2.5 Ivory Crank & Tilt Parasol with stylish wood-look aluminium frame is perfect for shielding you and your fellow diners from the summer sun. The fantastic garden brolly can be used as a free-standing umbrella provided you use a weighted base (base not included). The easy open and close crank mechanism with tilting canopy offers a flexible, convenient system for all-day use.', '225 x 250 x 250', '', '', 'Weatherproof Polyester Fabric', 'Wood Look Aluminium Frame', '', 'Teak', '', '', 'Wood_Look_Aluminium_Frame_Teak.png', '', '', '2025-11-13 13:39:36'),
 (108, 'Luna 4 Seater Round Concrete Dining Set ', 93875.00, 255, 'Luna_4_Seater_Round_Concrete_Dining_Set_with_Sol_Rattan_Dining_Chairs.png', 'Luna_4_Seater_Round_Concrete_Dining_Set_with_Sol_Rattan_Dining_Chairs_Angle1.png', 'Luna_4_Seater_Round_Concrete_Dining_Set_with_Sol_Rattan_Dining_Chairs_Angle2.png', 'Luna_4_Seater_Round_Concrete_Dining_Set_with_Sol_Rattan_Dining_Chairs_Angle3.png', 'Luna_4_Seater_Round_Concrete_Dining_Set_with_Sol_Rattan_Dining_Chairs_Angle4.jpg', 'Luna_4_Seater_Round_Concrete_Dining_Set_with_Sol_Rattan_Dining_Chairs_Hover.png', 8, 'Outdoor Furniture', 37, 'Outdoor Dining & Bar Sets', 'The Luna 4 Seater Round Concrete Dining Set transforms your garden into a stylish outdoor dining destination. The stunning 120cm round table features a grey speckled concrete fibre top with a smooth finish that creates a contemporary focal point for your outdoor space.\r\nSupported by elegantly angled Acacia hardwood legs, the table combines modern design with natural warmth. The durable concrete surface offers exceptional resistance to the elements while providing a stable platform for entertaining, with a subtle textural quality that adds depth and interest to your garden setting.', '74 x 120 x 120', '80 x 60 x 65', '', 'Concrete', 'Rattan', 'Polyester', 'Light Grey', '', '', 'Luna_4_Seater_Round_Concrete_Dining_Set_with_Sol_Rattan_Dining_Chairs_Light_Grey.png', '', '', '2025-11-13 13:49:32'),
-(109, 'Roma FSC 4 Seater Round Sunray with Conc', 87668.00, 255, 'Roma_FSC_4_Seater_Round_Sunray_with_Concrete_Insert_Dining_Set_with_Roma_Dining_Chairs.png', 'Roma_FSC_4_Seater_Round_Sunray_with_Concrete_Insert_Dining_Set_with_Roma_Dining_Chairs_Angle1.png', 'Roma_FSC_4_Seater_Round_Sunray_with_Concrete_Insert_Dining_Set_with_Roma_Dining_Chairs_Angle2.png', 'Roma_FSC_4_Seater_Round_Sunray_with_Concrete_Insert_Dining_Set_with_Roma_Dining_Chairs_Angle3.jpg', 'Roma_FSC_4_Seater_Round_Sunray_with_Concrete_Insert_Dining_Set_with_Roma_Dining_Chairs_Angle4.jpg', 'Roma_FSC_4_Seater_Round_Sunray_with_Concrete_Insert_Dining_Set_with_Roma_Dining_Chairs_Hover.png', 8, 'Outdoor Furniture', 37, 'Outdoor Dining & Bar Sets', 'Transform your garden, patio or decking area with the Roma 4 Seater Round Dining Set. This stunning outdoor ensemble features a 120cm round table with an eye-catching sunray design and contemporary terrazzo central insert, paired with four beautifully crafted Roma Rope Dining Chairs. Crafted from FSC 100% certified Acacia hardwood, this set combines environmental responsibility with timeless style, ensuring your outdoor dining area becomes the heart of summer gatherings. The natural wood tones create a warm, inviting atmosphere that complements both traditional gardens and contemporary outdoor spaces.', '75 x 120 x 120', '80 x 56.5 x 62', '', 'Rattan Rope', 'Concrete', 'Polyester ', 'Antique Pine Wax', '', '', 'Roma_FSC_4_Seater_Round_Sunray_with_Concrete_Insert_Dining_Set_with_Roma_Dining_Chairs_Antique_Pine_Wax.png', '', '', '2025-11-13 13:56:38'),
-(111, 'Roswell Stain Resistant Shaggy Rug', 4261.00, 120, 'Roswell-Shaggy-Rug-Product-Image.jpeg', 'Roswell-Shaggy-Rug-Angle-1.jpeg', 'Roswell-Shaggy-Rug-Angle-2.jpeg', 'Roswell-Shaggy-Rug-Angle-3.jpeg', 'Roswell-Shaggy-Rug-Angle-4.jpeg', 'Roswell-Shaggy-Rug-Product-Image-Hover.jpeg', 5, 'Home Decorations', 24, 'Rugs & Floor Coverings', 'The Roswell Stain Resistant Shaggy Rug combines luxurious comfort with everyday practicality, offering a plush, soft feel underfoot and a heavy weight shaggy pile for lasting durability. Crafted from high-quality polypropylene, itâ€™s stain-resistant, easy to clean, and ideal for busy households with heavy foot traffic. Available in 18 versatile coloursâ€”from elegant neutrals to vibrant tonesâ€”and four sizes (small, medium, large, and extra-large), it effortlessly enhances the style and cosiness of any living space.', '80x150', '120x170', '160x230', 'High-Quality Polypropylene Fibres', 'Heavy Weight Shaggy Pile', 'Jute Backing', 'Cream', 'Navy', 'Black', 'Roswell-Shaggy-Rug-Color-Cream.jpeg', 'Roswell-Shaggy-Rug-Color-Navy.jpeg', 'Roswell-Shaggy-Rug-Color-Black.jpeg', '2025-11-13 15:23:27'),
-(112, 'Aldrin Distressed Metallic Effect Rug', 6588.00, 120, 'Aldrin-Distressed-Metallic-Effect-Rug-Product-Image.jpeg', 'Aldrin-Distressed-Metallic-Effect-Rug-Angle-1.jpeg', 'Aldrin-Distressed-Metallic-Effect-Rug-Angle-2.jpeg', 'Aldrin-Distressed-Metallic-Effect-Rug-Angle-3.jpeg', 'Aldrin-Distressed-Metallic-Effect-Rug-Angle-4.jpeg', 'Aldrin-Distressed-Metallic-Effect-Rug-Product-Image-Hover.jpeg', 5, 'Home Decorations', 24, 'Rugs & Floor Coverings', 'The Aldrin Distressed Metallic Effect Rectangular Rug brings instant glamour and character to any living room or bedroom. Featuring an eye-catching distressed metallic pattern over a soft grey base, it creates a unique vintage-inspired look that blends elegance with modern charm. The luxurious high-density pile offers plush comfort underfoot, while the durable, easy-to-maintain polypropylene construction ensures lasting beautyâ€”perfect for high-traffic areas. Available in gold, green, ivory, navy, or rose accents and in medium or large sizes, this rug makes a stunning statement piece for any interior.', '120x170', '160x220', '', 'Premium Polypropylene Fibres', 'High-Density Pile', 'Machine-Woven Backing', 'Grey', 'Green', 'Navy', 'Aldrin-Distressed-Metallic-Effect-Rug-Color-Grey.jpeg', 'Aldrin-Distressed-Metallic-Effect-Rug-Color-Green.jpeg', 'Aldrin-Distressed-Metallic-Effect-Rug-Color-Navy.jpeg', '2025-11-13 15:36:02'),
-(113, 'Cavendish Thick Pile Shaggy Berber Rug', 6200.00, 120, 'Cavendish-Thick-Pile-Shaggy-Berber-Rug-Product-Image.jpeg', 'Cavendish-Thick-Pile-Shaggy-Berber-Rug-Angle-1.jpeg', 'Cavendish-Thick-Pile-Shaggy-Berber-Rug-Angle-2.jpeg', 'Cavendish-Thick-Pile-Shaggy-Berber-Rug-Angle-3.jpeg', 'Cavendish-Thick-Pile-Shaggy-Berber-Rug-Angle-4.jpeg', 'Cavendish-Thick-Pile-Shaggy-Berber-Rug-Product-Image-Hover.jpeg', 5, 'Home Decorations', 24, 'Rugs & Floor Coverings', 'The Cavendish Thick Pile Shaggy Berber Rug blends luxurious comfort with timeless Moroccan-inspired style. Its machine-carved shaggy pile creates rich texture and depth, while the cream or silver colourways suit any dÃ©cor. Crafted from premium polypropylene, itâ€™s soft, durable, and easy to maintainâ€”perfect for everyday living. Available in multiple sizes from Medium to XL for effortless room styling.', '120x170', '160x230', '200x290', 'Premium Polypropylene Fibres', 'High-Density Shaggy Pile', 'Durable Jute Backing', 'Cream', 'Silver', '', 'Cavendish-Thick-Pile-Shaggy-Berber-Rug-Color-Cream.jpeg', 'Cavendish-Thick-Pile-Shaggy-Berber-Rug-Color-Silver.jpeg', '', '2025-11-13 15:42:20'),
-(114, 'Regis Geometric Leaf Rug', 4649.00, 120, 'Regis-Abstract-Geometric-Leaf-Rug-Product-Image.jpeg', 'Regis-Abstract-Geometric-Leaf-Rug-Angle-1.jpeg', 'Regis-Abstract-Geometric-Leaf-Rug-Angle-2.jpeg', 'Regis-Abstract-Geometric-Leaf-Rug-Angle-3.jpeg', 'Regis-Abstract-Geometric-Leaf-Rug-Angle-4.jpeg', 'Regis-Abstract-Geometric-Leaf-Rug-Product-Image-Hover.jpeg', 5, 'Home Decorations', 24, 'Rugs & Floor Coverings', 'The Regis Geometric Leaf Rectangular Rug adds bold, modern flair to your living space with its captivating geometric leaf pattern that blends organic curves and structured symmetry. Crafted from high-quality machine-made polypropylene, itâ€™s durable, easy to maintain, and ideal for busy households. The hand-carved detailing enhances texture and depth, while the range of bold coloursâ€”including brown, black, green, navy, rose, and yellow with contrasting beige and grey tonesâ€”creates a striking visual effect.', '80x150', '120x170', '160x220', 'Durable Polypropylene Fibre', 'Hand-Carved Detailing', 'Machine-Woven Backing', 'Brown', 'Black', 'Green', 'Regis-Abstract-Geometric-Leaf-Rug-Color-Brown.jpeg', 'Regis-Abstract-Geometric-Leaf-Rug-Color-Black.jpeg', 'Regis-Abstract-Geometric-Leaf-Rug-Color-Green.jpeg', '2025-11-13 15:50:50'),
-(115, 'Lennox Geometric Shaggy Rug', 4656.00, 120, 'Lennox-Abstract-Patterned-Shaggy-Rug-Product-Image.jpeg', 'Lennox-Abstract-Patterned-Shaggy-Rug-Angle-1.jpeg', 'Lennox-Abstract-Patterned-Shaggy-Rug-Angle-2.jpeg', 'Lennox-Abstract-Patterned-Shaggy-Rug-Angle-3.jpeg', 'Lennox-Abstract-Patterned-Shaggy-Rug-Angle-4.jpeg', 'Lennox-Abstract-Patterned-Shaggy-Rug-Product-Image-Hover.jpeg', 5, 'Home Decorations', 24, 'Rugs & Floor Coverings', 'The Lennox Abstract Geometric Shaggy Rug brings modern style and luxurious comfort to your home with its captivating 3D geometric design and hand-carved detailing. The thick shaggy pile provides a plush feel underfoot, while the high-quality polypropylene construction ensures durability, easy maintenance, and resistance to stains, fading, and shedding. Available in a range of vibrant coloursâ€”including brown, black, navy, pink, red, and yellowâ€”paired with contrasting neutral shades, it adds bold visual appeal to any space.', '80x150', '120x170', '160x220', 'Premium Polypropylene Fibres', 'Thick Shaggy Pile', 'Hand-Carved Detailing', 'Brown', 'Black', 'Navy', 'Lennox-Abstract-Patterned-Shaggy-Rug-Color-Brown.jpeg', 'Lennox-Abstract-Patterned-Shaggy-Rug-Color-Black.jpeg', 'Lennox-Abstract-Patterned-Shaggy-Rug-Color-Navy.jpeg', '2025-11-13 16:04:29'),
-(116, 'Outdoor Plain Scatter Cushion', 1316.00, 120, 'Outdoor-Blue-Plain-Scatter-Cushion-Product-Image.jpeg', 'Outdoor-Blue-Plain-Scatter-Cushion-Angle-1.jpeg', 'Outdoor-Blue-Plain-Scatter-Cushion-Angle-2.jpeg', 'Outdoor-Blue-Plain-Scatter-Cushion-Angle-3.jpeg', 'Outdoor-Blue-Plain-Scatter-Cushion-Angle-4.jpeg', 'Outdoor-Blue-Plain-Scatter-Cushion-Product-Image-Hover.jpeg', 4, 'Sofas & Armchair', 20, 'Cushions', 'The Jacquard Plain Scatter Cushion adds a touch of style and comfort to any space with its solid colour design and contemporary appeal. Made from 100% Jacquard polyester fabric, it features a removable zip cover and fibre filling for easy cleaning and long-lasting comfort. Suitable for both indoor and outdoor use, this cushion is machine washable at low temperatures for effortless maintenance. Available in blue, grey, or orange, its square 45cm x 45cm shape makes it a perfect accent for sofas, chairs, or garden furniture.', '45x45x12', '', '', '100% Jacquard Polyester Fabric', 'Removable Fibre Filling', 'Sturdy Zip Closure', 'Blue', 'Grey', 'Orange', 'Outdoor-Blue-Plain-Scatter-Cushion-Color-Blue.jpeg', 'Outdoor-Blue-Plain-Scatter-Cushion-Color-Grey.jpeg', 'Outdoor-Blue-Plain-Scatter-Cushion-Color-Orange.jpeg', '2025-11-13 16:22:16'),
-(117, 'Liberty Premier Linen Bed Frame', 17000.00, 145, 'Liberty-Charcoal-Upholstered-Linen-Bed-Frame-Roseland.jpg', 'Liberty-Charcoal-Upholstered-Linen-Bed-Frame-Roseland-Angle1.jpg', 'Liberty-Charcoal-Upholstered-Linen-Bed-Frame-Roseland-Angle2.jpg', 'Liberty-Charcoal-Upholstered-Linen-Bed-Frame-Roseland-Angle3.jpg', 'Liberty-Charcoal-Upholstered-Linen-Bed-Frame-Roseland-Angle4.jpg', 'Liberty-Charcoal-Upholstered-Linen-Bed-Frame-Roseland-Hover.jpg', 2, 'Beds & Mattresses', 6, 'Beds', 'The Liberty bed frame is a stylish and modern choice featuring a high-quality build with a solid wood frame and deep side rails for exceptional stability and durability. It is elegantly upholstered in a durable natural linen weave fabric and includes a platform base designed to prolong the life of your mattress, making it a super popular, well-made option for a great night\'s sleep (mattress sold separately).', 'Queen', 'King Size', 'Super King Size', 'Solid Wooden Frame', 'Upholstered Linen Fabric', '', 'Charcoal', 'Natural', 'Duck Egg', 'Liberty-Charcoal-Upholstered-Linen-Bed-Frame-Roseland-Charcoal.jpg', 'Liberty-Upholstered-Natural-Ivory-Linen-Bed-Frame-Roseland-Natural.jpg', 'Liberty-Upholstered-Duck-Egg-Linen-Bed-Frame-Roseland-DuckEgg-1.jpg', '2025-11-13 16:46:59'),
-(118, 'Stafford Velvet Storage Bed Frame', 37300.00, 101, 'Stafford-Grey-Velvet-King-Size-Storage-Bed-Roseland.jpg', 'Stafford-Grey-Velvet-King-Size-Storage-Bed-Roseland-Angle1.jpg', 'Stafford-Grey-Velvet-King-Size-Storage-Bed-Roseland-Angle2.jpg', 'Stafford-Grey-Velvet-King-Size-Storage-Bed-Roseland-Angle3.jpg', 'Stafford-Grey-Velvet-King-Size-Storage-Bed-Roseland-Angle4.jpg', 'Stafford-Grey-Velvet-King-Size-Storage-Bed-Roseland-Hover.jpg', 2, 'Beds & Mattresses', 6, 'Beds', 'The Stafford Velvet Storage Bed is a charming, elegant, and versatile upholstered bed, perfect for saving space in any chic adult bedroom. It features a luxurious, soft-to-touch velvet fabric finish and is complete with a sophisticated deep diamond patterned, buttoned headboard. Offering a fantastic storage solution without compromising style, the bed frame incorporates 4 discreet, wheel-free under-bed drawers (two at the foot end and one on either side) perfect for essentials. Its sprung slatted base provides extra support and comfort for your mattress (sold separately), all supported by contrasting dark square wooden feet.', 'Double', 'King Size', '', 'Solid Wood Frame', '', '', 'Grey', 'Stone', '', 'Stafford-Grey-Velvet-King-Size-Storage-Bed-Roseland-Grey.jpg', 'Stafford-Stone-Velvet-King-Size-Storage-Bed-Roseland-Stone.jpg', '', '2025-11-13 16:53:47'),
-(119, 'Trelan Washed Oak Boucle Slatted Back Di', 8151.00, 120, 'Trelan-Oak-Boucle-Slatted-Dining-Chair-Product-Image.jpeg', 'Trelan-Oak-Boucle-Slatted-Dining-Chair-Angle-1.jpeg', 'Trelan-Oak-Boucle-Slatted-Dining-Chair-Angle-2.jpeg', 'Trelan-Oak-Boucle-Slatted-Dining-Chair-Angle-3.jpeg', 'Trelan-Oak-Boucle-Slatted-Dining-Chair-Angle-4.jpeg', 'Trelan-Oak-Boucle-Slatted-Dining-Chair-Product-Image-Hover.jpeg', 3, 'Table & Chairs', 12, 'Dining Chairs & Benches', 'The Trelan Washed Oak Dining Chair blends modern design and luxurious comfort, featuring a clean slatted back for support and style. Upholstered in plush boucle fabric, the generously padded seat offers an inviting feel ideal for both everyday dining and entertaining. Finished in white-washed oak that highlights the natural wood grain, this chair complements contemporary, Scandinavian, and modern farmhouse interiors. Available in light or dark grey boucle, it must be ordered in multiples of two in the same colour.', '100x46x56.5', '', '', 'Solid Wood & Oak Veneer Frame', 'Soft Boucle Fabric Upholstery', 'High-Density Foam Cushioning', 'White', 'Charcoal', '', 'Trelan-Oak-Boucle-Slatted-Dining-Chair-Color-White.jpeg', 'Trelan-Oak-Boucle-Slatted-Dining-Chair-Color-Charcoal.jpeg', '', '2025-11-13 16:53:55'),
-(120, 'Geri Faux Leather Curved Seat Dining Cha', 3879.00, 120, 'Geri-Faux-Leather-Dining-Chair-Product-Image.jpeg', 'Geri-Faux-Leather-Dining-Chair-Angle-1.jpeg', 'Geri-Faux-Leather-Dining-Chair-Angle-2.jpeg', 'Geri-Faux-Leather-Dining-Chair-Angle-3.jpeg', 'Geri-Faux-Leather-Dining-Chair-Angle-4.jpeg', 'Geri-Faux-Leather-Dining-Chair-Product-Image-Hover.jpeg', 3, 'Table & Chairs', 12, 'Dining Chairs & Benches', 'The Geri Faux Leather Dining Chair offers a perfect blend of style, comfort, and durability. Featuring vertical channel stitching on soft faux leather upholstery, it brings a refined modern touch to any dining space. The ergonomic curved seat and high-density foam padding ensure comfort, while the black powder-coated metal legs provide stability and a sleek finish. Available in grey for a bold look or stone for a light, airy feel, this easy-to-clean chair suits both modern and Scandinavian interiors.', '90x45x62', '', '', 'Solid Wood & Oak Veneer Frame', 'Soft Boucle Fabric Upholstery', 'High-Density Foam Cushioning', 'Stone', 'Grey', '', 'Geri-Faux-Leather-Dining-Chair-Color-Stone.jpeg', 'Geri-Faux-Leather-Dining-Chair-Color-Grey.jpeg', '', '2025-11-13 17:01:03'),
-(121, 'Farrow Coffee Table', 13205.00, 56, 'Farrow-Grey-Painted-Coffee-Table.jpg', 'Farrow-Grey-Painted-Coffee-Table-Angle1.jpg', 'Farrow-Grey-Painted-Coffee-Table-Angle2.jpg', 'Farrow-Grey-Painted-Coffee-Table-Angle3.jpg', 'Farrow-Grey-Painted-Coffee-Table-Angle4.jpg', 'Farrow-Grey-Painted-Coffee-Table-Hover.jpg', 3, 'Table & Chairs', 13, 'Coffee & End Tables', 'The Farrow Coffee Table transforms your living room with a blend of contemporary country styling and smart storage design, featuring a solid wood construction with a lacquered oak top. Its versatile functionality includes a generous, double-sided drawer accessible from either end for convenience, plus a spacious open shelf beneath for display and easy-reach storage. The distinctive design features matt painted finishes and coordinating handle options, which contrast beautifully with the genuine oak top, adding a dynamic, stylish look and natural warmth to any living room setting.', '13x63.5', '', '', 'Oak Top', 'Oak Veneer', 'Manufactured Wood Frame', 'Grey', 'Sage', 'Navy', 'Farrow-Grey-Painted-Coffee-Table-Grey.jpg', 'Farrow-Coffee-Table-Washed-Oak-Sage.jpg', 'Farrow-Navy-Coffee-Table-Navy.jpg', '2025-11-13 17:02:25');
+(109, 'Roma FSC 4 Seater Round Sunray with Conc', 87668.00, 255, 'Roma_FSC_4_Seater_Round_Sunray_with_Concrete_Insert_Dining_Set_with_Roma_Dining_Chairs.png', 'Roma_FSC_4_Seater_Round_Sunray_with_Concrete_Insert_Dining_Set_with_Roma_Dining_Chairs_Angle1.png', 'Roma_FSC_4_Seater_Round_Sunray_with_Concrete_Insert_Dining_Set_with_Roma_Dining_Chairs_Angle2.png', 'Roma_FSC_4_Seater_Round_Sunray_with_Concrete_Insert_Dining_Set_with_Roma_Dining_Chairs_Angle3.jpg', 'Roma_FSC_4_Seater_Round_Sunray_with_Concrete_Insert_Dining_Set_with_Roma_Dining_Chairs_Angle4.jpg', 'Roma_FSC_4_Seater_Round_Sunray_with_Concrete_Insert_Dining_Set_with_Roma_Dining_Chairs_Hover.png', 8, 'Outdoor Furniture', 37, 'Outdoor Dining & Bar Sets', 'Transform your garden, patio or decking area with the Roma 4 Seater Round Dining Set. This stunning outdoor ensemble features a 120cm round table with an eye-catching sunray design and contemporary terrazzo central insert, paired with four beautifully crafted Roma Rope Dining Chairs. Crafted from FSC 100% certified Acacia hardwood, this set combines environmental responsibility with timeless style, ensuring your outdoor dining area becomes the heart of summer gatherings. The natural wood tones create a warm, inviting atmosphere that complements both traditional gardens and contemporary outdoor spaces.', '75 x 120 x 120', '80 x 56.5 x 62', '', 'Rattan Rope', 'Concrete', 'Polyester ', 'Antique Pine Wax', '', '', 'Roma_FSC_4_Seater_Round_Sunray_with_Concrete_Insert_Dining_Set_with_Roma_Dining_Chairs_Antique_Pine_Wax.png', '', '', '2025-11-13 13:56:38');
 
 -- --------------------------------------------------------
 
@@ -336,7 +318,13 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `username`, `user_pass`, `user_email`, `role`) VALUES
 (1, 'clarence', '$2y$10$/dWiLGL4tf01A2423JxWwuxKhlSbPw.g9Io/NxS26U8/BYVJ8wsxu', 'jhonrickparica@gmail.com', 'admin'),
-(2, 'Pat', '$2y$10$00T1t37wtqkYTBJOQ7bPQuznPrJ97gCTXmJcd9TRmARPMUyZVDvzm', 'dumpacclngtouy@gmail.com', 'admin');
+(2, 'Pat', '$2y$10$00T1t37wtqkYTBJOQ7bPQuznPrJ97gCTXmJcd9TRmARPMUyZVDvzm', 'dumpacclngtouy@gmail.com', 'admin'),
+(3, 'test1', '$2y$10$EQJQSYtcqTGlzoU8G0HNmejuZg1qrWiB8wODsmjlMDuK1HkJhWLlO', 'test1@gmail.com', 'user'),
+(4, 'test3', '$2y$10$DsLiHSbrQameEesDNhX7nudc3GZXJiGckb9eRFkFMIiE0iI/YTyDm', 'test3@gmail.com', 'user'),
+(5, 'test123', '$2y$10$qzzm6ZLE5zbk1q99YOTyUegJIKKkMSfePgNoGrUatemXPqILfqzPa', 'test123@gmail.com', 'user'),
+(6, 'test1234', '$2y$10$s9oZoUfdmVdB2h/dK1w23u5tc312XkG/nx8XAte92onMUbE1kYVre', 'test1234@gmail.com', 'user'),
+(7, 'test12345', '$2y$10$jZKFlXRZ5108t7m9toqCX.Jb82LAvibnTr6wcwR56oMp2KcjvoVIW', 'test12345@gmail.com', 'user'),
+(8, 'test12312', '$2y$10$bYMDcNQrkV4RfcXVRcjQY.8XRvj7383ovuC2sePFlS.gUAx.s3gK6', 'test12312@gmail.com', 'user');
 
 --
 -- Indexes for dumped tables
@@ -370,6 +358,7 @@ ALTER TABLE `category`
 --
 ALTER TABLE `order`
   ADD PRIMARY KEY (`order_id`),
+  ADD UNIQUE KEY `order_id` (`order_id`),
   ADD KEY `address_id` (`address_id`),
   ADD KEY `product_id` (`product_id`),
   ADD KEY `user_id` (`user_id`);
@@ -410,7 +399,7 @@ ALTER TABLE `address`
 -- AUTO_INCREMENT for table `addtocart`
 --
 ALTER TABLE `addtocart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -419,10 +408,16 @@ ALTER TABLE `category`
   MODIFY `category_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `order`
+--
+ALTER TABLE `order`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 
 --
 -- AUTO_INCREMENT for table `sub_category`
@@ -434,7 +429,7 @@ ALTER TABLE `sub_category`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(100) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(100) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
