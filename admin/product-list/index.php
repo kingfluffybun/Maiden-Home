@@ -84,9 +84,12 @@ if(isset($_POST['delete-selected']) && isset($_POST['selected_products'])) {
             Add Product
         </div></a>
     </div>
+    <div class="top-header">
+        <div class="header-text">
+            <h1>Product List</h1>
+        </div>
+    </div>
     <div class="content">
-        <h1 style="margin-bottom: 16px;">Product List</h1>
-        
         <div class="info">
             <form method="POST" action="">
                 <button type="submit" name="delete-selected" class="del-btn" id="delete-btn" style="display:none" onclick="return confirm('Are you sure you want to delete selected items?')">

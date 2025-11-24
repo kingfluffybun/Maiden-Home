@@ -4,14 +4,24 @@ let steps = document.querySelectorAll(".step");
 
 function showPage(i){
     pages.forEach(p => p.classList.remove("active"));
-    steps.forEach(s => s.classList.remove("active"));
+    //steps.forEach(s => s.classList.remove("active"));
 
     pages[i].classList.add("active");
-    steps[i].classList.add("active");
+    //steps[i].classList.add("active");
+
+    steps.forEach((s, index) => {
+        if (index <= i) {
+            s.classList.add("active"); 
+        } else {
+            s.classList.remove("active");
+        }
+    });
 
     if(pages[i].id === "page4") {
         updateReview();
     }
+
+    
 
     const nextBtn = document.getElementById("nextBtn");
     if(i === pages.length - 1){
