@@ -277,6 +277,7 @@ $stmt->close();
             </div>
         </div>
         <?php include "../includes/footer.php" ?>
+<<<<<<< HEAD
         <script>
         document.getElementById('phone').addEventListener('input', function () {
             this.value = this.value.replace(/[^0-9]/g, '');
@@ -344,5 +345,7 @@ $stmt->close();
         </script>
 =======
         <script src="check.js"></script>
+=======
+>>>>>>> 03cfc45e1e549da12e55b820b0324f9f1013b42e
     </body>
 </html>
