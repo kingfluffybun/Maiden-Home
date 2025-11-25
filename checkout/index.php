@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
     $province = $_POST['province'];
     $city = $_POST['city'];
     $barangay = $_POST['barangay'];
-    $payment_method = 'cod'; 
+    $payment_method = $_POST['payment_method'];
 
     if ($conn_status->connect_error) {
         die("Connection failed: " . $conn_status->connect_error);
@@ -53,8 +53,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
             throw new Exception("Your cart is empty. Cannot place an order.");
         }
 
-        $sql_order = "INSERT INTO `order` (user_id, product_id, address_id, total_order, payment, payment_status, order_status, color, material, sizes) 
-                    VALUES (?, ?, ?, ?, ?, 'pending', 'order placed', ?, ?, ?)"; 
+         $sql_order = "INSERT INTO `order` (user_id, product_id, quantity, color, material, sizes, total_price, address_id, payment, payment_status, order_status) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'Pending', 'Order Placed')"; 
         $stmt_order = $conn_status->prepare($sql_order);
         
         foreach ($cart_items_for_order as $item) {
@@ -64,8 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
             $color = $item['color'];
             $material = $item['material'];
             $sizes = $item['sizes'];
-            $item_total = $price * $quantity;
-            $stmt_order->bind_param("iiiissss", $user_id, $product_id, $address_id, $item_total, $payment_method, $color, $material, $sizes);
+            $total_price = $price * $quantity;
+            $stmt_order->bind_param("iiiisssss", $user_id, $product_id, $quantity, $color, $material, $sizes, $total_price, $address_id, $payment_method);
             if (!$stmt_order->execute()) {
                 throw new Exception("Order Item Insertion Error: " . $stmt_order->error);
             }
@@ -134,7 +134,6 @@ $stmt->close();
                     <div class="process-step">Payment Method</div>
                     <div class="process-step">Confirmation</div>
                 </div>
-
                 <form class="checkout-form" id="checkoutForm" method="POST">
                 <div class="checkout-step step-active" data-step="1">
                     <h3>Contact Information</h3>
@@ -193,7 +192,6 @@ $stmt->close();
                         <button type="button" class="checkout-btn next-btn">Proceed to Payment Method</button>
                     </div>
                 </div>
-
                 <div class="checkout-step" data-step="2">
                     <h3>Payment Method</h3>
                     <div class="payment-methods">
@@ -216,9 +214,7 @@ $stmt->close();
                     </div>
                 </div>
             </form>
-
                 </div>
-            
             <div class="checkout-right">
                 <h2>
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m15 11-1 9" /> <path d="m19 11-4-7" /> <path d="M2 11h20" /> <path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4" /> <path d="M4.5 15.5h15" /> <path d="m5 11 4-7" /> <path d="m9 11 1 9" /> </svg>
@@ -277,72 +273,6 @@ $stmt->close();
             </div>
         </div>
         <?php include "../includes/footer.php" ?>
-        <script>
-            document.getElementById('phone').addEventListener('input', function () {
-                this.value = this.value.replace(/[^0-9]/g, '');
-                if (this.value.length > 11) {
-                    this.value = this.value.slice(0, 11);
-                }
-            });
-
-            document.addEventListener("DOMContentLoaded", () => {
-                const steps = document.querySelectorAll(".checkout-step");
-                const nextBtns = document.querySelectorAll(".next-btn");
-                const prevBtns = document.querySelectorAll(".prev-btn");
-                const processSteps = document.querySelectorAll(".process-step");
-                let currentStep = 0;
-
-                function showStep(index) {
-                    steps.forEach((step, i) => {
-                        step.classList.toggle("step-active", i === index);
-                    });
-                    updateProcessStep(index);
-                }
-
-            function updateProcessStep(index) {
-                processSteps.forEach((step, i) => {
-                    if (i <= index) {
-                        step.classList.add("process-step-active");
-                        step.classList.remove("process-step");
-                    } else {
-                        step.classList.remove("process-step-active");
-                        step.classList.add("process-step");
-                    }
-                });
-            }
-
-                nextBtns.forEach(btn => {
-                    btn.addEventListener("click", () => {
-                        if (currentStep < steps.length - 1) {
-                            currentStep++;
-                            showStep(currentStep);
-                        }
-                    });
-                });
-
-                prevBtns.forEach(btn => {
-                    btn.addEventListener("click", () => {
-                        if (currentStep > 0) {
-                            currentStep--;
-                            showStep(currentStep);
-                        }
-                    });
-                });
-
-                const paymentOptions = document.querySelectorAll(".payment-option");
-                const paymentInput = document.getElementById("payment_method");
-                paymentOptions.forEach(option => {
-                    option.addEventListener("click", () => {
-                        paymentOptions.forEach(o => o.classList.remove("active"));
-                        option.classList.add("active");
-                        paymentInput.value = option.dataset.value;
-                    });
-                });
-
-                showStep(currentStep);
-            });
-        </script>
         <script src="check.js"></script>
-
     </body>
 </html>
