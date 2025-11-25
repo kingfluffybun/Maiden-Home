@@ -112,7 +112,6 @@ $stmt->close();
         <link rel="stylesheet" href="../css/scroll.css">
         <link rel="stylesheet" href="checkout.css" />
         <script src="/Maiden-Home/js/script.js"></script>
-        <script src="check.js"></script>
         <style>
             input[type=number]::-webkit-inner-spin-button,
             input[type=number]::-webkit-outer-spin-button {
@@ -250,5 +249,6 @@ $stmt->close();
             </div>
         </div>
         <?php include "../includes/footer.php" ?>
+        <script src="check.js"></script>
     </body>
 </html>
