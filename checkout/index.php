@@ -149,7 +149,7 @@ $stmt->close();
                     </div>
                     <div class="form-row">
                         <div class="input-container">
-                            <input type="number" id="phone" name="phone" placeholder=" " required maxlength="11">
+                            <input type="tel" id="phone" name="phone" placeholder=" " required maxlength="11" pattern="\d{11}">
                             <label for="phone">Phone Number</label>
                         </div>
                         <div class="input-container">
