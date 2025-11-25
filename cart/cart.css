@@ -30,7 +30,7 @@ body {
 }
 
 .product-container {
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
 }
 
@@ -255,9 +255,9 @@ body {
 
 .shop-guarantee-container {
     display: grid;
+    margin-top: 40px;
     grid-template-columns: 1fr 1fr;
-    padding: 0 8px;
-    gap: 24px;
+    gap: 32px;
 }
 
 .shop-guarantee-container p {
