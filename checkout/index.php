@@ -112,7 +112,6 @@ $stmt->close();
         <link rel="stylesheet" href="../css/scroll.css">
         <link rel="stylesheet" href="checkout.css" />
         <script src="/Maiden-Home/js/script.js"></script>
-        <script src="check.js"></script>
         <style>
             input[type=number]::-webkit-inner-spin-button,
             input[type=number]::-webkit-outer-spin-button {
@@ -149,7 +148,7 @@ $stmt->close();
                     </div>
                     <div class="form-row">
                         <div class="input-container">
-                            <input type="tel" id="phone" name="phone" placeholder=" " required maxlength="11" pattern="\d{11}">
+                            <input type="tel" id="phone" name="phone" placeholder=" " required maxlength="11">
                             <label for="phone">Phone Number</label>
                         </div>
                         <div class="input-container">
