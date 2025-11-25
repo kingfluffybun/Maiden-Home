@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
         }
 
         $sql_order = "INSERT INTO `order` (user_id, product_id, address_id, total_order, payment, payment_status, order_status, color, material, sizes) 
-                      VALUES (?, ?, ?, ?, ?, 'pending', 'order placed', ?, ?, ?)"; 
+                    VALUES (?, ?, ?, ?, ?, 'pending', 'order placed', ?, ?, ?)"; 
         $stmt_order = $conn_status->prepare($sql_order);
         
         foreach ($cart_items_for_order as $item) {
@@ -86,9 +86,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
     }
 }
 $sql2 = "SELECT c.cart_id, c.quantity, c.color, c.material, c.sizes, p.product_name, p.price, p.product_img, p.product_id
-          FROM addtocart c
-          JOIN products p ON c.product_id = p.product_id
-          WHERE c.user_id = ?";
+        FROM addtocart c
+        JOIN products p ON c.product_id = p.product_id
+        WHERE c.user_id = ?";
 $stmt = $conn_status->prepare($sql2);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
@@ -111,6 +111,7 @@ $stmt->close();
         <link rel="stylesheet" href="../css/footer.css">
         <link rel="stylesheet" href="../css/scroll.css">
         <link rel="stylesheet" href="checkout.css" />
+
         <style>
             input[type=number]::-webkit-inner-spin-button,
             input[type=number]::-webkit-outer-spin-button {
@@ -164,20 +165,26 @@ $stmt->close();
                     </div>
                     <div class="form-row wide">
                         <div class="input-container">
-                            <input type="text" id="region" name="region" placeholder=" " required>
-                            <label for="region">Region</label>
+                            <select id="region" name="region" required>
+                                <option value="">Select Region</option>
+                            </select>
                         </div>
                         <div class="input-container">
-                            <input type="text" id="province" name="province" placeholder=" " required>
-                            <label for="province">Province</label>
+                            <select id="province" name="province" required>
+                                <option value="">Select Province</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row wide">
+                        <div class="input-container">
+                            <select id="city" name="city" required>
+                                <option value="">Select City/Municipality</option>
+                            </select>
                         </div>
                         <div class="input-container">
-                            <input type="text" id="city" name="city" placeholder=" " required>
-                            <label for="city">City</label>
-                        </div>
-                        <div class="input-container">
-                            <input type="text" id="barangay" name="barangay" placeholder=" " required>
-                            <label for="barangay">Barangay</label>
+                            <select id="barangay" name="barangay" required>
+                                <option value="">Select Barangay</option>
+                            </select>
                         </div>
                     </div>
                     <button type="submit" name="place_order" class="checkout-btn">Proceed to Payment Method</button>
@@ -240,13 +247,6 @@ $stmt->close();
                 </div>
         </div>
         <?php include "../includes/footer.php" ?>
-        <script>
-        document.getElementById('phone').addEventListener('input', function () {
-            this.value = this.value.replace(/[^0-9]/g, '');
-            if (this.value.length > 11) {
-                this.value = this.value.slice(0, 11);
-            }
-        });
-        </script>
+        <script src="check.js"></script>
     </body>
 </html>

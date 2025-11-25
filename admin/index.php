@@ -90,7 +90,8 @@ if (isset($_POST['finish'])) {
     <title>Admin</title>
     <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="../css/all.css">
-    <link rel="stylesheet" href="/css/scroll.css">  
+    <link rel="stylesheet" href="/css/scroll.css">
+    <script src="script.js"></script>
 </head>
 <body>
 
