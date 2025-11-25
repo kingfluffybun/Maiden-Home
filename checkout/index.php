@@ -249,5 +249,6 @@ $stmt->close();
             </div>
         </div>
         <?php include "../includes/footer.php" ?>
+        <script src="check.js"></script>
     </body>
 </html>
