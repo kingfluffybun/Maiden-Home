@@ -65,40 +65,50 @@ $total = $subtotal;
 
     <div class="order-container">
         <div class="order-content">
-            <h1>Your Orders</h1>
-            <div class="order-card">
-                <div class="item-img">
-                    <img src="image" alt="Product Image" width="100">
-                </div>
-                <div class="item-details">
+            <h1 style="margin-bottom: 24px;">Your Orders</h1>
+            <div class="order-card-container">
+                <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #ccc; padding-bottom: 12px;">
                     <p><strong>Order ID:</strong> 1001</p>
-                    <p><strong>User ID:</strong> 501</p>
-                    <p><strong>Product ID:</strong> 301</p>
-                    <p><strong>Address ID:</strong> 201</p>
-                    <p><strong>Total Order:</strong> ₱15,000</p>
                     <p><strong>Payment:</strong> Card </p>
                     <p><strong>Payment Status:</strong> Paid</p>
                     <p><strong>Order Status:</strong> Shipped</p>
                     <p><strong>Order Date:</strong> 2025-11-25</p>
                 </div>
-            </div>
-            <div class="order-card">
-                <div class="item-img">
-                    <img src="image" alt="Product Image" width="100">
+                <div class="order-card">
+                    <div class="order-item">
+                        <div class="item-img">
+                        <img src="/Maiden-Home/assets/Products/Soft-Boucle-Corner-Sofabed-Angle-1.jpeg" alt="Product Image" width="100">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-details-header">
+                                <p>Soft-Boucle-Corner-Sofabed</p>
+                                <p class="price">₱68,149.00</p>
+                            </div>
+                            <div class="product-detail">
+                                <p><span style="font-weight: 500;">Color:</span> Natural</p> 
+                                <p><span style="font-weight: 500;">Material:</span> Soft Boucle</p>  
+                                <p><span style="font-weight: 500;">Size:</span> 91.5x247x121</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-item">
+                        <div class="item-img">
+                        <img src="/Maiden-Home/assets/Products/Soft-Boucle-Corner-Sofabed-Angle-1.jpeg" alt="Product Image" width="100">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-details-header">
+                                <p>Soft-Boucle-Corner-Sofabed</p>
+                                <p class="price">₱68,149.00</p>
+                            </div>
+                            <div class="product-detail">
+                                <p><span style="font-weight: 500;">Color:</span> Natural</p> 
+                                <p><span style="font-weight: 500;">Material:</span> Soft Boucle</p>  
+                                <p><span style="font-weight: 500;">Size:</span> 91.5x247x121</p>
+                            </div>
+                        </div>
+                    </div>        
                 </div>
-                <div class="item-details">
-                    <p><strong>Order ID:</strong> 1002</p>
-                    <p><strong>User ID:</strong> 502</p>
-                    <p><strong>Product ID:</strong> 302</p>
-                    <p><strong>Address ID:</strong> 202</p>
-                    <p><strong>Total Order:</strong> ₱17,000</p>
-                    <p><strong>Payment:</strong> E-Wallet </p>
-                    <p><strong>Payment Status:</strong> Pending</p>
-                    <p><strong>Order Status:</strong> Processing</p>
-                    <p><strong>Order Date:</strong> 2025-11-24</p>
-                </div>
             </div>
-
         </div>
 
         <div class="order-track">track</div>
