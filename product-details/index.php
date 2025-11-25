@@ -3,9 +3,10 @@ session_start();
 include "../includes/db.php";
 
 if (!isset($_SESSION['username']) && isset($_COOKIE['username'])) {
-    $_SESSION['username'] = $_COOKIE['username'];
-    $_SESSION['user_email'] = $_COOKIE['user_email'];
-    $_SESSION['role'] = $_COOKIE['role'];
+        $_SESSION['user_id'] = $_COOKIE['user_id'];
+        $_SESSION['username'] = $_COOKIE['username'];
+        $_SESSION['user_email'] = $_COOKIE['user_email'];
+        $_SESSION['role'] = $_COOKIE['role'];
 }
 
 $product_id = intval($_GET['product_id'] ?? $_POST['product_id'] ?? 0);

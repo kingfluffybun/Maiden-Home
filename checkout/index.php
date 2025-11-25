@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
             throw new Exception("Your cart is empty. Cannot place an order.");
         }
 
-         $sql_order = "INSERT INTO `order` (user_id, product_id, quantity, color, material, sizes, total_price, address_id, payment, payment_status, order_status) 
+        $sql_order = "INSERT INTO `order` (user_id, product_id, quantity, color, material, sizes, total_price, address_id, payment, payment_status, order_status) 
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'Pending', 'Order Placed')"; 
         $stmt_order = $conn_status->prepare($sql_order);
         
@@ -112,17 +112,7 @@ $stmt->close();
         <link rel="stylesheet" href="../css/scroll.css">
         <link rel="stylesheet" href="checkout.css" />
         <script src="/Maiden-Home/js/script.js"></script>
-        <style>
-            input[type=number]::-webkit-inner-spin-button,
-            input[type=number]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-            }
-            input[type=number] {
-            appearance: textfield;
-            -moz-appearance: textfield;
-            }
-        </style>
+        <!-- moved the style that was here to checkout.css -->
     </head>
     <body>
         <?php include("../includes/nav-bar.php"); ?>
@@ -169,11 +159,13 @@ $stmt->close();
                             <select id="region" name="region" required>
                                 <option value="">Select Region</option>
                             </select>
+                            <input type="hidden" id="region_name" name="region">
                         </div>
                         <div class="input-container">
                             <select id="province" name="province" required>
                                 <option value="">Select Province</option>
                             </select>
+                            <input type="hidden" id="province_name" name="province">
                         </div>
                     </div>
                     <div class="form-row wide">
@@ -181,11 +173,13 @@ $stmt->close();
                             <select id="city" name="city" required>
                                 <option value="">Select City/Municipality</option>
                             </select>
+                            <input type="hidden" id="city_name" name="city">
                         </div>
                         <div class="input-container">
                             <select id="barangay" name="barangay" required>
                                 <option value="">Select Barangay</option>
                             </select>
+                            <input type="hidden" id="barangay_name" name="barangay">
                         </div>
                     </div>
                     <div class="form-navigation">
