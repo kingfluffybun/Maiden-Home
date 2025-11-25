@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
             $material = $item['material'];
             $sizes = $item['sizes'];
             $total_price = $price * $quantity;
-            $stmt_order->bind_param("iiiisssss", $user_id, $product_id, $quantity, $color, $material, $sizes, $total_price, $address_id, $payment_method);
+            $stmt_order->bind_param("iiissssss", $user_id, $product_id, $quantity, $color, $material, $sizes, $total_price, $address_id, $payment_method);
             if (!$stmt_order->execute()) {
                 throw new Exception("Order Item Insertion Error: " . $stmt_order->error);
             }
