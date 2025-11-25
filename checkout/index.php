@@ -111,7 +111,7 @@ $stmt->close();
         <link rel="stylesheet" href="../css/footer.css">
         <link rel="stylesheet" href="../css/scroll.css">
         <link rel="stylesheet" href="checkout.css" />
-
+        
         <style>
             input[type=number]::-webkit-inner-spin-button,
             input[type=number]::-webkit-outer-spin-button {
