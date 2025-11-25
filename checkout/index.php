@@ -193,7 +193,7 @@ $stmt->close();
             
             <div class="checkout-right">
                 <h2>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m15 11-1 9" /> <path d="m19 11-4-7" /> <path d="M2 11h20" /> <path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4" /> <path d="M4.5 15.5h15" /> <path d="m5 11 4-7" /> <path d="m9 11 1 9" /> </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m15 11-1 9" /> <path d="m19 11-4-7" /> <path d="M2 11h20" /> <path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4" /> <path d="M4.5 15.5h15" /> <path d="m5 11 4-7" /> <path d="m9 11 1 9" /> </svg>
                     Order Summary
                 </h2>
                 <?php if (empty($cart_items)): ?>
@@ -227,24 +227,26 @@ $stmt->close();
                     <?php endforeach; ?>
                     <?php endif; ?>
                 </div>
-                <div class="summary-row">
-                    <span>Subtotal:</span>
-                    <span>₱
-                        <?php echo number_format($total, 2); ?>
-                    </span>
+                <div style="display: flex; flex-direction: column; gap: 12px; margin: 20px 0;">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span>₱
+                            <?php echo number_format($total, 2); ?>
+                        </span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping Fee:</span>
+                        <span>Free</span>
+                    </div>
+                    <hr style="margin: 0 20px; background-color: #e6e6e6;">
+                    <div class="summary-row total">
+                        <span>Total:</span>
+                        <span>₱
+                            <?php echo number_format($total, 2); ?>
+                        </span>
+                    </div>
                 </div>
-                <div class="summary-row">
-                    <span>Shipping Fee:</span>
-                    <span>Free</span>
-                </div>
-                <hr style="margin: 0 20px;">
-                <div class="summary-row total">
-                    <span>Total:</span>
-                    <span>₱
-                        <?php echo number_format($total, 2); ?>
-                    </span>
-                </div>
-                </div>
+            </div>
         </div>
         <?php include "../includes/footer.php" ?>
         <script src="check.js"></script>
