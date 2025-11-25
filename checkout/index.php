@@ -111,7 +111,8 @@ $stmt->close();
         <link rel="stylesheet" href="../css/footer.css">
         <link rel="stylesheet" href="../css/scroll.css">
         <link rel="stylesheet" href="checkout.css" />
-        
+        <script src="/Maiden-Home/js/script.js"></script>
+        <script src="check.js"></script>
         <style>
             input[type=number]::-webkit-inner-spin-button,
             input[type=number]::-webkit-outer-spin-button {
@@ -119,12 +120,12 @@ $stmt->close();
             margin: 0;
             }
             input[type=number] {
+            appearance: textfield;
             -moz-appearance: textfield;
             }
         </style>
     </head>
     <body>
-        
         <?php include("../includes/nav-bar.php"); ?>
         <div class="checkout-wrapper">
             <div class="checkout-left">
@@ -249,6 +250,5 @@ $stmt->close();
             </div>
         </div>
         <?php include "../includes/footer.php" ?>
-        <script src="check.js"></script>
     </body>
 </html>
