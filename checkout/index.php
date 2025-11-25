@@ -130,12 +130,14 @@ $stmt->close();
             <div class="checkout-left">
                 <h1>Checkout</h1>
                 <div class="process-step-container">
-                    <div class="process-step-active">Information</div>
+                    <div class="process-step">Information</div>
                     <div class="process-step">Payment Method</div>
                     <div class="process-step">Confirmation</div>
                 </div>
-                <h3>Contact Information</h3>
-                <form class="checkout-form" method="POST">
+
+                <form class="checkout-form" id="checkoutForm" method="POST">
+                <div class="checkout-step step-active" data-step="1">
+                    <h3>Contact Information</h3>
                     <div class="form-row">
                         <div class="input-container">
                             <input type="text" id="fname" name="fname" placeholder=" " required>
@@ -187,8 +189,34 @@ $stmt->close();
                             </select>
                         </div>
                     </div>
-                    <button type="submit" name="place_order" class="checkout-btn">Proceed to Payment Method</button>
-                </form>
+                    <div class="form-navigation">
+                        <button type="button" class="checkout-btn next-btn">Proceed to Payment Method</button>
+                    </div>
+                </div>
+
+                <div class="checkout-step" data-step="2">
+                    <h3>Payment Method</h3>
+                    <div class="payment-methods">
+                        <div class="payment-option" data-value="card"><span>Card</span></div>
+                        <div class="payment-option" data-value="e-wallet"><span>E-Wallet</span></div>
+                        <div class="payment-option" data-value="cod"><span>Cash on Delivery</span></div>
+                    </div>
+                    <input type="hidden" name="payment_method" id="payment_method" value="cod">
+                    <div class="form-navigation">
+                        <button type="button" class="checkout-btn prev-btn">Previous</button>
+                        <button type="button" class="checkout-btn next-btn">Proceed to Confirmation</button>
+                    </div>
+                </div>
+                <div class="checkout-step" data-step="3">
+                    <h3>Confirmation</h3>
+                    <p>Review mo to tapos click place order </p>
+                    <div class="form-navigation">
+                        <button type="button" class="checkout-btn prev-btn">Previous</button>
+                        <button type="submit" name="place_order" class="checkout-btn">Place Order</button>
+                    </div>
+                </div>
+            </form>
+
                 </div>
             
             <div class="checkout-right">
@@ -249,6 +277,72 @@ $stmt->close();
             </div>
         </div>
         <?php include "../includes/footer.php" ?>
+        <script>
+        document.getElementById('phone').addEventListener('input', function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+            if (this.value.length > 11) {
+                this.value = this.value.slice(0, 11);
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+    const steps = document.querySelectorAll(".checkout-step");
+    const nextBtns = document.querySelectorAll(".next-btn");
+    const prevBtns = document.querySelectorAll(".prev-btn");
+    const processSteps = document.querySelectorAll(".process-step");
+    let currentStep = 0;
+
+    function showStep(index) {
+        steps.forEach((step, i) => {
+            step.classList.toggle("step-active", i === index);
+        });
+        updateProcessStep(index);
+    }
+
+   function updateProcessStep(index) {
+    processSteps.forEach((step, i) => {
+        if (i <= index) {
+            step.classList.add("process-step-active");
+            step.classList.remove("process-step");
+        } else {
+            step.classList.remove("process-step-active");
+            step.classList.add("process-step");
+        }
+    });
+}
+
+    nextBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            if (currentStep < steps.length - 1) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        });
+    });
+
+    prevBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            if (currentStep > 0) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        });
+    });
+
+    const paymentOptions = document.querySelectorAll(".payment-option");
+    const paymentInput = document.getElementById("payment_method");
+    paymentOptions.forEach(option => {
+        option.addEventListener("click", () => {
+            paymentOptions.forEach(o => o.classList.remove("active"));
+            option.classList.add("active");
+            paymentInput.value = option.dataset.value;
+        });
+    });
+
+    showStep(currentStep);
+});
+        </script>
+=======
         <script src="check.js"></script>
     </body>
 </html>
