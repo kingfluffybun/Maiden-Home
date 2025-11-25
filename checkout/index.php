@@ -193,24 +193,43 @@ $stmt->close();
                     </div>
                 </div>
                 <div class="checkout-step" data-step="2">
-                    <h3>Payment Method</h3>
+                    <h3 style="display: flex; align-items: center; gap: 4px;">
+                        <button type="button" class="step-btn prev-btn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-left-icon lucide-move-left"><path d="M6 8L2 12L6 16"/><path d="M2 12H22"/></svg></button>
+                        Payment Method
+                    </h3>
                     <div class="payment-methods">
-                        <div class="payment-option" data-value="card"><span>Card</span></div>
-                        <div class="payment-option" data-value="e-wallet"><span>E-Wallet</span></div>
-                        <div class="payment-option" data-value="cod"><span>Cash on Delivery</span></div>
+                        <input type="radio" id="payment-card" name="payment-method" data-value="card" checked>
+                        <label for="payment-card" class="payment-options">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-credit-card-icon lucide-credit-card"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                            Card
+                        </label>
+
+                        <input type="radio" id="payment-e-wallet" name="payment-method" data-value="e-wallet">
+                        <label for="payment-e-wallet" class="payment-options">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wallet-icon lucide-wallet"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>
+                            E-Wallet
+                        </label>
+
+                        <input type="radio" id="payment-cod" name="payment-method" data-value="cod">
+                        <label for="payment-cod" class="payment-options">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hand-coins-icon lucide-hand-coins"><path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17"/><path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/><path d="m2 16 6 6"/><circle cx="16" cy="9" r="2.9"/><circle cx="6" cy="5" r="3"/></svg>
+                            Cash on Delivery
+                        </label>
                     </div>
                     <input type="hidden" name="payment_method" id="payment_method" value="cod">
                     <div class="form-navigation">
-                        <button type="button" class="checkout-btn prev-btn">Previous</button>
-                        <button type="button" class="checkout-btn next-btn">Proceed to Confirmation</button>
+                        <button type="submit" name="place_order" class="checkout-btn next-btn">Place Order</button>
                     </div>
                 </div>
                 <div class="checkout-step" data-step="3">
-                    <h3>Confirmation</h3>
-                    <p>Review mo to tapos click place order </p>
+                    <div class="order-check">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
+                        <h3 style="font-size: 32px; margin-bottom: 8px;">Order Successfully Placed</h3>
+                        <p>Your furniture will be delivered to you soon.</p>
+                    </div>
+                    <p></p>
                     <div class="form-navigation">
-                        <button type="button" class="checkout-btn prev-btn">Previous</button>
-                        <button type="submit" name="place_order" class="checkout-btn">Place Order</button>
+                        <a href="/Maiden-Home/product" class="checkout-btn" style="text-decoration: none;">Shop More</a>
                     </div>
                 </div>
             </form>

@@ -28,9 +28,8 @@ body {
 }
 
 .checkout-left h3 {
-    font-size: 17px;
-    margin-top: 20px;
-    margin-bottom: 14px;
+    font-size: 18px;
+    margin-top: 8px;
     font-weight: 500;
     color: #333;
 }
@@ -105,7 +104,7 @@ body {
     transition: all 0.25s ease;
 }
 
-.checkout-form label {
+.checkout-form label:not(.payment-methods *) {
     position: absolute;
     top: 14px;
     left: 16px;
@@ -123,12 +122,27 @@ body {
     box-shadow: 0 0 4px rgba(212, 123, 51, 0.2);
 }
 
-.checkout-form input:focus+label,
-.checkout-form input:not(:placeholder-shown)+label {
+.checkout-form input:not([type="radio"]):not([type="checkbox"]):focus + label, 
+.checkout-form input:not([type="radio"]):not([type="checkbox"]):not(:placeholder-shown) + label {
     top: -8px;
     font-size: 11.5px;
     color: #d47b33;
     left: 12px;
+}
+
+.order-check {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 80px 0;
+}
+
+.order-check svg {
+    width: 120px;
+    height: auto;
+    border-radius: 50%;
+    padding: 12px;
+    background-color: #38C173;
 }
 
 .checkout-right {
@@ -223,6 +237,8 @@ body {
 }
 
 .checkout-btn {
+    display: flex;
+    justify-content: center;
     margin-top: 14px;
     width: 100%;
     padding: 14px 0;
@@ -254,13 +270,16 @@ hr {
     margin-top: 12px;
 }
 
-.payment-option {
+.payment-methods input[type="radio"] {
+    display: none;
+}
+
+.payment-methods label.payment-options {
     flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
     gap: 8px;
-    padding: 14px 16px;
+    padding: 32px 16px;
     border: 2px solid #ccc;
     border-radius: 10px;
     cursor: pointer;
@@ -281,6 +300,12 @@ hr {
     font-weight: 500;
 }
 
+.payment-methods input[type="radio"]:checked + label.payment-options {
+    border-color: #d47b33; 
+    background-color: rgba(212, 123, 51, 0.05);
+    color: #d47b33;
+}
+
 .payment-option:hover,
 .payment-option.active {
     border-color: #d47b33;
@@ -295,6 +320,19 @@ hr {
 
 .checkout-step.step-active {
     display: flex;
+}
+
+.step-btn {
+    border: none;
+    background-color: transparent;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all ease 0.2s;
+}
+
+.step-btn:hover {
+    background-color: #ccc;
 }
 
 .payment-option.active {
