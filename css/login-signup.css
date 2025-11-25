@@ -233,9 +233,9 @@
 }
 
 ::view-transition-old(*) {
-    animation: 0.5s ease both slide-to;
+    animation: 1s ease both slide-to;
 }
 
 ::view-transition-new(*) {
-    animation: 0.5s ease both slide-from;
+    animation: 1s ease both slide-from;
 }

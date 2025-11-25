@@ -120,336 +120,347 @@ if (isset($_POST['finish'])) {
             Add Product
         </div>
     </div>
-    <div class="top-header"></div>
-    <div class="content">
-        <h1 style="margin-bottom: 16px;">Add Product</h1>
-        <div class="steps">
-            <div class="step active">Product Information</div>
-            <div class="step">Product Images</div>
-            <div class="step">Product Options</div>
-            <div class="step">Confirmation</div>
+    <div class="top-header">
+        <div class="header-text">
+            <h1>Add Product</h1>
         </div>
+    </div>
+    <div class="content">
+        <div class="form-container">
+            <div class="steps">
+                <div class="step active">Product Information</div>
+                <div class="divider"></div>
+                <div class="step">Product Images</div>
+                <div class="divider"></div>
+                <div class="step">Product Options</div>
+                <div class="divider"></div>
+                <div class="step">Confirmation</div>
+            </div>
+            <form id="addProductForm" method="POST" enctype="multipart/form-data">
 
-        <form id="addProductForm" method="POST" enctype="multipart/form-data">
+                <div class="page active" id="page1">
+                    <div class="form-area">
 
-            <div class="page active" id="page1">
-                <div class="form-area">
-
-                    <div class="input-group">
-                        <label>Product Name</label>
-                        <input type="text" name="product_name" placeholder="Enter product name" required>
-                    </div>
-
-                    <div class="input-row">
-                        <div class="input-group half">
-                            <label>Price</label>
-                            <input type="number" name="price" placeholder="₱" required>
+                        <div class="input-group">
+                            <label>Product Name</label>
+                            <input type="text" name="product_name" placeholder="Enter product name" required>
                         </div>
-                        <div class="input-group half">
-                            <label>Stock</label>
-                            <input type="number" name="stocks" placeholder="0" required>
-                        </div>
-                    </div>
 
-                    <div class="input-group">
-                        <label>Product Description</label>
-                        <textarea name="product_description" placeholder="Enter product description" required></textarea>
-                    </div>
+                        <div class="input-row">
+                            <div class="input-group half">
+                                <label>Price</label>
+                                <input type="number" name="price" placeholder="₱" required>
+                            </div>
+                            <div class="input-group half">
+                                <label>Stock</label>
+                                <input type="number" name="stocks" placeholder="0" required>
+                            </div>
+                        </div>
 
-                    <div class="input-row">
-                        <div class="input-group half">
-                            <label>Category ID</label>
-                            <select name="category_id" required>
-                                <option value="" disabled selected></option>
-                                <option value="1">1 - Storage & Organization</option>
-                                <option value="2">2- Beds & Mattresses</option>
-                                <option value="3">3 - Table & Chairs</option>
-                                <option value="4">4 - Sofas & Armchair</option>
-                                <option value="5">5 - Home Decorations</option>
-                                <option value="6">6 - Light Fixtures</option>
-                                <option value="7">7 - Office Furniture</option>
-                                <option value="8">8 - Outdoor Furniture</option>
-                            </select>
+                        <div class="input-group">
+                            <label>Product Description</label>
+                            <textarea name="product_description" placeholder="Enter product description" required></textarea>
                         </div>
-                        <div class="input-group half">
-                            <label>Sub-Category ID</label>
-                            <select name="sub_id" required>
-                                <option value="" disabled selected></option>
-                                <option value="1">1 - Bookcases & Shelving Units</option>
-                                <option value="2">2 - Chests of drawers & drawer units</option>
-                                <option value="3">3 - Cabinets & Cupboards</option>
-                                <option value="4">4 - TV & media furniture</option>
-                                <option value="5">5 - Wardrobes & Closet Systems</option>
-                                <option value="6">6 - Beds</option>
-                                <option value="7">7 - Beddings and Pillows</option>
-                                <option value="8">8 - Mattresses</option>
-                                <option value="9">9 - Under bed storage</option>
-                                <option value="10">10 - Headboards</option>
-                                <option value="11">11 - Dining Tables</option>
-                                <option value="12">12 - Dining Chairs & Benches</option>
-                                <option value="13">13 - Coffee & End Tables</option>
-                                <option value="14">14 - Bar & Counter Stools</option>
-                                <option value="15">15 - Specialty Seating</option>
-                                <option value="16">16 - Sofas & Couches</option>
-                                <option value="17">17 - Armchairs</option>
-                                <option value="18">18 - Sofabeds</option>
-                                <option value="19">19 - Ottomans, footstools & pouffes</option>
-                                <option value="20">20 - Coushions</option>
-                                <option value="21">21 - Wall Décor & Mirrors</option>
-                                <option value="22">22 - Vases, Planters & Greenery</option>
-                                <option value="23">23 - Decorative Accents</option>
-                                <option value="24">24 - Rugs & Floor Coverings</option>
-                                <option value="25">25 - Seasonal</option>
-                                <option value="26">26 - Ceiling Lights & Pendants</option>
-                                <option value="27">27 - Floor Lamps</option>
-                                <option value="28">28 - Table & Desk Lamps</option>
-                                <option value="29">29 - Wall & Vanity Lights</option>
-                                <option value="30">30 - Outdoor Lighting</option>
-                                <option value="31">31 - Desks & Work Surfaces</option>
-                                <option value="32">32 - Office & Task Chairs</option>
-                                <option value="33">33 - Home Office Sets</option>
-                                <option value="34">34 - Gaming Furniture</option>
-                                <option value="35">35 - Filing & Office Storage</option>
-                                <option value="36">36 - Outdoor Lounge & Seating</option>
-                                <option value="37">37 - Outdoor Dining & Bar Sets</option>
-                                <option value="38">38 - Umbrellas, Pergolas & Shade</option>
-                                <option value="39">39 - Outdoor Storage</option>
-                                <option value="40">40 - Outdoor Décor & Accents</option>
-                            </select>
+
+                        <div class="input-row">
+                            <div class="input-group half">
+                                <label>Category ID</label>
+                                <select name="category_id" required>
+                                    <option value="" disabled selected></option>
+                                    <option value="1">1 - Storage & Organization</option>
+                                    <option value="2">2- Beds & Mattresses</option>
+                                    <option value="3">3 - Table & Chairs</option>
+                                    <option value="4">4 - Sofas & Armchair</option>
+                                    <option value="5">5 - Home Decorations</option>
+                                    <option value="6">6 - Light Fixtures</option>
+                                    <option value="7">7 - Office Furniture</option>
+                                    <option value="8">8 - Outdoor Furniture</option>
+                                </select>
+                            </div>
+                            <div class="input-group half">
+                                <label>Sub-Category ID</label>
+                                <select name="sub_id" required>
+                                    <option value="" disabled selected></option>
+                                    <option value="1">1 - Bookcases & Shelving Units</option>
+                                    <option value="2">2 - Chests of drawers & drawer units</option>
+                                    <option value="3">3 - Cabinets & Cupboards</option>
+                                    <option value="4">4 - TV & media furniture</option>
+                                    <option value="5">5 - Wardrobes & Closet Systems</option>
+                                    <option value="6">6 - Beds</option>
+                                    <option value="7">7 - Beddings and Pillows</option>
+                                    <option value="8">8 - Mattresses</option>
+                                    <option value="9">9 - Under bed storage</option>
+                                    <option value="10">10 - Headboards</option>
+                                    <option value="11">11 - Dining Tables</option>
+                                    <option value="12">12 - Dining Chairs & Benches</option>
+                                    <option value="13">13 - Coffee & End Tables</option>
+                                    <option value="14">14 - Bar & Counter Stools</option>
+                                    <option value="15">15 - Specialty Seating</option>
+                                    <option value="16">16 - Sofas & Couches</option>
+                                    <option value="17">17 - Armchairs</option>
+                                    <option value="18">18 - Sofabeds</option>
+                                    <option value="19">19 - Ottomans, footstools & pouffes</option>
+                                    <option value="20">20 - Coushions</option>
+                                    <option value="21">21 - Wall Décor & Mirrors</option>
+                                    <option value="22">22 - Vases, Planters & Greenery</option>
+                                    <option value="23">23 - Decorative Accents</option>
+                                    <option value="24">24 - Rugs & Floor Coverings</option>
+                                    <option value="25">25 - Seasonal</option>
+                                    <option value="26">26 - Ceiling Lights & Pendants</option>
+                                    <option value="27">27 - Floor Lamps</option>
+                                    <option value="28">28 - Table & Desk Lamps</option>
+                                    <option value="29">29 - Wall & Vanity Lights</option>
+                                    <option value="30">30 - Outdoor Lighting</option>
+                                    <option value="31">31 - Desks & Work Surfaces</option>
+                                    <option value="32">32 - Office & Task Chairs</option>
+                                    <option value="33">33 - Home Office Sets</option>
+                                    <option value="34">34 - Gaming Furniture</option>
+                                    <option value="35">35 - Filing & Office Storage</option>
+                                    <option value="36">36 - Outdoor Lounge & Seating</option>
+                                    <option value="37">37 - Outdoor Dining & Bar Sets</option>
+                                    <option value="38">38 - Umbrellas, Pergolas & Shade</option>
+                                    <option value="39">39 - Outdoor Storage</option>
+                                    <option value="40">40 - Outdoor Décor & Accents</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="input-row">
-                        <div class="input-group half">
-                            <label>Category Name</label>
-                            <select name="category_name" required>
-                                <option value="" disabled selected></option>
-                                <option value="Storage & Organization">Storage & Organization</option>
-                                <option value="Beds & Mattresses">Beds & Mattresses</option>
-                                <option value="Table & Chairs">Table & Chairs</option>
-                                <option value="Sofas & Armchair">Sofas & Armchair</option>
-                                <option value="Home Decorations">Home Decorations</option>
-                                <option value="Light Fixtures">Light Fixtures</option>
-                                <option value="Office Furniture">Office Furniture</option>
-                                <option value="Outdoor Furniture">Outdoor Furniture</option>
-                            </select>
-                        </div>
-                        <div class="input-group half">
-                            <label>Sub-Category Name</label>
-                            <select name="sub_name" required>
-                                <option value="" disabled selected></option>
-                                <option value="Bookcases & Shelving Units">Bookcases & Shelving Units</option>
-                                <option value="Chests of drawers & drawer units">Chests of drawers & drawer units</option>
-                                <option value="Cabinets & Cupboards">Cabinets & Cupboards</option>
-                                <option value="TV & media furniture">TV & media furniture</option>
-                                <option value="Wardrobes & Closet Systems">Wardrobes & Closet Systems</option>
-                                <option value="Beds">Beds</option>
-                                <option value="Beddings and Pillows">Beddings and Pillows</option>
-                                <option value="Mattresses">Mattresses</option>
-                                <option value="Under bed storage">Under bed storage</option>
-                                <option value="Headboards">Headboards</option>
-                                <option value="Dining Tables">Dining Tables</option>
-                                <option value="Dining Chairs & Benches">Dining Chairs & Benches</option>
-                                <option value="Coffee & End Tables">Coffee & End Tables</option>
-                                <option value="Bar & Counter Stools">Bar & Counter Stools</option>
-                                <option value="Specialty Seating">Specialty Seating</option>
-                                <option value="Sofas & Couches">Sofas & Couches</option>
-                                <option value="Armchairs">Armchairs</option>
-                                <option value="Sofabeds">Sofabeds</option>
-                                <option value="Ottomans, footstools & pouffes">Ottomans, footstools & pouffes</option>
-                                <option value="Coushions">Coushions</option>
-                                <option value="Wall Décor & Mirrors">Wall Décor & Mirrors</option>
-                                <option value="Vases, Planters & Greenery">Vases, Planters & Greenery</option>
-                                <option value="Decorative Accents">Decorative Accents</option>
-                                <option value="Rugs & Floor Coverings">Rugs & Floor Coverings</option>
-                                <option value="Seasonal">Seasonal</option>
-                                <option value="Ceiling Lights & Pendants">Ceiling Lights & Pendants</option>
-                                <option value="Floor Lamps">Floor Lamps</option>
-                                <option value="Table & Desk Lamps">Table & Desk Lamps</option>
-                                <option value="Wall & Vanity Lights">Wall & Vanity Lights</option>
-                                <option value="Outdoor Lighting">Outdoor Lighting</option>
-                                <option value="Desks & Work Surfaces">Desks & Work Surfaces</option>
-                                <option value="Office & Task Chairs">Office & Task Chairs</option>
-                                <option value="Home Office Sets">Home Office Sets</option>
-                                <option value="Gaming Furniture">Gaming Furniture</option>
-                                <option value="Filing & Office Storage">Filing & Office Storage</option>
-                                <option value="Outdoor Lounge & Seating">Outdoor Lounge & Seating</option>
-                                <option value="Outdoor Dining & Bar Sets">Outdoor Dining & Bar Sets</option>
-                                <option value="Umbrellas, Pergolas & Shade">Umbrellas, Pergolas & Shade</option>
-                                <option value="Outdoor Storage">Outdoor Storage</option>
-                                <option value="Outdoor Décor & Accents">Outdoor Décor & Accents</option>
-                            </select>
+                        <div class="input-row">
+                            <div class="input-group half">
+                                <label>Category Name</label>
+                                <select name="category_name" required>
+                                    <option value="" disabled selected></option>
+                                    <option value="Storage & Organization">Storage & Organization</option>
+                                    <option value="Beds & Mattresses">Beds & Mattresses</option>
+                                    <option value="Table & Chairs">Table & Chairs</option>
+                                    <option value="Sofas & Armchair">Sofas & Armchair</option>
+                                    <option value="Home Decorations">Home Decorations</option>
+                                    <option value="Light Fixtures">Light Fixtures</option>
+                                    <option value="Office Furniture">Office Furniture</option>
+                                    <option value="Outdoor Furniture">Outdoor Furniture</option>
+                                </select>
+                            </div>
+                            <div class="input-group half">
+                                <label>Sub-Category Name</label>
+                                <select name="sub_name" required>
+                                    <option value="" disabled selected></option>
+                                    <option value="Bookcases & Shelving Units">Bookcases & Shelving Units</option>
+                                    <option value="Chests of drawers & drawer units">Chests of drawers & drawer units</option>
+                                    <option value="Cabinets & Cupboards">Cabinets & Cupboards</option>
+                                    <option value="TV & media furniture">TV & media furniture</option>
+                                    <option value="Wardrobes & Closet Systems">Wardrobes & Closet Systems</option>
+                                    <option value="Beds">Beds</option>
+                                    <option value="Beddings and Pillows">Beddings and Pillows</option>
+                                    <option value="Mattresses">Mattresses</option>
+                                    <option value="Under bed storage">Under bed storage</option>
+                                    <option value="Headboards">Headboards</option>
+                                    <option value="Dining Tables">Dining Tables</option>
+                                    <option value="Dining Chairs & Benches">Dining Chairs & Benches</option>
+                                    <option value="Coffee & End Tables">Coffee & End Tables</option>
+                                    <option value="Bar & Counter Stools">Bar & Counter Stools</option>
+                                    <option value="Specialty Seating">Specialty Seating</option>
+                                    <option value="Sofas & Couches">Sofas & Couches</option>
+                                    <option value="Armchairs">Armchairs</option>
+                                    <option value="Sofabeds">Sofabeds</option>
+                                    <option value="Ottomans, footstools & pouffes">Ottomans, footstools & pouffes</option>
+                                    <option value="Coushions">Coushions</option>
+                                    <option value="Wall Décor & Mirrors">Wall Décor & Mirrors</option>
+                                    <option value="Vases, Planters & Greenery">Vases, Planters & Greenery</option>
+                                    <option value="Decorative Accents">Decorative Accents</option>
+                                    <option value="Rugs & Floor Coverings">Rugs & Floor Coverings</option>
+                                    <option value="Seasonal">Seasonal</option>
+                                    <option value="Ceiling Lights & Pendants">Ceiling Lights & Pendants</option>
+                                    <option value="Floor Lamps">Floor Lamps</option>
+                                    <option value="Table & Desk Lamps">Table & Desk Lamps</option>
+                                    <option value="Wall & Vanity Lights">Wall & Vanity Lights</option>
+                                    <option value="Outdoor Lighting">Outdoor Lighting</option>
+                                    <option value="Desks & Work Surfaces">Desks & Work Surfaces</option>
+                                    <option value="Office & Task Chairs">Office & Task Chairs</option>
+                                    <option value="Home Office Sets">Home Office Sets</option>
+                                    <option value="Gaming Furniture">Gaming Furniture</option>
+                                    <option value="Filing & Office Storage">Filing & Office Storage</option>
+                                    <option value="Outdoor Lounge & Seating">Outdoor Lounge & Seating</option>
+                                    <option value="Outdoor Dining & Bar Sets">Outdoor Dining & Bar Sets</option>
+                                    <option value="Umbrellas, Pergolas & Shade">Umbrellas, Pergolas & Shade</option>
+                                    <option value="Outdoor Storage">Outdoor Storage</option>
+                                    <option value="Outdoor Décor & Accents">Outdoor Décor & Accents</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="page" id="page2">
-                <div class="form-area">
+                <div class="page" id="page2">
+                    <div class="form-area">
 
-                    <div class="input-group">
-                        <label>Main Product Image</label>
-                        <input type="file" name="product_img" required>
-                    </div>
-
-                    <div class="input-group">
-                        <label>Hover Image</label>
-                        <input type="file" name="product_img_hover" required>
-                    </div>
-
-                    <div class="input-row">
-                        <div class="input-group half">
-                            <label>Angle 1</label>
-                            <input type="file" name="product_img2">
+                        <div class="input-group">
+                            <label>Main Product Image</label>
+                            <input type="file" name="product_img" required>
                         </div>
-                        <div class="input-group half">
-                            <label>Angle 2</label>
-                            <input type="file" name="product_img3">
-                        </div>
-                    </div>
 
-                    <div class="input-row">
-                        <div class="input-group half">
-                            <label>Angle 3</label>
-                            <input type="file" name="product_img4">
+                        <div class="input-group">
+                            <label>Hover Image</label>
+                            <input type="file" name="product_img_hover" required>
                         </div>
-                        <div class="input-group half">
-                            <label>Angle 4</label>
-                            <input type="file" name="product_img5">
-                        </div>
-                    </div>
 
+                        <div class="input-row">
+                            <div class="input-group half">
+                                <label>Angle 1</label>
+                                <input type="file" name="product_img2">
+                            </div>
+                            <div class="input-group half">
+                                <label>Angle 2</label>
+                                <input type="file" name="product_img3">
+                            </div>
+                        </div>
+
+                        <div class="input-row">
+                            <div class="input-group half">
+                                <label>Angle 3</label>
+                                <input type="file" name="product_img4">
+                            </div>
+                            <div class="input-group half">
+                                <label>Angle 4</label>
+                                <input type="file" name="product_img5">
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
 
-            <div class="page" id="page3">
-                <div class="form-area">
-
-                    <h3 style="margin-bottom: 8px;">Sizes</h3>
-                    <div class="input-row">
-                        <input type="text" class="half" name="size1" placeholder="Size 1">
-                        <input type="text" class="half" name="size2" placeholder="Size 2">
-                        <input type="text" class="half" name="size3" placeholder="Size 3">
-                    </div>
-                    <br>
-                    <h3 style="margin-bottom: 8px;">Materials</h3>
-                    <div class="input-row">
-                        <input type="text" class="half" name="mat1" placeholder="Material 1">
-                        <input type="text" class="half" name="mat2" placeholder="Material 2">
-                        <input type="text" class="half" name="mat3" placeholder="Material 3">
-                    </div>
-                    <br>
-                    <h3 style="margin-bottom: 8px;">Colors</h3>
-                    <div class="input-row">
-                        <div class="input-group half">
-                            <label>Color Name 1</label>
-                            <input type="text" name="color1" placeholder="Color name">
-                            <br>
-                            <label>Color Image 1</label>
-                            <input type="file" name="color1_img">
+                <div class="page" id="page3">
+                    <div class="form-area" style="display: flex; flex-direction: column; gap: 24px;">
+                        <div>
+                            <h3 style="margin-bottom: 8px;">Sizes</h3>
+                            <div class="input-row">
+                                <input type="text" class="half" name="size1" placeholder="Size 1">
+                                <input type="text" class="half" name="size2" placeholder="Size 2">
+                                <input type="text" class="half" name="size3" placeholder="Size 3">
+                            </div>
                         </div>
-                        <div class="input-group half">
-                            <label>Color Name 2</label>
-                            <input type="text" name="color2" placeholder="Color name">
-                            <br>
-                            <label>Color Image 2</label>
-                            <input type="file" name="color2_img">
+
+                        <div>
+                            <h3 style="margin-bottom: 8px;">Materials</h3>
+                            <div class="input-row">
+                                <input type="text" class="half" name="mat1" placeholder="Material 1">
+                                <input type="text" class="half" name="mat2" placeholder="Material 2">
+                                <input type="text" class="half" name="mat3" placeholder="Material 3">
+                            </div>
                         </div>
-                        <div class="input-group half">
-                            <label>Color Name 3</label>
-                            <input type="text" name="color3" placeholder="Color name">
-                            <br>
-                            <label>Color Image 3</label>
-                            <input type="file" name="color3_img">
+
+                        <div>
+                            <h3 style="margin-bottom: 8px;">Colors</h3>
+                            <div class="input-row">
+                                <div class="input-group half">
+                                    <label>Color Name 1</label>
+                                    <input type="text" name="color1" placeholder="Color name">
+                                    <br>
+                                    <label>Color Image 1</label>
+                                    <input type="file" name="color1_img">
+                                </div>
+                                <div class="input-group half">
+                                    <label>Color Name 2</label>
+                                    <input type="text" name="color2" placeholder="Color name">
+                                    <br>
+                                    <label>Color Image 2</label>
+                                    <input type="file" name="color2_img">
+                                </div>
+                                <div class="input-group half">
+                                    <label>Color Name 3</label>
+                                    <input type="text" name="color3" placeholder="Color name">
+                                    <br>
+                                    <label>Color Image 3</label>
+                                    <input type="file" name="color3_img">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="page" id="page4">
-                <h2>Review Before Confirm</h2>
-                <br>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px;">
-                    <div class="review-card">
-                        <h3>Basic Information</h3>
-                        <p><strong>Name:</strong> <span id="review_name"></span></p>
-                        <p><strong>Price:</strong> ₱<span id="review_price"></span></p>
-                        <p><strong>Stocks:</strong> <span id="review_stocks"></span></p>
-                        <p><strong>Category:</strong> <span id="review_category"></span></p>
-                        <p><strong>Sub-Category:</strong> <span id="review_sub"></span></p>
-                        <p><strong>Description:</strong> <span id="review_desc"></span></p>
-                    </div>
-
-                    <div class="review-card">
-                        <h3>Sizes</h3>
-                        <ul>
-                            <li id="review_size1"></li>
-                            <li id="review_size2"></li>
-                            <li id="review_size3"></li>
-                        </ul>
-
-                        <h3>Materials</h3>
-                        <ul>
-                            <li id="review_mat1"></li>
-                            <li id="review_mat2"></li>
-                            <li id="review_mat3"></li>
-                        </ul>
                     </div>
                 </div>
                 
-                <div class="review-card">
-                    <h3>Product Images</h3>
-                    <div class="img-preview-wrapper">
-                        <div class="image-card">
-                            <img id="prev_main" class="preview-img">
-                            <p>Main Product Image</p>
+                <div class="page" id="page4">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px;">
+                        <div class="review-card">
+                            <h3>Basic Information</h3>
+                            <div style="line-height: 1.5;">
+                                <p><strong>Name:</strong> <span id="review_name"></span></p>
+                                <p><strong>Price:</strong> ₱<span id="review_price"></span></p>
+                                <p><strong>Stocks:</strong> <span id="review_stocks"></span></p>
+                                <p><strong>Category:</strong> <span id="review_category"></span></p>
+                                <p><strong>Sub-Category:</strong> <span id="review_sub"></span></p>
+                                <p><strong>Description:</strong> <span id="review_desc"></span></p>
+                            </div>
                         </div>
-                        <div class="image-card">
-                            <img id="prev_hover" class="preview-img">
-                            <p>Hover Image</p>
-                        </div>
-                        <div class="image-card">
-                            <img id="prev_img2" class="preview-img">
-                            <p>Angle 1</p>
-                        </div>
-                        <div class="image-card">
-                            <img id="prev_img3" class="preview-img">
-                            <p>Angle 2</p>
-                        </div>
-                        <div class="image-card">
-                            <img id="prev_img4" class="preview-img">
-                            <p>Angle 3</p>
-                        </div>
-                        <div class="image-card">
-                            <img id="prev_img5" class="preview-img">
-                            <p>Angle 4</p>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="review-card">
-                    <h3>Color Variants</h3>
-                    <div class="img-preview-wrapper">
-                        <div class="color-card">
-                            <img id="prev_color1" class="preview-img">
-                            <p id="review_color1"></p>
+                        <div class="review-card">
+                            <h3>Sizes</h3>
+                            <ul>
+                                <li id="review_size1"></li>
+                                <li id="review_size2"></li>
+                                <li id="review_size3"></li>
+                            </ul>
+
+                            <h3>Materials</h3>
+                            <ul>
+                                <li id="review_mat1"></li>
+                                <li id="review_mat2"></li>
+                                <li id="review_mat3"></li>
+                            </ul>
                         </div>
-                        <div class="color-card">
-                            <img id="prev_color2" class="preview-img">
-                            <p id="review_color2"></p>
+                    </div>
+                    
+                    <div class="review-card">
+                        <h3>Product Images</h3>
+                        <div class="img-preview-wrapper">
+                            <div class="image-card">
+                                <img id="prev_main" class="preview-img">
+                                <p>Main Product Image</p>
+                            </div>
+                            <div class="image-card">
+                                <img id="prev_hover" class="preview-img">
+                                <p>Hover Image</p>
+                            </div>
+                            <div class="image-card">
+                                <img id="prev_img2" class="preview-img">
+                                <p>Angle 1</p>
+                            </div>
+                            <div class="image-card">
+                                <img id="prev_img3" class="preview-img">
+                                <p>Angle 2</p>
+                            </div>
+                            <div class="image-card">
+                                <img id="prev_img4" class="preview-img">
+                                <p>Angle 3</p>
+                            </div>
+                            <div class="image-card">
+                                <img id="prev_img5" class="preview-img">
+                                <p>Angle 4</p>
+                            </div>
                         </div>
-                        <div class="color-card">
-                            <img id="prev_color3" class="preview-img">
-                            <p id="review_color3"></p>
+                    </div>
+
+                    <div class="review-card">
+                        <h3>Color Variants</h3>
+                        <div class="img-preview-wrapper">
+                            <div class="color-card">
+                                <img id="prev_color1" class="preview-img">
+                                <p id="review_color1"></p>
+                            </div>
+                            <div class="color-card">
+                                <img id="prev_color2" class="preview-img">
+                                <p id="review_color2"></p>
+                            </div>
+                            <div class="color-card">
+                                <img id="prev_color3" class="preview-img">
+                                <p id="review_color3"></p>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </form>
+            <div class="nav-buttons">
+                <button type="button" class="back-btn" id="backBtn">Back</button>
+                <button type="button" class="next-btn" id="nextBtn">Next</button>
+                <button type="submit" name="finish" class="next-btn" id="subBtn">Confirm & Add Product</button>
             </div>
-        </form>
-        <div class="nav-buttons">
-            <button type="button" class="back-btn" id="backBtn">Back</button>
-            <button type="button" class="next-btn" id="nextBtn">Next</button>
-            <button type="submit" name="finish" class="next-btn" id="subBtn">Confirm & Add Product</button>
         </div>
     </div>
 </div>

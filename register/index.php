@@ -85,7 +85,7 @@ function userAndEmailAlert()
         <style>
             @keyframes slide-to {
             to {
-                transform: translateX(100%);
+                transform: translateX(0%);
             }
             }
 

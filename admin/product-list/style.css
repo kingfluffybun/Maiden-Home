@@ -1,12 +1,24 @@
-.del-btn {
+.del-btn, .cancel-btn {
     background: #fff;
-    border: 1px solid #dc2f31;
-    color: #dc2f31;
     padding: 10px 20px;
     border-radius: 25px;
     cursor: pointer;
     font-weight: 500;
     transition: 0.3s;
+}
+
+.cancel-btn {
+    border: 1px solid #D47B33;
+    color: #D47B33;
+}
+
+.cancel-btn:hover {
+    background: #F7E0CD;
+}
+
+.del-btn {
+    border: 1px solid #dc2f31;
+    color: #dc2f31;
 }
 .del-btn:hover {
     background: #f3a9a9;

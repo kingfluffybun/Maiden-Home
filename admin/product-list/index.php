@@ -84,17 +84,31 @@ if(isset($_POST['delete-selected']) && isset($_POST['selected_products'])) {
             Add Product
         </div></a>
     </div>
+    <div class="top-header">
+        <div class="header-text">
+            <h1>Product List</h1>
+        </div>
+    </div>
     <div class="content">
-        <h1 style="margin-bottom: 16px;">Product List</h1>
-        
         <div class="info">
             <form method="POST" action="">
-                <button type="submit" name="delete-selected" class="del-btn" id="delete-btn" style="display:none" onclick="return confirm('Are you sure you want to delete selected items?')">
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-                        <p>Delete</p>
+                <div id="selection" style="display:none">
+                    <div style="display: flex; align-items: center; gap: 24px;">
+                        <p>Products Selected</p>
+                        <button type="submit" name="delete-selected" class="cancel-btn" id="delete-btn" onclick="deselectAll()">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                                <p>Unselect All</p>
+                            </div>
+                        </button>
+                        <button type="submit" name="delete-selected" class="del-btn" id="delete-btn" onclick="return confirm('Are you sure you want to delete selected items?')">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                                <p>Delete</p>
+                            </div>
+                        </button>
                     </div>
-                </button>
+                </div>
                 <table>
                     <tr>
                         <th width="5%">Select</th>
@@ -143,14 +157,34 @@ if(isset($_POST['delete-selected']) && isset($_POST['selected_products'])) {
 
 <script>
 const checkboxes = document.querySelectorAll("input[name='selected_products[]']");
-const deleteBtn = document.getElementById("delete-btn");
+const selectionDiv = document.getElementById("selection");
+const countDisplay = selectionDiv.querySelector('p');
 
 checkboxes.forEach(cb => {
-    cb.addEventListener('change', () => {
+    cb.addEventListener('change', updateSelectionCount, () => {
         const anyChecked = Array.from(checkboxes).some(chk => chk.checked);
-        deleteBtn.style.display = anyChecked ? 'inline-block' : 'none';
+        selectionDiv.style.display = anyChecked ? 'inline-block' : 'none';
     });
 });
+
+function updateSelectionCount() {
+        const checkedBoxes = Array.from(checkboxes).filter(chk => chk.checked);
+        const count = checkedBoxes.length;
+
+        if (count > 0) {
+            countDisplay.textContent = `${count} Product${count > 1 ? 's' : ''} Selected`;
+            selectionDiv.style.display = 'flex';
+        } else {
+            selectionDiv.style.display = 'none';
+        }
+    }
+
+function deselectAll() {
+        checkboxes.forEach(cb => {
+            cb.checked = false;
+        });
+        updateSelectionCount();
+    }
 </script>
 
 
