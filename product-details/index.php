@@ -2,7 +2,6 @@
 session_start();
 include "../includes/db.php";
 
-//stay logged in, if nag close sila ng browser or site
 if (!isset($_SESSION['username']) && isset($_COOKIE['username'])) {
     $_SESSION['username'] = $_COOKIE['username'];
     $_SESSION['user_email'] = $_COOKIE['user_email'];
@@ -17,23 +16,14 @@ if ($product_id <= 0) {
 
 $current_product_id = $_GET['product_id'] ?? null;
 
-// 2. CHECK IF PRODUCT HAS CHANGED (OR IS NEW)
-// If the counter isn't set, OR the product ID has changed
 if (!isset($_SESSION['counter']) || !isset($_SESSION['product_id']) || $_SESSION['product_id'] != $current_product_id) {
-    
-    // Reset the counter to 1
     $_SESSION['counter'] = 1;
-    
-    // Store this product ID as the "current" one
     $_SESSION['product_id'] = $current_product_id;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
-    
-    // Ensure the post action is for the current product
-    // This prevents mix-ups if a user has multiple tabs open
     if (isset($_POST['product_id']) && $_POST['product_id'] == $current_product_id) {
-    
+
         if ($_POST['action'] === 'add') {
             $_SESSION['counter']++;
         } elseif ($_POST['action'] === 'subtract') {
@@ -43,39 +33,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             }
         }
     }
-    
-    // Redirect to prevent form resubmission
     header("Location: " . $_SERVER['REQUEST_URI']);
     exit;
 }
 
-//started product_details here
-$quantity = intval($_SESSION['counter'] ?? 1); 
-$color = $_POST['color'] ?? '';
-$material = $_POST['material'] ?? ''; 
-$sizes = $_POST['size'] ?? ''; 
+$quantity = intval($_SESSION['counter'] ?? 1);
+$stmt = $conn->prepare("SELECT * FROM products WHERE product_id = ?");
+$stmt->bind_param("i", $product_id);
+$stmt->execute();
+$result = $stmt->get_result();
 
-// Only run this when Add to Cart button is pressed
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
-    //Need nila mag log in para mapunta sa cart
-    if (empty($_SESSION['user_id'])) {
-    header("Location: ../login");
+if ($result->num_rows === 0) {
+    echo "<p>Product not found.</p>";
     exit;
+}
+
+$product = $result->fetch_assoc();
+$color    = $_POST['color']    ?? $product['color1'];
+$material = $_POST['material'] ?? $product['mat1'];
+$sizes    = $_POST['size']     ?? $product['size1'];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
+
+    if (empty($_SESSION['user_id'])) {
+        header("Location: ../login");
+        exit;
     }
 
-    // Get product stock
     $stmt_check = $conn->prepare("SELECT stocks FROM products WHERE product_id = ?");
     $stmt_check->bind_param("i", $product_id);
     $stmt_check->execute();
     $result_check = $stmt_check->get_result();
+
     if (!$result_check || $result_check->num_rows === 0) {
         die("Error: Product not found.");
     }
+
     $products = $result_check->fetch_assoc();
     $stock = (int)$products['stocks'];
     $stmt_check->close();
 
-    // Get customer ID
     $user_identifier = $_SESSION['user_id'];
     $stmt_get_id = $conn->prepare("SELECT user_id FROM user WHERE user_id = ?");
     $stmt_get_id->bind_param("s", $user_identifier);
@@ -84,8 +81,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
     $row = $result_id->fetch_assoc();
     $user_id = (int)$row['user_id'];
     $stmt_get_id->close();
-
-    // Check if product is already in cart
     $stmt_cart = $conn->prepare("SELECT cart_id, quantity 
         FROM addtocart 
         WHERE user_id = ? 
@@ -103,33 +98,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
         $existing_quantity = (int)($row_cart['quantity'] ?? 0);
         $new_quantity = $existing_quantity + $quantity;
         if ($new_quantity > $stock) die("Error: Quantity exceeds stock.");
-
         $stmt_update = $conn->prepare("UPDATE addtocart SET quantity = ? WHERE cart_id = ?");
         $stmt_update->bind_param("ii", $new_quantity, $cart_id);
         $stmt_update->execute();
         $stmt_update->close();
     } else {
         if ($quantity > $stock) die("Error: Quantity exceeds stock.");
-
-        $stmt_insert = $conn->prepare("INSERT INTO addtocart (user_id, product_id, quantity, color, material, sizes) 
+        $stmt_insert = $conn->prepare("INSERT INTO addtocart (user_id, product_id, quantity, color, material, sizes)
             VALUES (?, ?, ?, ?, ?, ?)");
         $stmt_insert->bind_param("iissss", $user_id, $product_id, $quantity, $color, $material, $sizes);
         $stmt_insert->execute();
         $stmt_insert->close();
     }
-
     $stmt_cart->close();
 }
-
-$stmt = $conn->prepare("SELECT * FROM products WHERE product_id = ?");
-$stmt->bind_param("i", $product_id);
-$stmt->execute();
-$result = $stmt->get_result();
-if ($result->num_rows === 0) {
-    echo "<p>Product not found.</p>";
-    exit;
-}
-$product = $result->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
