@@ -3,7 +3,6 @@ session_start();
     if (!isset($_SESSION['username']) && isset($_COOKIE['username'])) {
         $_SESSION['username'] = $_COOKIE['username'];
         $_SESSION['user_email'] = $_COOKIE['user_email'];
-        $_SESSION['role'] = strtolower(trim($_COOKIE['role']));
     }
 ?>
 
