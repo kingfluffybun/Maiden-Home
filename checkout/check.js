@@ -80,80 +80,98 @@ fetch("https://psgc.gitlab.io/api/regions")
 
     // Region change
     regionSelect.addEventListener("change", () => {
-    const regionCode = regionSelect.value;
+        const selectedRegion = regionSelect.options[regionSelect.selectedIndex].text;
+        document.getElementById("region_name").value = selectedRegion;
 
-    citySelect.innerHTML = '<option value="">Select City/Municipality</option>';
-    barangaySelect.innerHTML = '<option value="">Select Barangay</option>';
-    provinceSelect.innerHTML = '<option value="">Select Province</option>';
+        const regionCode = regionSelect.value;
 
-    if (!regionCode) return;
+        citySelect.innerHTML = '<option value="">Select City/Municipality</option>';
+        barangaySelect.innerHTML = '<option value="">Select Barangay</option>';
+        provinceSelect.innerHTML = '<option value="">Select Province</option>';
 
-    // NCR (13)
-    if (regionCode === "130000000") {
-        provinceSelect.disabled = true;
-        provinceSelect.innerHTML = '<option value="Metro Manila">Metro Manila</option>';
-        provinceSelect.classList.add("disabled");
-        fetch(`https://psgc.gitlab.io/api/regions/${regionCode}/cities`)
-            .then(res => res.json())
-            .then(data => {
-                data.forEach(city => {
-                const option = document.createElement("option");
-                option.value = city.code;
-                option.textContent = city.name;
-                citySelect.appendChild(option);
-            });
-        });
-    } else {
-        provinceSelect.disabled = false; // Enable province select
-        fetch(`https://psgc.gitlab.io/api/regions/${regionCode}/provinces`)
-        .then(res => res.json())
-        .then(data => {
-            data.forEach(province => {
-            const option = document.createElement("option");
-            option.value = province.code;
-            option.textContent = province.name;
-            provinceSelect.appendChild(option);
-            });
-        });
-    }
+        if (!regionCode) return;
+
+        // NCR (13)
+        if (regionCode === "130000000") {
+            provinceSelect.disabled = true;
+
+            provinceSelect.innerHTML = '<option value="Metro Manila">Metro Manila</option>';
+            document.getElementById("province_name").value = "Metro Manila";
+
+            fetch(`https://psgc.gitlab.io/api/regions/${regionCode}/cities`)
+                .then(res => res.json())
+                .then(data => {
+                    data.forEach(city => {
+                        const option = document.createElement("option");
+                        option.value = city.code;
+                        option.textContent = city.name;
+                        citySelect.appendChild(option);
+                    });
+                });
+        } else {
+            provinceSelect.disabled = false; // Enable province select
+            fetch(`https://psgc.gitlab.io/api/regions/${regionCode}/provinces`)
+                .then(res => res.json())
+                .then(data => {
+                    data.forEach(province => {
+                        const option = document.createElement("option");
+                        option.value = province.code;
+                        option.textContent = province.name;
+                        provinceSelect.appendChild(option);
+                    });
+                });
+        }
     });
 
     // Province change
     provinceSelect.addEventListener("change", () => {
-    const provinceCode = provinceSelect.value;
-    citySelect.innerHTML = '<option value="">Select City/Municipality</option>';
-    barangaySelect.innerHTML = '<option value="">Select Barangay</option>';
+        const selectedProvince = provinceSelect.options[provinceSelect.selectedIndex].text;
+        document.getElementById("province_name").value = selectedProvince;
 
-    if (!provinceCode) return;
+        const provinceCode = provinceSelect.value;
 
-    fetch(`https://psgc.gitlab.io/api/provinces/${provinceCode}/cities`)
-        .then(res => res.json())
-        .then(data => {
-        data.forEach(city => {
-            const option = document.createElement("option");
-            option.value = city.code;
-            option.textContent = city.name;
-            citySelect.appendChild(option);
-        });
-        });
+        citySelect.innerHTML = '<option value="">Select City/Municipality</option>';
+        barangaySelect.innerHTML = '<option value="">Select Barangay</option>';
+
+        if (!provinceCode) return;
+
+        fetch(`https://psgc.gitlab.io/api/provinces/${provinceCode}/cities`)
+            .then(res => res.json())
+            .then(data => {
+                data.forEach(city => {
+                    const option = document.createElement("option");
+                    option.value = city.code;
+                    option.textContent = city.name;
+                    citySelect.appendChild(option);
+                });
+            });
     });
 
     // City change
     citySelect.addEventListener("change", () => {
-    const cityCode = citySelect.value;
-    barangaySelect.innerHTML = '<option value="">Select Barangay</option>';
+        const selectedCity = citySelect.options[citySelect.selectedIndex].text;
+        document.getElementById("city_name").value = selectedCity;
 
-    if (!cityCode) return;
+        const cityCode = citySelect.value;
 
-    fetch(`https://psgc.gitlab.io/api/cities/${cityCode}/barangays`)
-        .then(res => res.json())
-        .then(data => {
-        data.forEach(barangay => {
-            const option = document.createElement("option");
-            option.value = barangay.code;
-            option.textContent = barangay.name;
-            barangaySelect.appendChild(option);
-        });
-        });
+        barangaySelect.innerHTML = '<option value="">Select Barangay</option>';
+
+        if (!cityCode) return;
+
+        fetch(`https://psgc.gitlab.io/api/cities/${cityCode}/barangays`)
+            .then(res => res.json())
+            .then(data => {
+                data.forEach(barangay => {
+                    const option = document.createElement("option");
+                    option.value = barangay.code;
+                    option.textContent = barangay.name;
+                    barangaySelect.appendChild(option);
+                });
+            });
+    });
+
+    barangaySelect.addEventListener("change", () => {
+        const barangayName = barangaySelect.options[barangaySelect.selectedIndex].text;
+        document.getElementById("barangay_name").value = barangayName;
     });
 

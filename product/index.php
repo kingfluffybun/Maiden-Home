@@ -4,9 +4,10 @@ include "../includes/db.php";
 
 // Keep session active from cookie
 if (!isset($_SESSION['username']) && isset($_COOKIE['username'])) {
-    $_SESSION['username'] = $_COOKIE['username'];
-    $_SESSION['user_email'] = $_COOKIE['user_email'];
-    $_SESSION['role'] = $_COOKIE['role'];
+        $_SESSION['user_id'] = $_COOKIE['user_id'];
+        $_SESSION['username'] = $_COOKIE['username'];
+        $_SESSION['user_email'] = $_COOKIE['user_email'];
+        $_SESSION['role'] = $_COOKIE['role'];
 }
 
 // Pagination
