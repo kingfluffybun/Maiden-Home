@@ -29,7 +29,7 @@
                     <div>
                         <?php if (isset($_SESSION['username']) && isset($_SESSION['user_email'])): ?>
                             <p id="username"><?= htmlspecialchars($_SESSION['username']); ?></p>
-                            <p id="email"><?= htmlspecialchars($_SESSION['user_email']); ?></p>
+                            <p id="user-email"><?= htmlspecialchars($_SESSION['user_email']); ?></p>
                         <?php else: ?>
                             <p id="username" style="display:flex; align-items:center; height:100%;">Guest</p>
                         <?php endif; ?>
