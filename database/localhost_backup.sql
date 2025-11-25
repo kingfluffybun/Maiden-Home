@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2025 at 04:31 PM
+-- Generation Time: Nov 25, 2025 at 03:18 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -38,6 +38,7 @@ CREATE TABLE `address` (
   `city` varchar(50) NOT NULL,
   `province` varchar(50) NOT NULL,
   `region` varchar(50) NOT NULL,
+  `barangay` varchar(50) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -57,18 +58,6 @@ CREATE TABLE `addtocart` (
   `sizes` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `addtocart`
---
-
-INSERT INTO `addtocart` (`cart_id`, `user_id`, `product_id`, `quantity`, `color`, `material`, `sizes`, `created_at`) VALUES
-(5, 1, 4, 13, '', '', '', '2025-11-09 07:50:16'),
-(22, 1, 1, 3, 'Charcoal', 'Oak Top', '180x80x22.5', '2025-11-11 10:25:02'),
-(23, 1, 2, 3, '', '', '', '2025-11-11 10:28:31'),
-(24, 1, 1, 3, 'Charcoal', 'Oak Top', '80x33x195', '2025-11-11 10:32:59'),
-(25, 1, 7, 4, 'Navy', 'Cotton Fiber', '40x62x1', '2025-11-11 12:23:57'),
-(26, 1, 1, 3, '', '', '', '2025-11-13 13:21:59');
 
 -- --------------------------------------------------------
 
@@ -105,8 +94,12 @@ CREATE TABLE `order` (
   `order_id` int(11) NOT NULL,
   `user_id` int(100) UNSIGNED NOT NULL,
   `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `color` varchar(50) NOT NULL,
+  `material` varchar(50) NOT NULL,
+  `sizes` varchar(50) NOT NULL,
+  `total_price` decimal(10,2) NOT NULL,
   `address_id` int(11) NOT NULL,
-  `total_order` int(11) NOT NULL,
   `payment` enum('Ewallet','Cod','Bank') NOT NULL,
   `payment_status` enum('pending','paid') NOT NULL DEFAULT 'pending',
   `order_status` enum('order placed','shipped','delivered') NOT NULL,
@@ -325,7 +318,13 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `username`, `user_pass`, `user_email`, `role`) VALUES
 (1, 'clarence', '$2y$10$/dWiLGL4tf01A2423JxWwuxKhlSbPw.g9Io/NxS26U8/BYVJ8wsxu', 'jhonrickparica@gmail.com', 'admin'),
-(2, 'Pat', '$2y$10$00T1t37wtqkYTBJOQ7bPQuznPrJ97gCTXmJcd9TRmARPMUyZVDvzm', 'dumpacclngtouy@gmail.com', 'admin');
+(2, 'Pat', '$2y$10$00T1t37wtqkYTBJOQ7bPQuznPrJ97gCTXmJcd9TRmARPMUyZVDvzm', 'dumpacclngtouy@gmail.com', 'admin'),
+(3, 'test1', '$2y$10$EQJQSYtcqTGlzoU8G0HNmejuZg1qrWiB8wODsmjlMDuK1HkJhWLlO', 'test1@gmail.com', 'user'),
+(4, 'test3', '$2y$10$DsLiHSbrQameEesDNhX7nudc3GZXJiGckb9eRFkFMIiE0iI/YTyDm', 'test3@gmail.com', 'user'),
+(5, 'test123', '$2y$10$qzzm6ZLE5zbk1q99YOTyUegJIKKkMSfePgNoGrUatemXPqILfqzPa', 'test123@gmail.com', 'user'),
+(6, 'test1234', '$2y$10$s9oZoUfdmVdB2h/dK1w23u5tc312XkG/nx8XAte92onMUbE1kYVre', 'test1234@gmail.com', 'user'),
+(7, 'test12345', '$2y$10$jZKFlXRZ5108t7m9toqCX.Jb82LAvibnTr6wcwR56oMp2KcjvoVIW', 'test12345@gmail.com', 'user'),
+(8, 'test12312', '$2y$10$bYMDcNQrkV4RfcXVRcjQY.8XRvj7383ovuC2sePFlS.gUAx.s3gK6', 'test12312@gmail.com', 'user');
 
 --
 -- Indexes for dumped tables
@@ -359,6 +358,7 @@ ALTER TABLE `category`
 --
 ALTER TABLE `order`
   ADD PRIMARY KEY (`order_id`),
+  ADD UNIQUE KEY `order_id` (`order_id`),
   ADD KEY `address_id` (`address_id`),
   ADD KEY `product_id` (`product_id`),
   ADD KEY `user_id` (`user_id`);
@@ -399,7 +399,7 @@ ALTER TABLE `address`
 -- AUTO_INCREMENT for table `addtocart`
 --
 ALTER TABLE `addtocart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -408,10 +408,16 @@ ALTER TABLE `category`
   MODIFY `category_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `order`
+--
+ALTER TABLE `order`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT for table `sub_category`
@@ -423,7 +429,7 @@ ALTER TABLE `sub_category`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(100) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(100) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

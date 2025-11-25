@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
     $province = $_POST['province'];
     $city = $_POST['city'];
     $barangay = $_POST['barangay'];
-    $payment_method = 'cod'; 
+    $payment_method = $_POST['payment_method'];
 
     if ($conn_status->connect_error) {
         die("Connection failed: " . $conn_status->connect_error);
@@ -53,8 +53,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
             throw new Exception("Your cart is empty. Cannot place an order.");
         }
 
-        $sql_order = "INSERT INTO `order` (user_id, product_id, address_id, total_order, payment, payment_status, order_status, color, material, sizes) 
-                    VALUES (?, ?, ?, ?, ?, 'pending', 'order placed', ?, ?, ?)"; 
+         $sql_order = "INSERT INTO `order` (user_id, product_id, quantity, color, material, sizes, total_price, address_id, payment, payment_status, order_status) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'Pending', 'Order Placed')"; 
         $stmt_order = $conn_status->prepare($sql_order);
         
         foreach ($cart_items_for_order as $item) {
@@ -64,8 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
             $color = $item['color'];
             $material = $item['material'];
             $sizes = $item['sizes'];
-            $item_total = $price * $quantity;
-            $stmt_order->bind_param("iiiissss", $user_id, $product_id, $address_id, $item_total, $payment_method, $color, $material, $sizes);
+            $total_price = $price * $quantity;
+            $stmt_order->bind_param("iiissssss", $user_id, $product_id, $quantity, $color, $material, $sizes, $total_price, $address_id, $payment_method);
             if (!$stmt_order->execute()) {
                 throw new Exception("Order Item Insertion Error: " . $stmt_order->error);
             }
@@ -130,12 +130,13 @@ $stmt->close();
             <div class="checkout-left">
                 <h1>Checkout</h1>
                 <div class="process-step-container">
-                    <div class="process-step-active">Information</div>
+                    <div class="process-step">Information</div>
                     <div class="process-step">Payment Method</div>
                     <div class="process-step">Confirmation</div>
                 </div>
-                <h3>Contact Information</h3>
-                <form class="checkout-form" method="POST">
+                <form class="checkout-form" id="checkoutForm" method="POST">
+                <div class="checkout-step step-active" data-step="1">
+                    <h3>Contact Information</h3>
                     <div class="form-row">
                         <div class="input-container">
                             <input type="text" id="fname" name="fname" placeholder=" " required>
@@ -187,10 +188,33 @@ $stmt->close();
                             </select>
                         </div>
                     </div>
-                    <button type="submit" name="place_order" class="checkout-btn">Proceed to Payment Method</button>
-                </form>
+                    <div class="form-navigation">
+                        <button type="button" class="checkout-btn next-btn">Proceed to Payment Method</button>
+                    </div>
                 </div>
-            
+                <div class="checkout-step" data-step="2">
+                    <h3>Payment Method</h3>
+                    <div class="payment-methods">
+                        <div class="payment-option" data-value="card"><span>Card</span></div>
+                        <div class="payment-option" data-value="e-wallet"><span>E-Wallet</span></div>
+                        <div class="payment-option" data-value="cod"><span>Cash on Delivery</span></div>
+                    </div>
+                    <input type="hidden" name="payment_method" id="payment_method" value="cod">
+                    <div class="form-navigation">
+                        <button type="button" class="checkout-btn prev-btn">Previous</button>
+                        <button type="button" class="checkout-btn next-btn">Proceed to Confirmation</button>
+                    </div>
+                </div>
+                <div class="checkout-step" data-step="3">
+                    <h3>Confirmation</h3>
+                    <p>Review mo to tapos click place order </p>
+                    <div class="form-navigation">
+                        <button type="button" class="checkout-btn prev-btn">Previous</button>
+                        <button type="submit" name="place_order" class="checkout-btn">Place Order</button>
+                    </div>
+                </div>
+            </form>
+                </div>
             <div class="checkout-right">
                 <h2>
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m15 11-1 9" /> <path d="m19 11-4-7" /> <path d="M2 11h20" /> <path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4" /> <path d="M4.5 15.5h15" /> <path d="m5 11 4-7" /> <path d="m9 11 1 9" /> </svg>

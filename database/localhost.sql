@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2025 at 05:19 AM
+-- Generation Time: Nov 25, 2025 at 03:17 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -98,8 +98,8 @@ CREATE TABLE `order` (
   `color` varchar(50) NOT NULL,
   `material` varchar(50) NOT NULL,
   `sizes` varchar(50) NOT NULL,
+  `total_price` decimal(10,2) NOT NULL,
   `address_id` int(11) NOT NULL,
-  `total_order` int(11) NOT NULL,
   `payment` enum('Ewallet','Cod','Bank') NOT NULL,
   `payment_status` enum('pending','paid') NOT NULL DEFAULT 'pending',
   `order_status` enum('order placed','shipped','delivered') NOT NULL,
@@ -399,7 +399,7 @@ ALTER TABLE `address`
 -- AUTO_INCREMENT for table `addtocart`
 --
 ALTER TABLE `addtocart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -417,7 +417,7 @@ ALTER TABLE `order`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT for table `sub_category`
