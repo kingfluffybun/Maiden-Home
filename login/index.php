@@ -34,6 +34,7 @@ function userAndPassCorrect()
                 if (isset($_POST['remember'])) {
                     setcookie("username", $row['username'], time() + (86400 * 30), "/");
                     setcookie("user_email", $row['user_email'], time() + (86400 * 30), "/");
+                    setcookie("role", $row['role'], time() + (86400 * 30),"/");
                 }
 
                 header("Location: ../");
