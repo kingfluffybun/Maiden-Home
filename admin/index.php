@@ -132,7 +132,7 @@ if (isset($_POST['finish'])) {
                 <div class="step">Confirmation</div>
             </div>
             <form id="addProductForm" method="POST" enctype="multipart/form-data">
-
+                
                 <div class="page active" id="page1">
                     <div class="form-area">
 
