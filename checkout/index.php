@@ -2,6 +2,13 @@
 session_start();
 include "../includes/db.php";
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require '../vendor/phpmailer/PHPmailer/src/Exception.php';
+require '../vendor/phpmailer/PHPMailer/src/PHPMailer.php';
+require '../vendor/phpmailer/PHPMailer/src/SMTP.php';
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: /login.php"); 
     exit;
@@ -14,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
     $phone = $_POST['phone'];
+    $email = $_POST['email'];
     $address = $_POST['add_name'];
     $region = $_POST['region'];
     $province = $_POST['province'];
@@ -36,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
         $address_id = $conn_status->insert_id;
         $stmt_address->close();
 
-        $sql_cart_items = "SELECT c.product_id, c.quantity, p.price, c.color, c.material, c.sizes
+        $sql_cart_items = "SELECT c.product_id, c.quantity, p.price, c.color, c.material, c.sizes, p.product_name
                             FROM addtocart c
                             JOIN products p ON c.product_id = p.product_id
                             WHERE c.user_id = ?";
@@ -71,6 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
             }
         }
         $stmt_order->close(); 
+
         $sql_clear_cart = "DELETE FROM addtocart WHERE user_id = ?";
         $stmt_clear_cart = $conn_status->prepare($sql_clear_cart);
         $stmt_clear_cart->bind_param("i", $user_id);
@@ -79,6 +88,79 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
             throw new Exception("Cart Clearing Error: " . $stmt_clear_cart->error);
         }
         $stmt_clear_cart->close();
+
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host = "smtp.gmail.com";
+        $mail->SMTPAuth = true;
+        $mail->Username = "maidenhomeph@gmail.com";
+        $mail->Password = "njumrerxojfgycni";
+        $mail->SMTPSecure = "tls";
+        $mail->Port = 587;
+
+        $mail->setFrom("maidenhomeph@gmail.com", "Maiden Home");
+        $mail->addAddress($email, $fname . ' ' . $lname);
+
+        $mail->isHTML(true);
+        $mail->Subject = "Order Confirmation - Maiden Home";
+
+        $mail->addEmbeddedImage('../assets/Logo.png', 'logo.png', 'logo.png');
+
+        $start_days = rand(2, 3);
+        $start_date = new DateTime();
+        $start_date->modify("+$start_days days");
+
+        $end_days = rand($start_days + 1, 7);
+        $end_date = new DateTime();
+        $end_date->modify("+$end_days days");
+
+        $start_formatted = $start_date->format("M. j");
+        $end_formatted = $end_date->format("j Y");
+        $delivery_range = "$start_formatted-$end_formatted";
+
+        $order_details_html = "
+        <table border='1' cellpadding='6' cellspacing='0' style='border-collapse: collapse; width: 100%; text-align: center;'>
+            <tr>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Color</th>
+                <th>Material</th>
+                <th>Size</th>
+                <th>Price</th>
+            </tr>
+        ";
+
+        $price = floatval($item["price"]);
+        $total_price = $price * $quantity;
+        $total_order_price += $total_price;
+
+        foreach ($cart_items_for_order as $item) {
+            $order_details_html .= "<tr>
+                <td>" . htmlspecialchars($item['product_name']) . "</td>
+                <td>" . $item['quantity'] . "</td>
+                <td>" . htmlspecialchars($item['color']) . "</td>
+                <td>" . htmlspecialchars($item['material']) . "</td>
+                <td>" . htmlspecialchars($item['sizes']) . "</td>
+                <td>₱" . number_format($item['price'] * $item['quantity'], 2) . "</td>
+            </tr>";
+        }
+        $order_details_html .= "</table>";
+
+        $mail->Body = "
+        <div style='text-align: center;'>
+            <img src='cid:logo.png' alt='Maiden Home Logo' width='200' style='height:auto;'>
+            <h2>Thank you for your order, " . htmlspecialchars($fname) . "!</h2>
+            <p>Your order has been successfully placed. Here are your order details:</p>
+            <p>{$order_details_html}</p>
+            <p><strong>Total Amount:</strong> ₱" . number_format($total_order_price, 2) . "</p>
+            <p><strong>Shipping to:</strong> {$address}, {$barangay}, {$city}, {$province}, {$region}</p>
+            <p><strong>Estimated Delivery:</strong> {$delivery_range}</p>
+            <br>
+            <p>Best regards,<br>Maiden Home Team</p>
+        </div>";
+
+        $mail->send();
+
         header("Location: ../order");
         exit;
     } catch (Exception $e) {
