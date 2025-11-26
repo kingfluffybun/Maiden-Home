@@ -51,56 +51,60 @@ $total = $subtotal;
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Orders | Maiden Home</title>
-        <link rel="stylesheet" href="order.css">
-        <link rel="stylesheet" href="../css/nav-bar.css">
-        <link rel="stylesheet" href="../css/footer.css">
-        <link rel="stylesheet" href="../css/scroll.css">
-        <link rel="stylesheet" href="../css/all.css">
-        <script src="../js/script.js"></script>
-    </head>
-    <body>
-        <?php include "../includes/nav-bar.php" ?>
-        <div class="order-container">
-            <div class="order-content">
-                <h1>Orders</h1>
-                <div class="cart-item">
-                    <div class="item-img"><img src="/Maiden-Home/assets/Products/Alfie-4-Seater-Sofa-Charcoal.jpg" alt="" width="100"></div>
-                    <div class="item-details">
-                        <div>
-                            <!-- Order Id -->
-                        </div>
-                        <div class="item-details-header">
-                            <h4>
-                                Alfie-4-Seater-Sofa-Charcoal
-                                <!-- <?php echo htmlspecialchars($item['product_name']); ?> -->
-                            </h4>
+<head>
+    <meta charset="UTF-8">
+    <title>Orders | Maiden Home</title>
+    <link rel="stylesheet" href="order.css">
+    <link rel="stylesheet" href="../css/nav-bar.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/scroll.css">
+    <link rel="stylesheet" href="../css/all.css">
+</head>
+<body>
+    <?php include "../includes/nav-bar.php" ?>
 
-                            <div class="price">
-                                $500
-                                <!-- <?php echo number_format($item['price'], 2); ?> -->
-                            </div>
-                        </div>
-                        <p>
-                            Charcoal
-                            <!-- <?php echo htmlspecialchars($item['color']); ?> -->
-                        </p>
-                        <p>
-                            Manufactured Wood
-                            <!-- <?php echo htmlspecialchars($item['material']); ?> -->
-                        </p>
-                        <p>
-                            100x200x300
-                            <!-- <?php echo htmlspecialchars($item['sizes']); ?> -->
-                        </p>
-                    </div>
+    <div class="order-container">
+        <div class="order-content">
+            <h1>Your Orders</h1>
+            <div class="order-card">
+                <div class="item-img">
+                    <img src="image" alt="Product Image" width="100">
+                </div>
+                <div class="item-details">
+                    <p><strong>Order ID:</strong> 1001</p>
+                    <p><strong>User ID:</strong> 501</p>
+                    <p><strong>Product ID:</strong> 301</p>
+                    <p><strong>Address ID:</strong> 201</p>
+                    <p><strong>Total Order:</strong> ₱13,000</p>
+                    <p><strong>Payment:</strong> Card </p>
+                    <p><strong>Payment Status:</strong> Paid</p>
+                    <p><strong>Order Status:</strong> Shipped</p>
+                    <p><strong>Order Date:</strong> 2025-11-25</p>
                 </div>
             </div>
-            <div class="order-track">track</div>
-            <div class="personal-details">details</div>
+            <div class="order-card">
+                <div class="item-img">
+                    <img src="image" alt="Product Image" width="100">
+                </div>
+                <div class="item-details">
+                    <p><strong>Order ID:</strong> 1002</p>
+                    <p><strong>User ID:</strong> 502</p>
+                    <p><strong>Product ID:</strong> 302</p>
+                    <p><strong>Address ID:</strong> 202</p>
+                    <p><strong>Total Order:</strong> ₱17,000</p>
+                    <p><strong>Payment:</strong> E-Wallet </p>
+                    <p><strong>Payment Status:</strong> Pending</p>
+                    <p><strong>Order Status:</strong> Processing</p>
+                    <p><strong>Order Date:</strong> 2025-11-24</p>
+                </div>
+            </div>
+
         </div>
-        <?php include "../includes/footer.php" ?>
-    </body>
+
+        <div class="order-track">track</div>
+        <div class="personal-details">details</div>
+    </div>
+
+    <?php include "../includes/footer.php" ?>
+</body>
 </html>

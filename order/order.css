@@ -77,3 +77,60 @@
     margin: 0;
     line-height: 1.5;
 }
+.order-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 0.5fr;
+    grid-template-rows: 1fr auto;
+    grid-template-areas: 
+        "a a b"
+        "a a b"
+        "c c b";
+    gap: 20px;
+    padding: 8vh 8vw;
+    height: 100vh;
+}
+
+.order-content {
+    grid-area: a;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.order-track {
+    grid-area: b;
+    height: 100%;
+    width: 100%;
+}
+
+.personal-details {
+    grid-area: c;
+    height: 100%;
+    width: 100%;
+}
+
+.order-card {
+    display: flex;
+    gap: 18px;
+    border: 1px solid #e6e6e6;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+.item-img img {
+    border-radius: 8px;
+    border: 1px solid #ececec;
+    padding: 8px;
+}
+
+.item-details p {
+    font-size: 14px;
+    margin: 3px 0;
+    line-height: 1.4;
+}
+
+.item-details p strong {
+    color: #000;
+}
