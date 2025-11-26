@@ -2,6 +2,11 @@
 session_start();
 include "../includes/db.php";
 
+if (!isset($_SESSION["user_id"]) || $_SESSION["role"] !== "admin") {
+    header("Location: ../");
+    exit();
+}
+
 if (isset($_POST['finish'])) {
     $product_name = $_POST['product_name'];
     $price = $_POST['price'];
@@ -85,7 +90,8 @@ if (isset($_POST['finish'])) {
     <title>Admin</title>
     <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="../css/all.css">
-    <link rel="stylesheet" href="/css/scroll.css">  
+    <link rel="stylesheet" href="/Maiden-Home/css/scroll.css">
+    <script src="script.js"></script>
 </head>
 <body>
 
@@ -323,9 +329,9 @@ if (isset($_POST['finish'])) {
                 </div>
 
                 <div class="page" id="page3">
-                    <div class="form-area" style="display: flex; flex-direction: column; gap: 24px;">
+                    <div class="form-area">
                         <div>
-                            <h3 style="margin-bottom: 8px;">Sizes</h3>
+                            <h3 style="margin: 8px 0;">Sizes</h3>
                             <div class="input-row">
                                 <input type="text" class="half" name="size1" placeholder="Size 1">
                                 <input type="text" class="half" name="size2" placeholder="Size 2">
@@ -334,7 +340,7 @@ if (isset($_POST['finish'])) {
                         </div>
 
                         <div>
-                            <h3 style="margin-bottom: 8px;">Materials</h3>
+                            <h3 style="margin: 8px 0;">Materials</h3>
                             <div class="input-row">
                                 <input type="text" class="half" name="mat1" placeholder="Material 1">
                                 <input type="text" class="half" name="mat2" placeholder="Material 2">
@@ -343,7 +349,7 @@ if (isset($_POST['finish'])) {
                         </div>
 
                         <div>
-                            <h3 style="margin-bottom: 8px;">Colors</h3>
+                            <h3 style="margin: 8px 0;">Colors</h3>
                             <div class="input-row">
                                 <div class="input-group half">
                                     <label>Color Name 1</label>

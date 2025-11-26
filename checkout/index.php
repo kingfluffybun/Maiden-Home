@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
         }
 
         $sql_order = "INSERT INTO `order` (user_id, product_id, address_id, total_order, payment, payment_status, order_status, color, material, sizes) 
-                      VALUES (?, ?, ?, ?, ?, 'pending', 'order placed', ?, ?, ?)"; 
+                    VALUES (?, ?, ?, ?, ?, 'pending', 'order placed', ?, ?, ?)"; 
         $stmt_order = $conn_status->prepare($sql_order);
         
         foreach ($cart_items_for_order as $item) {
@@ -86,9 +86,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
     }
 }
 $sql2 = "SELECT c.cart_id, c.quantity, c.color, c.material, c.sizes, p.product_name, p.price, p.product_img, p.product_id
-          FROM addtocart c
-          JOIN products p ON c.product_id = p.product_id
-          WHERE c.user_id = ?";
+        FROM addtocart c
+        JOIN products p ON c.product_id = p.product_id
+        WHERE c.user_id = ?";
 $stmt = $conn_status->prepare($sql2);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
@@ -111,6 +111,7 @@ $stmt->close();
         <link rel="stylesheet" href="../css/footer.css">
         <link rel="stylesheet" href="../css/scroll.css">
         <link rel="stylesheet" href="checkout.css" />
+        <script src="/Maiden-Home/js/script.js"></script>
         <style>
             input[type=number]::-webkit-inner-spin-button,
             input[type=number]::-webkit-outer-spin-button {
@@ -118,12 +119,12 @@ $stmt->close();
             margin: 0;
             }
             input[type=number] {
+            appearance: textfield;
             -moz-appearance: textfield;
             }
         </style>
     </head>
     <body>
-        
         <?php include("../includes/nav-bar.php"); ?>
         <div class="checkout-wrapper">
             <div class="checkout-left">
@@ -149,7 +150,7 @@ $stmt->close();
                     </div>
                     <div class="form-row">
                         <div class="input-container">
-                            <input type="number" id="phone" name="phone" placeholder=" " required maxlength="11">
+                            <input type="tel" id="phone" name="phone" placeholder=" " required maxlength="11">
                             <label for="phone">Phone Number</label>
                         </div>
                         <div class="input-container">
@@ -166,20 +167,26 @@ $stmt->close();
                     </div>
                     <div class="form-row wide">
                         <div class="input-container">
-                            <input type="text" id="region" name="region" placeholder=" " required>
-                            <label for="region">Region</label>
+                            <select id="region" name="region" required>
+                                <option value="">Select Region</option>
+                            </select>
                         </div>
                         <div class="input-container">
-                            <input type="text" id="province" name="province" placeholder=" " required>
-                            <label for="province">Province</label>
+                            <select id="province" name="province" required>
+                                <option value="">Select Province</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row wide">
+                        <div class="input-container">
+                            <select id="city" name="city" required>
+                                <option value="">Select City/Municipality</option>
+                            </select>
                         </div>
                         <div class="input-container">
-                            <input type="text" id="city" name="city" placeholder=" " required>
-                            <label for="city">City</label>
-                        </div>
-                        <div class="input-container">
-                            <input type="text" id="barangay" name="barangay" placeholder=" " required>
-                            <label for="barangay">Barangay</label>
+                            <select id="barangay" name="barangay" required>
+                                <option value="">Select Barangay</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-navigation">
@@ -214,7 +221,7 @@ $stmt->close();
             
             <div class="checkout-right">
                 <h2>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m15 11-1 9" /> <path d="m19 11-4-7" /> <path d="M2 11h20" /> <path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4" /> <path d="M4.5 15.5h15" /> <path d="m5 11 4-7" /> <path d="m9 11 1 9" /> </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="m15 11-1 9" /> <path d="m19 11-4-7" /> <path d="M2 11h20" /> <path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4" /> <path d="M4.5 15.5h15" /> <path d="m5 11 4-7" /> <path d="m9 11 1 9" /> </svg>
                     Order Summary
                 </h2>
                 <?php if (empty($cart_items)): ?>
@@ -248,24 +255,26 @@ $stmt->close();
                     <?php endforeach; ?>
                     <?php endif; ?>
                 </div>
-                <div class="summary-row">
-                    <span>Subtotal:</span>
-                    <span>₱
-                        <?php echo number_format($total, 2); ?>
-                    </span>
+                <div style="display: flex; flex-direction: column; gap: 12px; margin: 20px 0;">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span>₱
+                            <?php echo number_format($total, 2); ?>
+                        </span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping Fee:</span>
+                        <span>Free</span>
+                    </div>
+                    <hr style="margin: 0 20px; background-color: #e6e6e6;">
+                    <div class="summary-row total">
+                        <span>Total:</span>
+                        <span>₱
+                            <?php echo number_format($total, 2); ?>
+                        </span>
+                    </div>
                 </div>
-                <div class="summary-row">
-                    <span>Shipping Fee:</span>
-                    <span>Free</span>
-                </div>
-                <hr style="margin: 0 20px;">
-                <div class="summary-row total">
-                    <span>Total:</span>
-                    <span>₱
-                        <?php echo number_format($total, 2); ?>
-                    </span>
-                </div>
-                </div>
+            </div>
         </div>
         <?php include "../includes/footer.php" ?>
         <script>
@@ -275,63 +284,6 @@ $stmt->close();
                 this.value = this.value.slice(0, 11);
             }
         });
-
-        document.addEventListener("DOMContentLoaded", () => {
-    const steps = document.querySelectorAll(".checkout-step");
-    const nextBtns = document.querySelectorAll(".next-btn");
-    const prevBtns = document.querySelectorAll(".prev-btn");
-    const processSteps = document.querySelectorAll(".process-step");
-    let currentStep = 0;
-
-    function showStep(index) {
-        steps.forEach((step, i) => {
-            step.classList.toggle("step-active", i === index);
-        });
-        updateProcessStep(index);
-    }
-
-   function updateProcessStep(index) {
-    processSteps.forEach((step, i) => {
-        if (i <= index) {
-            step.classList.add("process-step-active");
-            step.classList.remove("process-step");
-        } else {
-            step.classList.remove("process-step-active");
-            step.classList.add("process-step");
-        }
-    });
-}
-
-    nextBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-            if (currentStep < steps.length - 1) {
-                currentStep++;
-                showStep(currentStep);
-            }
-        });
-    });
-
-    prevBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-            if (currentStep > 0) {
-                currentStep--;
-                showStep(currentStep);
-            }
-        });
-    });
-
-    const paymentOptions = document.querySelectorAll(".payment-option");
-    const paymentInput = document.getElementById("payment_method");
-    paymentOptions.forEach(option => {
-        option.addEventListener("click", () => {
-            paymentOptions.forEach(o => o.classList.remove("active"));
-            option.classList.add("active");
-            paymentInput.value = option.dataset.value;
-        });
-    });
-
-    showStep(currentStep);
-});
         </script>
     </body>
 </html>
