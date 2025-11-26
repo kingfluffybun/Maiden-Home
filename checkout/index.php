@@ -115,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
         $end_date->modify("+$end_days days");
 
         $start_formatted = $start_date->format("M. j");
-        $end_formatted = $end_date->format("j Y");
+        $end_formatted = $end_date->format("M. j Y");
         $delivery_range = "$start_formatted-$end_formatted";
 
         $order_details_html = "
