@@ -74,6 +74,7 @@ nav {
 }
 
 .nav-options {
+    text-decoration: none;
     background-color: transparent;
     border: none;
     position: relative;
@@ -115,6 +116,19 @@ nav {
 .dropdown-content li:hover {background-color: #dedede;}
 #username {font-weight: 600;}
 #user-email {color: #59636e;}
+
+.cart-count {
+    position: absolute;
+    display: flex;
+    transform: translateX(20px) translateY(-10px);
+    align-items: center;
+    justify-content: center;
+    width: 24px; 
+    height: 24px; 
+    color: white; 
+    background-color: red; 
+    border-radius: 50%;
+}
 
 .is-shown {
     opacity: 1; scale: 1;
