@@ -184,8 +184,61 @@
 }
 
 .background {
+    overflow-x: hidden;
+    overflow-y: hidden;
     width: 65%;
     background-color: #D47B33;
+    display: grid;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+.marquee-row {
+    display: flex;
+    padding: 6px;
+    gap: 12px;
+    
+}
+
+#marquee1 {
+    animation: pan1 15s linear infinite;
+}
+
+#marquee2 {
+    animation: pan2 15s linear infinite;
+}
+
+@keyframes pan1 {
+    from {
+        transform: translateX(-25%);
+    } 
+    to {
+        transform: translateX(-10%);
+    }
+}
+
+@keyframes pan2 {
+    from {
+        transform: translateX(-25%);
+    } 
+    to {
+        transform: translateX(-40%);
+    }
+}
+
+.product {
+    background-color: transparent;
+    height: 300px; width: 300px;
+    /* border: 1px solid #ccc; */
+    border-radius: 4px;
+    padding: 8px;
+    object-fit: cover;
+}
+
+.product img {
+    border-radius: 4px;
+    width: 300px;
+    height: 300px;
 }
 
 .alert-msg {
