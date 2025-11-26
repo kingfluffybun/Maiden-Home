@@ -126,6 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
     <link rel="stylesheet" href="product-detail.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/all.css">
+    <script src="../js/script.js"></script>
     <script src="script.js"></script>
 
 </head>
