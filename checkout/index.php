@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
     $province = $_POST['province'];
     $city = $_POST['city'];
     $barangay = $_POST['barangay'];
-    $payment_method = $_POST['payment_method'];
+    $payment_method = $_POST['payment-method'];
 
     if ($conn_status->connect_error) {
         die("Connection failed: " . $conn_status->connect_error);
@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
             $material = $item['material'];
             $sizes = $item['sizes'];
             $total_price = $price * $quantity;
-            $stmt_order->bind_param("iiissssss", $user_id, $product_id, $quantity, $color, $material, $sizes, $total_price, $address_id, $payment_method);
+            $stmt_order->bind_param("iiisssdis", $user_id, $product_id, $quantity, $color, $material, $sizes, $total_price, $address_id, $payment_method);
             if (!$stmt_order->execute()) {
                 throw new Exception("Order Item Insertion Error: " . $stmt_order->error);
             }
@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
             throw new Exception("Cart Clearing Error: " . $stmt_clear_cart->error);
         }
         $stmt_clear_cart->close();
-        header("Location: ../cart");
+        header("Location: ../order");
         exit;
     } catch (Exception $e) {
         echo "Error placing order: " . $e->getMessage();
@@ -192,25 +192,24 @@ $stmt->close();
                         Payment Method
                     </h3>
                     <div class="payment-methods">
-                        <input type="radio" id="payment-card" name="payment-method" data-value="card" checked>
+                        <input type="radio" id="payment-card" name="payment-method" value = "card" checked>
                         <label for="payment-card" class="payment-options">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-credit-card-icon lucide-credit-card"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
                             Card
                         </label>
 
-                        <input type="radio" id="payment-e-wallet" name="payment-method" data-value="e-wallet">
+                        <input type="radio" id="payment-e-wallet" name="payment-method" value = "e-wallet">
                         <label for="payment-e-wallet" class="payment-options">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wallet-icon lucide-wallet"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>
                             E-Wallet
                         </label>
 
-                        <input type="radio" id="payment-cod" name="payment-method" data-value="cod">
+                        <input type="radio" id="payment-cod" name="payment-method" value = "cod">
                         <label for="payment-cod" class="payment-options">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hand-coins-icon lucide-hand-coins"><path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17"/><path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/><path d="m2 16 6 6"/><circle cx="16" cy="9" r="2.9"/><circle cx="6" cy="5" r="3"/></svg>
                             Cash on Delivery
                         </label>
                     </div>
-                    <input type="hidden" name="payment_method" id="payment_method" value="cod">
                     <div class="form-navigation">
                         <button type="submit" name="place_order" class="checkout-btn next-btn">Place Order</button>
                     </div>

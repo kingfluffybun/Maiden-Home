@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
 
                 const paymentOptions = document.querySelectorAll(".payment-option");
-                const paymentInput = document.getElementById("payment_method");
+                const paymentInput = document.getElementById("payment-method");
                 paymentOptions.forEach(option => {
                     option.addEventListener("click", () => {
                         paymentOptions.forEach(o => o.classList.remove("active"));
