@@ -277,5 +277,70 @@ $stmt->close();
             </div>
         </div>
         <?php include "../includes/footer.php" ?>
+        <script>
+        document.getElementById('phone').addEventListener('input', function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+            if (this.value.length > 11) {
+                this.value = this.value.slice(0, 11);
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+    const steps = document.querySelectorAll(".checkout-step");
+    const nextBtns = document.querySelectorAll(".next-btn");
+    const prevBtns = document.querySelectorAll(".prev-btn");
+    const processSteps = document.querySelectorAll(".process-step");
+    let currentStep = 0;
+
+    function showStep(index) {
+        steps.forEach((step, i) => {
+            step.classList.toggle("step-active", i === index);
+        });
+        updateProcessStep(index);
+    }
+
+   function updateProcessStep(index) {
+    processSteps.forEach((step, i) => {
+        if (i <= index) {
+            step.classList.add("process-step-active");
+            step.classList.remove("process-step");
+        } else {
+            step.classList.remove("process-step-active");
+            step.classList.add("process-step");
+        }
+    });
+}
+
+    nextBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            if (currentStep < steps.length - 1) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        });
+    });
+
+    prevBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            if (currentStep > 0) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        });
+    });
+
+    const paymentOptions = document.querySelectorAll(".payment-option");
+    const paymentInput = document.getElementById("payment_method");
+    paymentOptions.forEach(option => {
+        option.addEventListener("click", () => {
+            paymentOptions.forEach(o => o.classList.remove("active"));
+            option.classList.add("active");
+            paymentInput.value = option.dataset.value;
+        });
+    });
+
+    showStep(currentStep);
+});
+        </script>
     </body>
 </html>
