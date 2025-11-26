@@ -75,7 +75,7 @@ $total = $subtotal;
                     <p><strong>User ID:</strong> 501</p>
                     <p><strong>Product ID:</strong> 301</p>
                     <p><strong>Address ID:</strong> 201</p>
-                    <p><strong>Total Order:</strong> ₱13,000</p>
+                    <p><strong>Total Order:</strong> ₱15,000</p>
                     <p><strong>Payment:</strong> Card </p>
                     <p><strong>Payment Status:</strong> Paid</p>
                     <p><strong>Order Status:</strong> Shipped</p>
