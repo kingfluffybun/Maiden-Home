@@ -142,7 +142,44 @@ function userAndPassCorrect()
                     <p class="create-account">New user? <a href="../register">Create New Account</a></p>
                 </div>
             </div>
-            <div class="background"></div>
+            <div class="background">
+                <div class="marquee-row" id="marquee1">
+                    <div class="product"><img src="\Maiden-Home/assets/PRODUCTS/Soft-Boucle-Corner-Sofabed-Product-Image-Hover.jpeg" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home/assets/PRODUCTS/Colette_4_Over_6_Chest_Of_Drawers_Hover.png" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Farrow_Triple_Wardrobe_with_Drawers_Hover.png" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Farrow-Low-Bookcase-White-Hover.jpg" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Hudson-Tall-Open-Shelf-Unit-White-Hover.jpg" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Alfie-Large-Corner-Sofa-Ice-Hover.jpg" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Ashbury-4-Seater-Sofa-Moss-Hover.jpg" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Kingsbury_White_Wash_Large_Carved_Wood_Table_Lamp_Hover.png" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Amalia_Natural_Ombre_Textured_Stoneware_Table_Lamp_Hover.png" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Biba_White___Brass_3_Light_Electrified_Pendant_Hover.png" alt=""></div>
+                </div>
+                <div class="marquee-row" id="marquee2">
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Dania_French_Gold_Metal_Wire_Pendant_Hover.png" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Koble_Thea_Upholstered_Swivel_Office_Chair_Hover.png" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Gaming_Chair_Hover.png" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Koble_Alma_Height_Adjustable_Swivel_Office_Chair_Hover.png" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Koble_Gino_Smart_Electric_Height_Adjustable_Corner_Desk_with_Storage_Drawer_Hover.png" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Maze-Pulse-Square-Corner-Dining-Set-Fire-Pit-Product-Image-hover.jpg" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Pulse-U-Shape-Dining-Set-with-Rising-Table-Product-Image-Hover.jpg" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Thalia-2-Seater-Pop-Up-Sofa-Bed-Products-Image-Hover.jpeg" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Regal-Oatmeal-8-Seat-Rectangular-Fire-Pit-Bar-Set-Product-Image-Hover.webp" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Farrow-Full-Hanging-Wardrobe-WIth-Shelf-Product-Image-Hover.jpeg" alt=""></div>
+                </div>
+                <div class="marquee-row" id="marquee1">
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Alfie_and_Arthur_Universal_Footstool_Hover.png" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Canterbury_Antique_Silver_Metal_Table_Lamp_Hover.png" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Trafalgar_Nickel_Palm_Tree_Floor_Lamp_Hover.png" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Roma_FSC_4_Seater_Round_Sunray_with_Concrete_Insert_Dining_Set_with_Roma_Dining_Chairs_Hover.png" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Stafford-Grey-Velvet-King-Size-Storage-Bed-Roseland-Hover.jpg" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Milo_Mango___Marble_Fluted_Side_Table_with_Door_Hover.png" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Cavendish-Thick-Pile-Shaggy-Berber-Rug-Product-Image-Hover.jpeg" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Bianca_Linen_Armchair_Hover.png" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\Natural_Wood_Veneer_Teardrop_Shaped_Mirror_Hover.png" alt=""></div>
+                    <div class="product"><img src="\Maiden-Home\assets\PRODUCTS\CHRISTMAS_ORNAMENT_Hover.jpg" alt=""></div>
+                </div>
+            </div>
         </section>
         <script>
             const passwordInput = document.getElementById('password');
