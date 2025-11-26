@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2025 at 03:17 PM
+-- Generation Time: Nov 26, 2025 at 09:13 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `address`
+-- Table structure for table `address_table`
 --
 
-CREATE TABLE `address` (
+CREATE TABLE `address_table` (
   `address_id` int(11) NOT NULL,
   `user_id` int(100) UNSIGNED NOT NULL,
   `user_firstname` varchar(50) NOT NULL,
@@ -58,6 +58,14 @@ CREATE TABLE `addtocart` (
   `sizes` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `addtocart`
+--
+
+INSERT INTO `addtocart` (`cart_id`, `user_id`, `product_id`, `quantity`, `color`, `material`, `sizes`, `created_at`) VALUES
+(71, 1, 2, 1, 'Cream', 'Pine ', '15.5x63x29', '2025-11-26 19:50:21'),
+(72, 1, 1, 1, 'Navy', 'Solid & Manufactured Wood Frame', '180x80x22.5', '2025-11-26 19:57:04');
 
 -- --------------------------------------------------------
 
@@ -100,7 +108,7 @@ CREATE TABLE `order` (
   `sizes` varchar(50) NOT NULL,
   `total_price` decimal(10,2) NOT NULL,
   `address_id` int(11) NOT NULL,
-  `payment` enum('Ewallet','Cod','Bank') NOT NULL,
+  `payment` varchar(50) NOT NULL,
   `payment_status` enum('pending','paid') NOT NULL DEFAULT 'pending',
   `order_status` enum('order placed','shipped','delivered') NOT NULL,
   `oder_date` timestamp NOT NULL DEFAULT current_timestamp()
@@ -331,9 +339,9 @@ INSERT INTO `user` (`user_id`, `username`, `user_pass`, `user_email`, `role`) VA
 --
 
 --
--- Indexes for table `address`
+-- Indexes for table `address_table`
 --
-ALTER TABLE `address`
+ALTER TABLE `address_table`
   ADD PRIMARY KEY (`address_id`),
   ADD KEY `user_id` (`user_id`);
 
@@ -390,16 +398,16 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT for table `address`
+-- AUTO_INCREMENT for table `address_table`
 --
-ALTER TABLE `address`
+ALTER TABLE `address_table`
   MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `addtocart`
 --
 ALTER TABLE `addtocart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -436,10 +444,10 @@ ALTER TABLE `user`
 --
 
 --
--- Constraints for table `address`
+-- Constraints for table `address_table`
 --
-ALTER TABLE `address`
-  ADD CONSTRAINT `address_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+ALTER TABLE `address_table`
+  ADD CONSTRAINT `address_table_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
 --
 -- Constraints for table `products`
