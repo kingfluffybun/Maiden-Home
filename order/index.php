@@ -1,4 +1,4 @@
-<?php
+<?php   
 session_start();
 include "../includes/db.php";
 
@@ -9,29 +9,9 @@ if (empty($_SESSION['user_id']) || empty($_SESSION['username'])) {
 
 $user_id = $_SESSION['user_id'];
 
-if (isset($_POST['action'])) {
-    $cart_id = intval($_POST['cart_id']);
-
-    if ($_POST['action'] === 'increase') {
-        $stmt = $conn->prepare("UPDATE addtocart SET quantity = quantity + 1 WHERE cart_id = ? AND user_id = ?");
-        $stmt->bind_param("ii", $cart_id, $user_id);
-        $stmt->execute();
-    } elseif ($_POST['action'] === 'decrease') {
-        $stmt = $conn->prepare("UPDATE addtocart SET quantity = GREATEST(quantity - 1, 1) WHERE cart_id = ? AND user_id = ?");
-        $stmt->bind_param("ii", $cart_id, $user_id);
-        $stmt->execute();
-    } elseif ($_POST['action'] === 'remove') {
-        $stmt = $conn->prepare("DELETE FROM addtocart WHERE cart_id = ? AND user_id = ?");
-        $stmt->bind_param("ii", $cart_id, $user_id);
-        $stmt->execute();
-    }
-    
-    header("Location: " . $_SERVER['REQUEST_URI']);
-    exit;
-}
-
-$sql = "SELECT c.cart_id, c.quantity, c.color, c.material, c.sizes, p.product_name, p.price, p.product_img
-        FROM addtocart c
+$sql = "SELECT c.order_id, c.quantity, c.color, c.material, c.sizes, p.product_name, c.total_price, p.product_img, c.payment, c.payment_status, c.order_status
+        FROM `order` c
+        JOIN address_table a ON c.address_id = a.address_id
         JOIN products p ON c.product_id = p.product_id
         WHERE c.user_id = ?";
 $stmt = $conn->prepare($sql);
@@ -44,7 +24,7 @@ $subtotal = 0;
 
 while ($row = $result->fetch_assoc()) {
     $cart_items[] = $row;
-    $subtotal += $row['price'] * $row['quantity'];
+    $subtotal += $row['total_price'] * $row['quantity'];
 }
 $total = $subtotal;
 ?>
@@ -66,53 +46,39 @@ $total = $subtotal;
     <div class="order-container">
         <div class="order-content">
             <h1 style="margin-bottom: 24px;">Your Orders</h1>
+            <?php foreach ($cart_items as $item): ?>
             <div class="order-card-container">
                 <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #ccc; padding-bottom: 12px;">
-                    <p><strong>Order ID:</strong> 1001</p>
-                    <p><strong>Payment:</strong> Card </p>
-                    <p><strong>Payment Status:</strong> Paid</p>
-                    <p><strong>Order Status:</strong> Shipped</p>
-                    <p><strong>Order Date:</strong> 2025-11-25</p>
+                    <p><strong>Order ID:</strong> <?php echo htmlspecialchars($item['order_id']); ?></p>
+                    <p><strong>Payment:</strong> <?php echo htmlspecialchars($item['payment']); ?> </p>
+                    <p><strong>Payment Status:</strong> <?php echo htmlspecialchars($item['payment_status']); ?> </p>
+                    <p><strong>Order Status:</strong> <?php echo htmlspecialchars($item['order_status']); ?> </p>
+                    <p><strong>Delivery Date:</strong> In 3 Days </p>
                 </div>
                 <div class="order-card">
                     <div class="order-item">
                         <div class="item-img">
-                        <img src="/Maiden-Home/assets/Products/Soft-Boucle-Corner-Sofabed-Angle-1.jpeg" alt="Product Image" width="100">
+                        <img src="/Maiden-Home/assets/Products/<?php echo htmlspecialchars($item['product_img']); ?>" alt="Product Image" width="100">
                         </div>
                         <div class="item-details">
                             <div class="item-details-header">
                                 <p>Soft-Boucle-Corner-Sofabed</p>
-                                <p class="price">₱68,149.00</p>
+                                <p class="price">₱<?php echo htmlspecialchars($item['total_price']); ?> </p>
                             </div>
                             <div class="product-detail">
-                                <p><span style="font-weight: 500;">Color:</span> Natural</p> 
-                                <p><span style="font-weight: 500;">Material:</span> Soft Boucle</p>  
-                                <p><span style="font-weight: 500;">Size:</span> 91.5x247x121</p>
+                                <p><span style="font-weight: 500;">Color:</span> <?php echo htmlspecialchars($item['color']); ?>l</p> 
+                                <p><span style="font-weight: 500;">Material:</span> <?php echo htmlspecialchars($item['material']); ?></p>  
+                                <p><span style="font-weight: 500;">Size:</span> <?php echo htmlspecialchars($item['sizes']); ?></p>
                             </div>
                         </div>
                     </div>
-                    <div class="order-item">
-                        <div class="item-img">
-                        <img src="/Maiden-Home/assets/Products/Soft-Boucle-Corner-Sofabed-Angle-1.jpeg" alt="Product Image" width="100">
-                        </div>
-                        <div class="item-details">
-                            <div class="item-details-header">
-                                <p>Soft-Boucle-Corner-Sofabed</p>
-                                <p class="price">₱68,149.00</p>
-                            </div>
-                            <div class="product-detail">
-                                <p><span style="font-weight: 500;">Color:</span> Natural</p> 
-                                <p><span style="font-weight: 500;">Material:</span> Soft Boucle</p>  
-                                <p><span style="font-weight: 500;">Size:</span> 91.5x247x121</p>
-                            </div>
-                        </div>
-                    </div>        
+                    <div class="total">
+                        <p>Total Items: <?php echo htmlspecialchars($item['quantity']); ?> Total: ₱<?php echo htmlspecialchars($item['total_price']); ?> </p>
+                    </div>    
                 </div>
             </div>
+            <?php endforeach; ?>
         </div>
-
-        <div class="order-track">track</div>
-        <div class="personal-details">details</div>
     </div>
 
     <?php include "../includes/footer.php" ?>

@@ -69,12 +69,6 @@
     text-wrap: nowrap;
 }
 
-.item-details p {
-    font-size: 12px;
-    font-weight: 300;
-    margin: 0;
-    line-height: 1.5;
-}
 .order-container {
     display: grid;
     grid-template-columns: 1fr 1fr 0.5fr;
@@ -134,3 +128,12 @@
 .item-details p strong {
     color: #000;
 }
+
+.total {
+    margin-top: 12px; 
+    padding-top: 12px; 
+    display: flex; 
+    justify-content: flex-end; 
+    border-top: #ccc 1px solid;
+}
+
