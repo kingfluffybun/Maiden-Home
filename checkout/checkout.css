@@ -268,3 +268,29 @@ hr {
     border-color: #d47b33;
     background-color: #fff9f3;
 }
+
+.checkout-step {
+    display: none;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.checkout-step.step-active {
+    display: flex;
+}
+
+.payment-option.active {
+    border-color: #d47b33;
+    background-color: #fff9f3;
+}
+
+.process-step {
+    color: #d9d9d9;
+    border-bottom: 2px solid #c8c8c8;
+    padding: 4px 8px;
+}
+
+.process-step-active {
+    color: #d47b33;
+    border-bottom: 2px solid #d47b33;
+}
