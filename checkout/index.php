@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
         die("Connection failed: " . $conn_status->connect_error);
     }
     try {
-        $sql_address = "INSERT INTO address (user_id, user_firstname, user_lastname, phone_number, add_name, region, province, city, barangay) 
+        $sql_address = "INSERT INTO address_table (user_id, user_firstname, user_lastname, phone_number, add_name, region, province, city, barangay) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt_address = $conn_status->prepare($sql_address);
         $stmt_address->bind_param("issssssss", $user_id, $fname, $lname, $phone, $address, $region, $province, $city, $barangay);
